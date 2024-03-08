@@ -13,6 +13,8 @@
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^5.0.4",
+        "bootstrap": "^5.3.3",
+        "vite-plugin-sass": "^0.1.0",
         "vue": "^3.4.21",
         "vue-loader": "^17.4.2"
     }
