@@ -10,7 +10,7 @@
 
     <div class="page-section">
         {{-- Header --}}
-        {{-- @include('backend.includes.header') --}}
+        @include('backend.includes.header')
 
         <div class="main">
             {{-- Page Content --}}
@@ -18,7 +18,7 @@
         </div>
 
         {{-- Footer --}}
-        {{-- @include('backend.includes.footer') --}}
+        @include('backend.includes.footer')
     </div>
     {{-- app-body --}}
 
