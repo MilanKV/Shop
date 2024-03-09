@@ -14,8 +14,19 @@ use App\Http\Controllers\admin\AdminController;
 |
 */
 
+// Frontend
 Route::get('/', function () {
-    return view('app');
+    return view('frontend/app');
 });
 
+// Backend
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+
+
+// Auth
+Route::get('/login', function () {
+    return view('auth/login');
+});
+Route::get('/register', function () {
+    return view('auth/register');
+});
