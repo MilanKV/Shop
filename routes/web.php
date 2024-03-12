@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Middleware\CheckRole;
+use App\Enums\RoleType;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +16,12 @@ use App\Http\Controllers\admin\AdminController;
 |
 */
 
+Auth::routes();
+
 // Frontend
 Route::get('/', function () {
     return view('frontend/app');
 });
-
-// Backend
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
-
-// Auth
-Route::get('/login', function () {
-    return view('auth/login');
-});
-Route::get('/register', function () {
-    return view('auth/register');
+Route::group(['middleware' => ['auth', CheckRole::class . ':' . RoleType::SUPERADMIN->value], 'prefix' => 'admin'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
