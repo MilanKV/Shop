@@ -79,18 +79,12 @@
             <h6 class="title-section ps-3 text-uppercase">System</h6>
         </li>
         <li class="list-item">
-            <div class="icon-link">
-                <a href="#">
-                    <i class='bx bx-user'></i>
-                    <span class="link_name">Users</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow'></i>
-            </div>
-            <ul class="sub-menu">
+            <a href="#">
+                <i class='bx bx-user'></i>
+                <span class="link_name">Users</span>
+            </a>
+            <ul class="sub-menu blank">
                 <li class="list-item"><a class="link_name" href="#">Users</a></li>
-                <li class="list-item"><a href="#">User Management</a></li>
-                <li class="list-item"><a href="#">Role Management</a></li>
-                <li class="list-item"><a href="#">Permissions</a></li>
             </ul>
         </li>
         <li class="list-item">
