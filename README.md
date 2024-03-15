@@ -12,31 +12,31 @@
    https://github.com/MilanKV/Shop.git
 2. **Navigate to the Project Directory** 
     ```bash
-       cd shop
+    cd shop
 3. **Navigate to the Project Directory** 
     ```bash
-       composer install
+    composer install
 4. **Copy Environment Configuration** 
 - cp .env.example .env
 5. **Generate Application Key** 
     ```bash
-       php artisan key:generate
+    php artisan key:generate
 6. **Run Migrations and Seeders**
     ```bash
-       php artisan migrate --seed
+    php artisan migrate --seed
 7. **Install Node.js Dependencies**
     ```bash
-       npm install
+    npm install
 8. **Compile Assets**
-    ```bash
-       npm run dev
+   ```bash
+   npm run dev
 9. **Access the Application**
-- Start the Development Server
-  ```bash
-  php artisan serve
+-  Start the Development Server
+   ```bash
+   php artisan serve
 - Open your web browser and go to
-  ```bash
-  http://127.0.0.1:8000/
+   ```bash
+   http://127.0.0.1:8000/
 - **Email:** //
 - **Password:** //
 
