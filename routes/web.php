@@ -16,12 +16,12 @@ use App\Enums\RoleType;
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Frontend
 Route::get('/', function () {
     return view('frontend/app');
 });
-Route::group(['middleware' => ['auth', CheckRole::class . ':' . RoleType::SUPERADMIN->value], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . RoleType::SUPERADMIN->value], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });

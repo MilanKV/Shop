@@ -1,16 +1,17 @@
 .container {
     padding: 0;
     max-width: 1920px;
+    height: 100vh;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-size: cover;
     background-position: 50%;
     background: #E4E9F7;
-
 
     .row {
         display: flex;
@@ -79,6 +80,11 @@
                     }
 
                     .form-switch {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+
                         .form-check-input {
                             height: 1.25em;
                             width: 2.5rem;
@@ -98,6 +104,13 @@
                             font-weight: 500;
                             margin-left: .5rem;
                             padding-top: 2px;
+                        }
+
+                        .forgot-link {
+                            text-decoration: none;
+                            color: #344767;
+                            font-weight: 400;
+                            font-size: 16px;
                         }
                     }
 
@@ -158,6 +171,57 @@
                     opacity: .3 !important;
                     object-fit: cover;
                     width: 100%;
+                }
+            }
+        }
+    }
+
+    .recovery-card {
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-clip: border-box;
+            border: 0 solid rgba(0, 0, 0, .125);
+            border-radius: 1rem;
+            background-color: transparent;
+
+            .card-header {
+                padding: 1.5rem;
+                background-color: transparent;
+                border-bottom: 0 solid rgba(0, 0, 0, .125);
+
+                .title {
+                    color: #344767;
+                    font-weight: 700;
+                }
+
+                p {
+                    line-height: 1.625;
+                    font-weight: 400;
+                }
+            }
+
+            .card-body {
+                padding: 1.5rem;
+
+                .title {
+                    padding: 0 0 4px 2px;
+                    font-weight: 700;
+                    font-size: 12px;
+                }
+
+                .btn {
+                    background-size: 150%;
+                    color: white;
+                    background-position-x: 25%;
+                    box-shadow: 0 4px 7px -1px rgba(0, 0, 0, .11), 0 2px 4px -1px rgba(0, 0, 0, .07);
+                }
+
+                .bg-gradient {
+                    background-image: linear-gradient(310deg, #1f1f24, #423f74) !important;
                 }
             }
         }
