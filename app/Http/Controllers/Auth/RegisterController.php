@@ -7,12 +7,11 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
     use RegistersUsers;
-    protected $redirectTo = '/';
+    protected $redirectTo = '/email/verify';
 
     /**
      * Get a validator for an incoming registration request.
@@ -46,9 +45,5 @@ class RegisterController extends Controller
         $user->sendEmailVerificationNotification();
 
         return $user;
-    }
-    protected function registered(Request $request, $user)
-    {
-        return redirect()->route('login');
     }
 }

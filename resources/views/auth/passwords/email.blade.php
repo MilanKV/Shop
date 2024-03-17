@@ -21,13 +21,24 @@
                     <p class="mb-0"> You will receive an e-mail in maximum 60 seconds </p>
                 </div>
                 <div class="card-body pb-3">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    
                     <form method="POST" action="{{ route('password.email') }}" class="text-start">
                         @csrf
 
                         <label class="title" for="email">{{ __('Email Address') }}</label>
                         <div class="form-group mb-0">
-                            <input id="email" type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             <br>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="text-center">
                             <button class="btn mb-0 bg-gradient btn-lg w-100 null mt-4" type="submit">
