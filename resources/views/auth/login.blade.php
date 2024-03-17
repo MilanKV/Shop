@@ -15,7 +15,7 @@
 
 <body>
     <div id="app">
-        <div class="container min-vh-100">
+        <div class="container">
             <div class="row">
                 <div class="left-side mx-auto col-xl-4 col-lg-5 col-md-7">
                     <div class="card">
@@ -36,8 +36,17 @@
                                         placeholder="Password" required autocomplete="current-password">
                                 </div>
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                    <div class="remember-me">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="remember">{{ __('Remember Me') }}</label>
+                                    </div>
+                                    <div class="forgot-password">
+                                        @if (Route::has('password.request'))
+                                            <a class="forgot-link" href="{{ route('password.request') }}">
+                                                {{ __('Forgot Your Password?') }}
+                                            </a>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="text-center">
                                     <button class="btn mb-0 bg-gradient btn-lg w-100 null mt-4">
