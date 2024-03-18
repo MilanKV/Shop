@@ -8,13 +8,16 @@ use App\Enums\RoleType;
 
 class CheckRole
 {
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, ...$roles)
     {
-        $roleEnum = RoleType::from($role);
-        // Check if the authenticated user's role matches the required role
-        if ($request->user() && $request->user()->role != $roleEnum) {
-            abort(403);
+        foreach ($roles as $role) {
+            $roleEnum = RoleType::from($role);
+            // Check if the authenticated user's role matches any of the required roles
+            if ($request->user() && $request->user()->role == $roleEnum) {
+                return $next($request);
+            }
         }
-        return $next($request);
+
+        abort(403);
     }
 }

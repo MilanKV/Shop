@@ -1,3 +1,6 @@
+@php
+    $superAdminRole = \App\Enums\RoleType::SUPERADMIN;
+@endphp
 <div class="sidebar close">
     <div class="logo-details">
         <i class='bx bxl-c-plus-plus'></i>
@@ -74,6 +77,7 @@
                 <li class="list-item"><a class="link_name" href="#">Reports</a></li>
             </ul>
         </li>
+        @if(Auth::user()->role == $superAdminRole)
         <li class="divider">
             <hr class="horizontal dark">
             <h6 class="title-section ps-3 text-uppercase">System</h6>
@@ -96,6 +100,7 @@
                 <li class="list-item"><a class="link_name" href="#">Settings</a></li>
             </ul>
         </li>
+        @endif
         <li class="list-item">
             <div class="profile-details">
                 <div class="profile-content">
@@ -106,7 +111,10 @@
                     <div class="profile_name">Milan</div>
                     <div class="job">Admin</div>
                 </div>
-                <i class='bx bx-log-out'></i>
+                <i class='bx bx-log-out' onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></i>  
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                </form>
             </div>
         </li>
     </ul>
