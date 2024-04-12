@@ -1,0 +1,231 @@
+.main {
+    .container-fluid {
+        padding: 24px 24px 48px 24px;
+
+        .row {
+            .column {
+                .card {
+                    position: relative;
+                    display: flex;
+                    min-width: 0;
+                    word-wrap: break-word;
+                    background-color: #fff;
+                    background-clip: border-box;
+                    border: 0 solid rgba(0, 0, 0, .125);
+                    border-radius: 1rem;
+                    box-shadow: 0 20px 27px 0 rgba(0, 0, 0, .05);
+
+                    .card-header {
+                        padding: 1.5rem;
+                        background-color: #fff;
+                        border-bottom: 0 solid rgba(0, 0, 0, .125);
+
+                        .d-lg-flex {
+                            .title {
+                                .title-description {
+                                    font-size: .875rem !important;
+                                    line-height: 1.5;
+                                    font-weight: 400;
+                                }
+                            }
+
+                            .card-action {
+                                .btn-add {
+                                    color: #fff;
+                                    border: 0;
+                                    letter-spacing: -.025rem;
+                                    box-shadow: 0 4px 7px -1px rgba(0, 0, 0, .11), 0 2px 4px -1px rgba(0, 0, 0, .07);
+                                    background-size: 150%;
+                                    background-position-x: 25%;
+                                    font-size: .75rem;
+                                    line-height: 1.4;
+                                    font-weight: 700;
+                                    padding: .5rem 2rem;
+                                    border-radius: .5rem;
+                                    text-transform: uppercase;
+                                    text-decoration: none;
+                                    background-image: linear-gradient(310deg, #1f1f24, #423f74) !important;
+                                }
+                            }
+                        }
+                    }
+
+                    .card-body {
+                        .table {
+                            overflow-x: auto;
+
+                            .dataTable-header {
+                                padding: 1.5rem;
+
+                                .dropdown {
+                                    float: left;
+
+                                    label {
+                                        margin-bottom: 0;
+                                        margin-left: 0;
+                                        color: #8392ab;
+                                        font-weight: 400;
+
+                                        .dataTable-select {
+                                            border-color: #e9ecef;
+                                            border-radius: .25rem;
+                                            padding: 6px;
+                                            text-transform: none;
+                                        }
+                                    }
+                                }
+
+                                .search {
+                                    float: right;
+
+                                    .input-search {
+                                        font-size: .875rem;
+                                        color: #495057;
+                                        border: 1px solid #e9ecef;
+                                        border-radius: .5rem;
+                                        padding: 6px 12px;
+                                    }
+                                }
+                            }
+
+                            .dataTable-header::after {
+                                clear: both;
+                                content: " ";
+                                display: table;
+                            }
+
+                            .dataTable-body {
+                                border-bottom: 0;
+
+                                .table {
+                                    max-width: 100%;
+                                    width: 100%;
+                                    border-spacing: 0;
+                                    border-collapse: separate;
+
+                                    thead {
+                                        tr {
+                                            th {
+                                                padding: .75rem 1.5rem;
+                                                opacity: .7;
+                                                font-weight: bolder;
+                                                color: #8392ab;
+                                                text-transform: uppercase;
+                                                font-size: .65rem;
+
+                                                .dataTable-sorter {
+                                                    position: relative;
+                                                    display: inline-block;
+                                                    height: 100%;
+                                                    width: 100%;
+                                                    text-decoration: none;
+                                                    color: inherit;
+                                                    letter-spacing: -.025rem;
+                                                }
+
+                                                .dataTable-sorter::before {
+                                                    border-top: 4px solid #000;
+                                                    bottom: 0;
+                                                    content: "";
+                                                    height: 0;
+                                                    width: 0;
+                                                    position: absolute;
+                                                    right: 4px;
+                                                    border-left: 4px solid transparent;
+                                                    border-right: 4px solid transparent;
+                                                    opacity: .2;
+                                                }
+
+                                                .dataTable-sorter::after {
+                                                    border-bottom: 4px solid #000;
+                                                    border-top: 4px solid transparent;
+                                                    top: 0;
+                                                    content: "";
+                                                    height: 0;
+                                                    width: 0;
+                                                    position: absolute;
+                                                    right: 4px;
+                                                    border-left: 4px solid transparent;
+                                                    border-right: 4px solid transparent;
+                                                    opacity: .2;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    tbody {
+                                        tr {
+                                            td {
+                                                padding: .75rem 1.5rem;
+                                                vertical-align: middle !important;
+
+                                                .d-flex {
+                                                    .image {
+                                                        width: 10% !important;
+                                                        object-fit: cover;
+                                                    }
+                                                }
+
+                                                .badge {
+                                                    padding: .45em .775em;
+                                                    font-size: .65em;
+                                                    border-radius: .25rem;
+                                                    display: inline-block;
+                                                    font-weight: 700;
+                                                    line-height: 1;
+                                                    text-align: center;
+                                                    white-space: nowrap;
+                                                    vertical-align: baseline;
+                                                    text-transform: uppercase;
+                                                }
+
+                                                .badge-success {
+                                                    color: #67b108;
+                                                    background-color: #cdf59b;
+                                                }
+
+                                                .badge-danger {
+                                                    color: #bd0000;
+                                                    background-color: #fc9797;
+                                                }
+                                            }
+
+                                            .text-sm {
+                                                font-size: .875rem !important;
+                                                line-height: 1.5;
+
+                                                a {
+                                                    padding-right: 12px;
+                                                    letter-spacing: -.025rem;
+                                                    text-decoration: none;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .dataTable-footer {
+                                padding: 1.5rem;
+                                padding-top: 0;
+
+                                .info {
+                                    color: #8392ab;
+                                    font-size: .875rem;
+                                    float: left;
+                                    margin: 7px 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .d-lg-flex {
+        display: flex !important;
+    }
+}
