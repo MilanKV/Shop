@@ -1,40 +1,43 @@
 @import '../variables';
 
-.page-section{
+.page-section {
     position: relative;
     background: #E4E9F7;
-    height: 100vh;
+    min-height: 100vh;
     left: 260px;
     width: calc(100% - 260px);
     transition: all 0.5s ease;
 
-    .nav-container{
+    .nav-container {
         height: 75px;
         display: flex;
         align-items: center;
         padding: 12px 32px 12px 32px;
 
         .bx-menu,
-        .text{
+        .text {
             color: #11101d;
             font-size: 30px;
         }
-        .bx-menu{
+
+        .bx-menu {
             margin: 0 15px;
             cursor: pointer;
         }
-        .breadcrumb{
+
+        .breadcrumb {
             display: flex;
             flex-direction: column;
             margin-bottom: 0 !important;
             margin-right: 64px;
 
-            .text{
+            .text {
                 font-size: 1rem;
                 line-height: 1.625rem;
                 font-weight: 700 !important;
             }
-            .breadcrumb-section{
+
+            .breadcrumb-section {
                 display: flex;
                 height: 100%;
                 flex-direction: row;
@@ -42,19 +45,20 @@
                 padding-left: 0 !important;
                 list-style: none;
 
-                .breadcrumb-item{
-                    font-size: .875rem!important;
+                .breadcrumb-item {
+                    font-size: .875rem !important;
                     line-height: 1.5rem;
                     color: #344767;
                 }
             }
         }
-        .nav-right{
+
+        .nav-right {
             display: flex;
             flex-direction: row;
             margin-left: auto !important;
 
-            .input-group{
+            .input-group {
                 position: relative;
                 display: flex;
                 flex-wrap: wrap;
@@ -63,7 +67,7 @@
                 width: 100%;
                 border-radius: 0.5rem;
 
-                .text-body{
+                .text-body {
                     display: flex;
                     align-items: center;
                     text-align: center;
@@ -78,7 +82,8 @@
                     border-right: 0;
                     border: 1px solid #d2d6da;
                 }
-                .form-control{
+
+                .form-control {
                     display: block;
                     padding: 0.5rem 0.75rem;
                     font-size: .875rem;
@@ -94,7 +99,8 @@
                 }
             }
         }
-        .utilities{
+
+        .utilities {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -103,7 +109,7 @@
             padding-left: 24px;
             list-style: none;
 
-            .nav-item{
+            .nav-item {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -111,6 +117,7 @@
             }
         }
     }
+
     .footer {
         bottom: 0;
         width: 100%;
