@@ -8,12 +8,12 @@
     </div>
     <ul class="nav-links">
         <li class="list-item">
-            <a href="#">
+            <a href="{{route('dashboard')}}">
                 <i class='bx bx-grid-alt'></i>
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li class="list-item"><a class="link_name" href="#">Dashboard</a></li>
+                <li class="list-item"><a class="link_name" href="{{route('dashboard')}}">Dashboard</a></li>
             </ul>
         </li>
         <li class="divider">
@@ -30,7 +30,7 @@
             </div>
             <ul class="sub-menu">
                 <li class="list-item"><a class="link_name" href="#">Product</a></li>
-                <li class="list-item"><a href="#">Overview/Manage</a></li>
+                <li class="list-item"><a href="{{route('products')}}">Overview/Manage</a></li>
                 <li class="list-item"><a href="#">Product Reviews</a></li>
                 <li class="list-item"><a href="#">Stock Alerts</a></li>
             </ul>
