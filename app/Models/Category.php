@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Enums\CategoryStatus;
 
 class Category extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +20,8 @@ class Category extends Model
         'slug',
         'short_description',
         'category_image',
+        'is_parent',
+        'parent_id',
         'status'
     ];
 
