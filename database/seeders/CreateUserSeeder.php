@@ -6,6 +6,7 @@ use App\Enums\UserStatus;
 use App\Enums\RoleType;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Database\Seeder;
 
 class CreateUserSeeder extends Seeder
@@ -21,6 +22,7 @@ class CreateUserSeeder extends Seeder
             'first_name' => 'User',
             'last_name' => 'Classic',
             'email' => 'user@gmail.com',
+            'email_verified_at' => Date::now(),
             'password' => Hash::make('12345678'),
             'role' => RoleType::USER,
             'status' => UserStatus::ACTIVE,
@@ -32,6 +34,7 @@ class CreateUserSeeder extends Seeder
             'first_name' => 'Superadmin',
             'last_name' => 'User',
             'email' => 'sadmin@gmail.com',
+            'email_verified_at' => Date::now(),
             'password' => Hash::make('1234'),
             'role' => RoleType::SUPERADMIN,
             'status' => UserStatus::ACTIVE,
@@ -43,6 +46,7 @@ class CreateUserSeeder extends Seeder
             'first_name' => 'Admin',
             'last_name' => 'User',
             'email' => 'admin@gmail.com',
+            'email_verified_at' => Date::now(),
             'password' => Hash::make('123456'),
             'role' => RoleType::ADMIN,
             'status' => UserStatus::ACTIVE,
