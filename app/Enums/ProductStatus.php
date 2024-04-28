@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-enum ProductStatus: int
+enum ProductStatus: string
 {
-    case OUTOFSTOCK = 0;
-    case INSTOCK = 1;
+    case OUTOFSTOCK = 'out of stock';
+    case INSTOCK = 'in stock';
 }

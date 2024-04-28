@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->integer('quantity');
             $table->text('image')->nullable();
             $table->float('weight')->nullable();
-            $table->tinyInteger('status')->default(ProductStatus::INSTOCK->value);
+            $table->string('status')->default(ProductStatus::INSTOCK->value);
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('subcategory_id')->nullable();
