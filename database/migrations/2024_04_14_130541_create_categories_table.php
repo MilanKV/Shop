@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('category_image')->nullable();
             $table->boolean('is_parent')->default(true);
             $table->unsignedBigInteger('parent_id')->nullable();
-            $table->tinyInteger('status')->default(CategoryStatus::ACTIVE->value);
+            $table->string('status')->default(CategoryStatus::ACTIVE->value);
             $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

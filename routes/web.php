@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Middleware\CheckRole;
 use App\Enums\RoleType;
 
@@ -26,4 +28,5 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . RoleType::SUPERADMIN->value . ',' . RoleType::ADMIN->value], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/products', [ProductController::class, 'index'])->name('products');
+    Route::get('/category', [CategoryController::class, 'index'])->name('category');
 });
