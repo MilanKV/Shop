@@ -22,7 +22,7 @@
         </li>
         <li class="list-item">
             <div class="icon-link">
-                <a href="#">
+                <a href="{{route('products')}}">
                     <i class='bx bx-collection'></i>
                     <span class="link_name">Product</span>
                 </a>
@@ -51,12 +51,12 @@
             </ul>
         </li>
         <li class="list-item">
-            <a href="#">
+            <a href="{{route('category')}}">
                 <i class='bx bx-category'></i>
                 <span class="link_name">Categories</span>
             </a>
             <ul class="sub-menu blank">
-                <li class="list-item"><a class="link_name" href="#">Categories</a></li>
+                <li class="list-item"><a class="link_name" href="{{route('category')}}">Categories</a></li>
             </ul>
         </li>
         <li class="list-item">

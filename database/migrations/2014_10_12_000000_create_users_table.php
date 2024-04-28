@@ -26,8 +26,8 @@ return new class extends Migration {
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
-            $table->tinyInteger('role')->default(RoleType::USER->value);
-            $table->tinyInteger('status')->default(UserStatus::INACTIVE->value);
+            $table->string('role')->default(RoleType::USER->value);
+            $table->string('status')->default(UserStatus::INACTIVE->value);
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
             $table->rememberToken();

@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        Category::factory(20)->create();
+        Category::factory(6)->create();
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
