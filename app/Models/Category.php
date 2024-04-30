@@ -41,8 +41,6 @@ class Category extends Model
         'status' => CategoryStatus::class,
     ];
 
-    public $timestamps = true;
-
     public function parentCategory()
     {
         return $this->belongsTo(Category::class, 'parent_id');

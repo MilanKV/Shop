@@ -11,7 +11,7 @@
                                 <p class="title-description mb-0">Product page</p>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
-                                <a href="#" class="btn-add mb-0">New Product</a>
+                                <a href="#" class="btn btn-add mb-0">New Product</a>
                             </div>
                         </div>
                     </div>
