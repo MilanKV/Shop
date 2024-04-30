@@ -11,7 +11,7 @@
                                 <p class="title-description mb-0">Category page</p>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
-                                <a href="#" class="btn-add mb-0">New Category</a>
+                                <a href="{{route('category.create')}}" class="btn btn-add mb-0">New Category</a>
                             </div>
                         </div>
                     </div>

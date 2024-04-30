@@ -30,21 +30,47 @@
                             }
 
                             .card-action {
-                                .btn-add {
+                                // .btn-add {
+                                //     color: #fff;
+                                //     border: 0;
+                                //     letter-spacing: -.025rem;
+                                //     box-shadow: 0 4px 7px -1px rgba(0, 0, 0, .11), 0 2px 4px -1px rgba(0, 0, 0, .07);
+                                //     background-size: 150%;
+                                //     background-position-x: 25%;
+                                //     font-size: .75rem;
+                                //     line-height: 1.4;
+                                //     font-weight: 700;
+                                //     padding: .5rem 2rem;
+                                //     border-radius: .5rem;
+                                //     text-transform: uppercase;
+                                //     text-decoration: none;
+                                //     background-image: linear-gradient(310deg, #1f1f24, #423f74) !important;
+                                // }  
+                                .btn {
                                     color: #fff;
                                     border: 0;
-                                    letter-spacing: -.025rem;
-                                    box-shadow: 0 4px 7px -1px rgba(0, 0, 0, .11), 0 2px 4px -1px rgba(0, 0, 0, .07);
+                                    letter-spacing: -0.025rem;
+                                    box-shadow: 0 4px 7px -1px rgba(0, 0, 0, 0.11), 0 2px 4px -1px rgba(0, 0, 0, 0.07);
                                     background-size: 150%;
                                     background-position-x: 25%;
-                                    font-size: .75rem;
+                                    font-size: 0.75rem;
                                     line-height: 1.4;
                                     font-weight: 700;
-                                    padding: .5rem 2rem;
-                                    border-radius: .5rem;
+                                    padding: 0.5rem 2rem;
+                                    border-radius: 0.5rem;
                                     text-transform: uppercase;
                                     text-decoration: none;
-                                    background-image: linear-gradient(310deg, #1f1f24, #423f74) !important;
+                                }
+                                
+                                .btn-add {
+                                    background-image: linear-gradient(310deg, #1f1f24, #423f74);
+                                }
+                                
+                                .btn-outline {
+                                    background-color: transparent;
+                                    opacity: .75;
+                                    color: #1f1f24;
+                                    border: 1px solid #423f74;
                                 }
                             }
                         }

@@ -51,12 +51,12 @@
             </ul>
         </li>
         <li class="list-item">
-            <a href="{{route('category')}}">
+            <a href="{{route('category.index')}}">
                 <i class='bx bx-category'></i>
                 <span class="link_name">Categories</span>
             </a>
             <ul class="sub-menu blank">
-                <li class="list-item"><a class="link_name" href="{{route('category')}}">Categories</a></li>
+                <li class="list-item"><a class="link_name" href="{{route('category.index')}}">Categories</a></li>
             </ul>
         </li>
         <li class="list-item">
