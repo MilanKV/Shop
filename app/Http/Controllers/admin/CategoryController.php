@@ -25,24 +25,22 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.Category.create');
+        $parent_cat = Category::where('is_parent', 1)->orderBy('category_name', 'ASC')->get();
+        return view('backend.pages.Category.create', compact('parent_cat'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(CategoryRequest $request)
-    {
+    {   
+        // Validation
         $validatedData = $request->validated();
-
-        $validatedData['status'] = $validatedData['status'] ?? CategoryStatus::ACTIVE->value;
-
-        $data = $validatedData;
 
         // Handling file upload for category image
         if ($request->hasFile('category_image')) {
-            $imagePath = $request->file('category_image')->store('category_images');
-            $data['category_image'] = $imagePath;
+            $imagePath = $request->file('category_image')->store('public/backend/category/category_images');
+            $validatedData['category_image'] = str_replace('public/', '', $imagePath);
         }
 
         // Generating slug
@@ -51,10 +49,10 @@ class CategoryController extends Controller
         if ($count > 0) {
             $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
         }
-        $data['slug'] = $slug;
+        $validatedData['slug'] = $slug;
 
         // Creating category
-        $category = Category::create($data);
+        $category = Category::create($validatedData);
 
         if ($category) {
             return redirect()->route('category.index')->with('success', 'Category created successfully.');
@@ -64,19 +62,12 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category )
     {
-        //
+        $parent_cat = Category::where('is_parent', 1)->orderBy('category_name', 'ASC')->get();
+        return view('backend.pages.Category.edit', compact('category', 'parent_cat'));
     }
 
     /**
@@ -90,8 +81,35 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $child_cat_id = Category::where('parent_id', $category->id)->pluck('id');
+        $category->delete();
+
+        if ($category) {
+            if (count($child_cat_id) > 0) {
+                Category::whereIn('id', $child_cat_id)->update(['is_parent' => 1]);
+            }
+            return redirect()->route('category.index')->with('success', 'Category deleted');
+        } else {
+            return redirect()->back()->with('error', 'Error while deleting category');
+        }
+    }
+
+    public function getChildByParent(Request $request)
+    {
+        $category = Category::find($request->id);
+        
+        if (!$category) {
+            return response()->json(['status' => false, 'msg' => 'Category not found', 'data' => null]);
+        }
+
+        $childCategories = Category::where('parent_id', $request->id)->orderBy('id', 'ASC')->pluck('title', 'id');
+    
+        if ($childCategories->isEmpty()) {
+            return response()->json(['status' => false, 'msg' => 'No child categories found', 'data' => null]);
+        } else {
+            return response()->json(['status' => true, 'msg' => 'Child categories found', 'data' => $childCategories]);
+        }
     }
 }
