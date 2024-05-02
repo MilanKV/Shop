@@ -47,6 +47,23 @@
                                                 <input id="category_name" name="category_name" class="form-control default" type="text" placeholder="Category Name" value="{{ old('category_name') }}" required>
                                             </div>
 
+                                            <div class="form-group" id='parent_cat_div'>
+                                            <label for="parent_id" class="form-label mt-2 row mt-4">Belongs to parent</label>
+                                                <select name="parent_id" id="parent_id" class="form-control">
+                                                    <option value="">--Select any category--</option>
+                                                    @foreach($parent_cat as $category)
+                                                        <option value='{{$category->id}}' data-isparent="0">{{$category->category_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="is_parent" id="is_parent" value="1">
+
+                                            <label for="status" class="form-label mt-2 row mt-4">Status</label>
+                                            <select name="status" class="form-control">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                            </select>
+
                                             <label for="short_description" class="form-label mt-2 row mt-4">Description</label>
                                             <div class="form-group mb-0">
                                                 <textarea id="short_description" name="short_description" class="form-control m-0" cols="30" rows="7" placeholder="Description" value="{{ old('short_description') }}"></textarea>
