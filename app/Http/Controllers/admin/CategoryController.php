@@ -14,9 +14,12 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::orderBy('created_at', 'desc')->paginate(5);
+        $perPage = $request->input('perPage', 5);
+
+        $categories = Category::orderBy('created_at', 'desc')->paginate($perPage);
+        $categories->appends(['perPage' => $perPage]);
         return view('backend.pages.Category.index', compact('categories'));
     }
 
@@ -66,16 +69,40 @@ class CategoryController extends Controller
      */
     public function edit(Category $category )
     {
-        $parent_cat = Category::where('is_parent', 1)->orderBy('category_name', 'ASC')->get();
+        $parent_cat = Category::where('is_parent', 1)->with('subcategories')->orderBy('category_name', 'ASC')->get();
         return view('backend.pages.Category.edit', compact('category', 'parent_cat'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        // Validate the incoming request
+        $validatedData = $request->validated();
+
+        // Handling file upload for category image
+        if ($request->hasFile('category_image')) {
+            $imagePath = $request->file('category_image')->store('public/backend/category/category_images');
+            $validatedData['category_image'] = str_replace('public/', '', $imagePath);
+        }
+        
+        // Generating slug
+        $slug = Str::slug($validatedData['category_name']);
+        $count = Category::where('slug', $slug)->where('id', '!=', $category->id)->count();
+        if ($count > 0) {
+            $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
+        }
+        $validatedData['slug'] = $slug;
+
+        // Update category
+        $category->update($validatedData);
+
+        if ($category) {
+            return redirect()->route('category.index')->with('success', 'Category updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to update category. Please try again.');
+        }
     }
 
     /**

@@ -12,14 +12,12 @@
         "bootstrap": "^5.2.3",
         "laravel-vite-plugin": "^1.0.0",
         "sass": "^1.56.1",
-        "vite": "^5.0.0",
-        "vue": "^3.2.37"
+        "vite": "^5.0.0"
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^5.0.4",
         "bootstrap": "^5.3.3",
         "vite-plugin-sass": "^0.1.0",
-        "vue": "^3.4.21",
         "vue-loader": "^17.4.2"
     }
 }

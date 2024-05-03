@@ -30,9 +30,12 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
     Route::get('/products', [ProductController::class, 'index'])->name('products');
 
     Route::group(['prefix' => 'category'], function() {
+        // Route::resource('category', CategoryController::class)->except(['show']);
         Route::get('/index', [CategoryController::class, 'index'])->name('category.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::get('/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
         Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
-        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('category.update');
+        Route::delete('/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
     });
 });
