@@ -66,7 +66,7 @@
 
                                             <label for="short_description" class="form-label mt-2 row mt-4">Description</label>
                                             <div class="form-group mb-0">
-                                                <textarea id="short_description" name="short_description" class="form-control m-0" cols="30" rows="7" placeholder="Description" value="{{ old('short_description') }}"></textarea>
+                                                <textarea id="short_description" name="short_description" class="form-control m-0" cols="30" rows="4" placeholder="Description" value="{{ old('short_description') }}"></textarea>
                                             </div>
 
                                             {{-- @if ($errors->any())
