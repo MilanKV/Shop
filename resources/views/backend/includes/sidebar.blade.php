@@ -60,6 +60,15 @@
             </ul>
         </li>
         <li class="list-item">
+            <a href="{{route('brand.index')}}">
+                <i class='bx bx-shopping-bag'></i>
+                <span class="link_name">Brands</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li class="list-item"><a class="link_name" href="{{route('brand.index')}}">Brands</a></li>
+            </ul>
+        </li>
+        <li class="list-item">
             <a href="#">
                 <i class='bx bx-pie-chart-alt-2'></i>
                 <span class="link_name">Discounts</span>
