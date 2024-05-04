@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\BrandStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,7 @@ class Brand extends Model
         'brand_name',
         'slug',
         'brand_image',
+        'status',
     ];
 
     /**
@@ -32,5 +34,7 @@ class Brand extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [];
+    protected $casts = [
+        'status' => BrandStatus::class,
+    ];
 }
