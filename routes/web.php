@@ -13,10 +13,12 @@ use App\Enums\RoleType;
 
 Auth::routes(['verify' => true]);
 
+Route::redirect('/', '/login');
 // Frontend
-Route::get('/', function () {
-    return view('frontend/app');
-});
+// Route::get('/', function () {
+//     return view('frontend/app');
+// });
+
 Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . RoleType::SUPERADMIN->value . ',' . RoleType::ADMIN->value], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/products', [ProductController::class, 'index'])->name('products');
@@ -33,6 +35,10 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
     Route::group(['prefix' => 'brand'], function() {
         // Route::resource('brand', BrandController::class)->except(['show']);
         Route::get('/index', [BrandController::class, 'index'])->name('brand.index');
+        Route::get('/create', [BrandController::class, 'create'])->name('brand.create');
+        Route::get('/{brand}/edit', [BrandController::class, 'edit'])->name('brand.edit');
+        Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
+        Route::put('/update/{brand}', [BrandController::class, 'update'])->name('brand.update');
         Route::delete('/destroy/{brand}', [BrandController::class, 'destroy'])->name('brand.destroy');
     });
 });
