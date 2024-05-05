@@ -30,7 +30,7 @@
                                                 <div class="action mt-4 col-12">
                                                     <div class="d-flex">
                                                         <button class="btn btn-add mb-0 me-2" type="button" name="add">Add</button>
-                                                        <input type="file" style="display: none;" name="category_image" id="category_image" value="{{ old('category_image') }}" accept="image/*">
+                                                        <input type="file" style="display: none;" name="category_image" id="add-image" value="{{ old('category_image') }}" accept="image/*">
                                                         <button class="btn btn-outline mb-0" type="button" name="remove">Remove</button>
                                                     </div>
                                                 </div>

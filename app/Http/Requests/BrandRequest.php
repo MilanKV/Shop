@@ -23,8 +23,8 @@ class BrandRequest extends FormRequest
     {
         return [
             'brand_name' => 'required|string|max:255',
-            'slug' => 'required|string|unique:brands,slug|max:255',
-            'brand_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'brand_image' => 'nullable|file|max:255',
+            'status' => 'required|in:active,inactive',
         ];
     }
 }
