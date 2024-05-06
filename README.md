@@ -1,9 +1,11 @@
-# RainCloud
+# Shop
 
 ## Features
 
 - **Authentication:** 
+Authentication is managed using Laravel UI, with a custom design applied.
 - **Custom Layout Design:**
+The project features a custom admin layout design with a sidebar, navigation, footer, and pagination for improved user experience. Custom layouts are applied to index, edit, and create pages for brands and categories. Additionally, Laravel UI components are customized to match the overall project design.
 
 ## Installation
 
@@ -21,15 +23,15 @@
 5. **Generate Application Key** 
     ```bash
     php artisan key:generate
-6. **Run Migrations and Seeders**
+6. **Create Storage Symlink**
+    ```bash
+    php artisan storage:link
+7. **Run Migrations and Seeders**
     ```bash
     php artisan migrate --seed
-7. **Install Node.js Dependencies**
-    ```bash
-    npm install
-8. **Compile Assets**
+8. **Install Node.js Dependencies and Compile Assets**
    ```bash
-   npm run dev
+   npm install && npm run dev
 9. **Access the Application**
 -  Start the Development Server
    ```bash
@@ -37,21 +39,20 @@
 - Open your web browser and go to
    ```bash
    http://127.0.0.1:8000/
-- **Email:** //
-- **Password:** //
+- **Email:** sadmin@gmail.com
+- **Password:** 1234
 
 ## Usage
 1. **Login or Register** 
 - Use the provided authentication system to log in or register for a new account.
 
 ## Requirements
-- PHP 8.3.2
+- PHP: Version 8.0 or higher.
 - Laravel 10.10
 - MySQL
 - Node.js and NPM
 - Composer
 - Apache
-- Vue
 
 ## License
 This project is licensed under the MIT License.
