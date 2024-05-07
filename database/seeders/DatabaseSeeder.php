@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Product;
 
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +20,8 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
         ]);
 
-        // Category::factory(6)->create();
+        Brand::factory(3)->create();
+        Category::factory(5)->create();
+        Product::factory(20)->create();
     }
 }
