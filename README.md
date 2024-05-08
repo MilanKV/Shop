@@ -1,4 +1,4 @@
-# Shop
+# Shop  (In Progress)
 
 ## Features
 
@@ -45,7 +45,13 @@ The project features a custom admin layout design with a sidebar, navigation, fo
 ## Usage
 1. **Login or Register** 
 - Use the provided authentication system to log in or register for a new account.
-
+2. **Manage Brands, Categories, and Products**
+- **Brands**
+    - Create, Read, Update, and Delete (CRUD) operations for managing brands.
+- **Categories**
+    - CRUD operations for managing categories and subcategories.
+- **Products**
+    - Index and Delete operations for managing products.
 ## Requirements
 - PHP: Version 8.0 or higher.
 - Laravel 10.10
