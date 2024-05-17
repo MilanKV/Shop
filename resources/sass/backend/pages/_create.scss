@@ -1,24 +1,24 @@
 .card-body {
-    .row-create{
+    .row-create {
         margin-top: 1.5rem !important;
 
-        .image-card{
+        .image-card {
             position: relative;
             display: flex;
             flex-direction: column;
             min-width: 0;
             word-wrap: break-word;
-            
-            .body{
+
+            .body {
                 padding: 1.5rem;
                 flex: 1 1 auto;
 
-                h5{
+                h5 {
                     font-weight: 600 !important;
                 }
 
-                .row{
-                    .image{
+                .row {
+                    .image {
                         flex: 0 0 auto;
                         width: 80%;
 
@@ -26,6 +26,7 @@
                             border-radius: .75rem;
                         }
                     }
+
                     .action {
                         .btn {
                             color: #fff;
@@ -42,11 +43,11 @@
                             text-transform: uppercase;
                             text-decoration: none;
                         }
-                        
+
                         .btn-add {
                             background-image: linear-gradient(310deg, #1f1f24, #423f74);
                         }
-                        
+
                         .btn-outline {
                             background-color: transparent;
                             opacity: .75;
@@ -57,6 +58,7 @@
                 }
             }
         }
+
         .input-card {
             position: relative;
             display: flex;
@@ -64,14 +66,15 @@
             min-width: 0;
             word-wrap: break-word;
 
-            .body{
+            .body {
                 padding: 1.5rem;
                 flex: 1 1 auto;
 
-                h5{
+                h5 {
                     font-weight: 600 !important;
                 }
-                label{
+
+                label {
                     font-size: .875rem;
                     font-weight: 700;
                     margin-bottom: .5rem;

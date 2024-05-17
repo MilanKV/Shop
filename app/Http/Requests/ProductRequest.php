@@ -23,17 +23,13 @@ class ProductRequest extends FormRequest
     {
         return [
             'product_name' => 'required|string|max:255',
-            'slug' => 'required|string|unique:products,slug|max:255',
             'product_SKU' => 'required|numeric|unique:products,product_SKU',
             'short_description' => 'nullable|string|max:500',
             'long_descriptions' => 'nullable|string',
             'purchase_price' => 'nullable|numeric',
-            'selling_price' => 'required|numeric',
             'discount_price' => 'nullable|numeric',
             'product_color' => 'nullable|string|max:50',
             'product_size' => 'nullable|string|max:20',
-            'product_tags' => 'nullable|string|max:255',
-            'product_code' => 'nullable|string|max:50',
             'quantity' => 'required|integer|min:0',
             'image' => 'nullable|image|max:2048',
             'weight' => 'nullable|numeric|min:0',
