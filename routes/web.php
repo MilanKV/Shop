@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
     Route::group(['prefix' => 'product'], function () {
         // Route::resource('product', ProductController::class);
         Route::get('/index', [ProductController::class, 'index'])->name('product.index');
+        Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+        Route::post('/store', [ProductController::class, 'store'])->name('product.store');
         Route::delete('/destroy/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
     });
 });

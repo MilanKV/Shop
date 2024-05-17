@@ -19,14 +19,11 @@ return new class extends Migration {
             $table->text('short_description')->nullable();
             $table->longText('long_descriptions')->nullable();
             $table->unsignedInteger('purchase_price')->nullable();
-            $table->unsignedInteger('selling_price');
             $table->unsignedInteger('discount_price')->nullable();
             $table->string('product_color')->nullable();
             $table->string('product_size')->nullable();
-            $table->string('product_tags')->nullable();
-            $table->string('product_code')->nullable();
             $table->integer('quantity');
-            $table->text('image')->nullable();
+            $table->string('image')->nullable();
             $table->float('weight')->nullable();
             $table->string('status')->default(ProductStatus::INSTOCK->value);
             $table->unsignedBigInteger('brand_id')->nullable();

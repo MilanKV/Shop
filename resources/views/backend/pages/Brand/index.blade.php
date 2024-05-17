@@ -56,7 +56,7 @@
                                                 <td>
                                                     <div class="d-flex">
                                                         @if($brand->brand_image)
-                                                            @if(Str::startsWith($brand->brand_name, 'http'))
+                                                            @if(Str::startsWith($brand->brand_image, 'http'))
                                                                 <img class="image ms-3" src="{{ $brand->brand_image }}" alt="{{ $brand->brand_image }}">
                                                             @else
                                                                 <img class="image ms-3" src="{{ asset('storage/' . $brand->brand_image) }}" alt="{{ $brand->brand_image }}">
