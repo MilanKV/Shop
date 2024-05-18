@@ -8,7 +8,8 @@ use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 
 class ProductController extends Controller
 {
@@ -37,7 +38,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request, Product $product)
+    public function store(ProductStoreRequest $request, Product $product)
     {
         // Validate the incoming request
         $validatedData = $request->validated();
@@ -79,17 +80,35 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        $brands = Brand::get();
+        $categories = Category::all();
+        return view('backend.pages.Product.edit', compact('product', 'categories', 'brands'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
-        //
+        // Validate the incoming request
+        $validatedData = $request->validated();
+
+        // Handling file upload for product image
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/backend/product/product_images');
+            $validatedData['image'] = str_replace('public/', '', $imagePath);
+        }
+
+        // Updating product
+        $product->update($validatedData);
+
+        if ($product) {
+            return redirect()->route('product.index')->with('success', 'Product updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to update product. Please try again.');
+        }
     }
 
     /**
