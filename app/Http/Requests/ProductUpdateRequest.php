@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class ProductUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'product_name' => 'required|string|max:255',
-            'product_SKU' => 'required|numeric|unique:products,product_SKU',
+            'product_SKU' => 'nullable|numeric|unique:products,product_SKU', // Make SKU field nullable
             'short_description' => 'nullable|string|max:500',
             'long_descriptions' => 'nullable|string',
             'purchase_price' => 'nullable|numeric',
@@ -33,6 +33,7 @@ class ProductRequest extends FormRequest
             'quantity' => 'required|integer|min:0',
             'image' => 'nullable|image|max:2048',
             'weight' => 'nullable|numeric|min:0',
+            'status' => 'required|in:in stock,out of stock',
             'brand_id' => 'nullable|exists:brands,id',
             'category_id' => 'nullable|exists:categories,id',
             'subcategory_id' => 'nullable|exists:categories,id',

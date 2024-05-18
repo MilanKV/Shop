@@ -5,7 +5,6 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
-use App\Enums\CategoryStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -28,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $parent_cat = Category::where('is_parent', 1)->orderBy('category_name', 'ASC')->get();
+        $parent_cat = Category::where('is_parent', 1)->get();
         return view('backend.pages.Category.create', compact('parent_cat'));
     }
 
@@ -69,7 +68,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category )
     {
-        $parent_cat = Category::where('is_parent', 1)->with('subcategories')->orderBy('category_name', 'ASC')->get();
+        $parent_cat = Category::where('is_parent', 1)->with('subcategories')->get();
         return view('backend.pages.Category.edit', compact('category', 'parent_cat'));
     }
 
