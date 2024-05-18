@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\UsersController;
 use App\Http\Middleware\CheckRole;
 use App\Enums\RoleType;
 
@@ -19,9 +20,12 @@ Route::redirect('/', '/login');
 //     return view('frontend/app');
 // });
 
+
+// Admin Routes
 Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . RoleType::SUPERADMIN->value . ',' . RoleType::ADMIN->value], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Category Management
     Route::group(['prefix' => 'category'], function () {
         // Route::resource('category', CategoryController::class)->except(['show']);
         Route::get('/index', [CategoryController::class, 'index'])->name('category.index');
@@ -32,6 +36,7 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
         Route::delete('/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
     });
 
+    // Brand Management
     Route::group(['prefix' => 'brand'], function () {
         // Route::resource('brand', BrandController::class)->except(['show']);
         Route::get('/index', [BrandController::class, 'index'])->name('brand.index');
@@ -42,6 +47,7 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
         Route::delete('/destroy/{brand}', [BrandController::class, 'destroy'])->name('brand.destroy');
     });
 
+    // Product Management
     Route::group(['prefix' => 'product'], function () {
         // Route::resource('product', ProductController::class);
         Route::get('/index', [ProductController::class, 'index'])->name('product.index');
@@ -50,5 +56,14 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
         Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
         Route::put('/update/{product}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/destroy/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+    });
+
+    Route::group(['middleware' => CheckRole::class . ':' . RoleType::SUPERADMIN->value], function () {
+
+        // Users Management
+        Route::group(['prefix' => 'user'], function () {
+            // Route::resource('user', UsersController::class);
+            Route::get('/index', [UsersController::class, 'index'])->name('user.index');
+        });
     });
 });

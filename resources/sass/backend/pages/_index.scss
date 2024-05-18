@@ -45,11 +45,11 @@
                                     text-transform: uppercase;
                                     text-decoration: none;
                                 }
-                                
+
                                 .btn-add {
                                     background-image: linear-gradient(310deg, #1f1f24, #423f74);
                                 }
-                                
+
                                 .btn-outline {
                                     background-color: transparent;
                                     opacity: .75;
@@ -133,6 +133,16 @@
                                                     letter-spacing: -.025rem;
                                                 }
 
+                                                .dataTable-sorterF {
+                                                    position: relative;
+                                                    display: inline-block;
+                                                    height: 100%;
+                                                    width: 100%;
+                                                    text-decoration: none;
+                                                    color: inherit;
+                                                    letter-spacing: -.025rem;
+                                                }
+
                                                 .dataTable-sorter::before {
                                                     border-top: 4px solid #000;
                                                     bottom: 0;
@@ -176,6 +186,15 @@
                                                     }
                                                 }
 
+                                                .d-flex-round {
+                                                    .image {
+                                                        margin-left: 0 !important;
+                                                        width: 70px;
+                                                        height: 70px;
+                                                        border-radius: 50%;
+                                                    }
+                                                }
+
                                                 .badge {
                                                     padding: .45em .775em;
                                                     font-size: .65em;
@@ -198,7 +217,8 @@
                                                     color: #bd0000;
                                                     background-color: #fc9797;
                                                 }
-                                                .action-btn{
+
+                                                .action-btn {
                                                     display: flex;
                                                 }
                                             }
@@ -231,7 +251,7 @@
 
                                 .pagination {
                                     float: right;
-                                    
+
                                     .pagination-list {
                                         margin: 0;
                                         padding-left: 0;
@@ -248,7 +268,7 @@
                                                 padding: 0;
                                                 margin: 0 3px;
                                                 border: 1px solid #dee2e6;
-                                                border-radius: 50%  !important;
+                                                border-radius: 50% !important;
                                                 width: 36px;
                                                 height: 36px;
                                                 font-size: .875rem;
@@ -260,7 +280,7 @@
                                             a {
                                                 background: 0 0;
                                                 background-image: linear-gradient(310deg, #1f1f24, #423f74) !important;
-                                                box-shadow: 0 3px 5px -1px rgba(0,0,0,.09),0 2px 3px -1px rgba(0,0,0,.07);
+                                                box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .09), 0 2px 3px -1px rgba(0, 0, 0, .07);
                                                 color: #fff;
                                                 border: none;
                                                 border-radius: 50% !important;
@@ -280,6 +300,7 @@
                                     }
 
                                     .active {
+
                                         a,
                                         a:focus,
                                         a:hover {

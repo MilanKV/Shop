@@ -92,12 +92,12 @@
             <h6 class="title-section ps-3 text-uppercase">System</h6>
         </li>
         <li class="list-item">
-            <a href="#">
+            <a href="{{route('user.index')}}">
                 <i class='bx bx-user'></i>
                 <span class="link_name">Users</span>
             </a>
             <ul class="sub-menu blank">
-                <li class="list-item"><a class="link_name" href="#">Users</a></li>
+                <li class="list-item"><a class="link_name" href="{{route('user.index')}}">Users</a></li>
             </ul>
         </li>
         <li class="list-item">
