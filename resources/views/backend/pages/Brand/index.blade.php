@@ -8,7 +8,7 @@
                         <div class="d-lg-flex">
                             <div class="title">
                                 <h5 class="mb-0">All Brands</h5>
-                                <p class="title-description mb-0">Brand page</p>
+                                <p class="title-description mb-0">View and manage the list of all product brands</p>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
                                 <a href="{{ route('brand.create') }}" class="btn btn-add mb-0">New Brand</a>
@@ -47,7 +47,7 @@
                                             <a href="#" class="dataTable-sorter">STATUS</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">ACTION</a>
+                                            <a href="#" class="dataTable-sorterF">ACTION</a>
                                         </th>
                                     </thead>
                                     <tbody>
