@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 
 class UsersController extends Controller
@@ -25,15 +26,31 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.Users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        //
+        // Validate the incoming request
+        $validatedData = $request->validated();
+
+        // Handling file upload for user image
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/backend/users/user_images');
+            $validatedData['image'] = str_replace('public/', '', $imagePath);
+        }
+
+        // Create a new user with the validated data
+        $user = User::create($validatedData);
+
+        if ($user) {
+            return redirect()->route('user.index')->with('success', 'User created successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Failed to create user. Please try again.');
+        }
     }
 
     /**

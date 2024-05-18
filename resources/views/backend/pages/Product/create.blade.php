@@ -127,7 +127,7 @@
                                             <label for="category_id" class="form-label mt-2 row mt-4">Category</label>
                                             <select name="category_id" id="category_id" class="form-control">
                                                 <option value="">--Select category--</option>
-                                                @foreach($categories as $category)\
+                                                @foreach($categories as $category)
                                                     @if ($category->is_parent && is_null($category->parent_id))
                                                         <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
                                                     @endif

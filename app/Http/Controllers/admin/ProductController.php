@@ -43,7 +43,7 @@ class ProductController extends Controller
         // Validate the incoming request
         $validatedData = $request->validated();
 
-        // Handling file upload for category image
+        // Handling file upload for product image
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/backend/product/product_images');
             $validatedData['image'] = str_replace('public/', '', $imagePath);

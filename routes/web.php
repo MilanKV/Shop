@@ -64,6 +64,8 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
         Route::group(['prefix' => 'user'], function () {
             // Route::resource('user', UsersController::class);
             Route::get('/index', [UsersController::class, 'index'])->name('user.index');
+            Route::get('/create', [UsersController::class, 'create'])->name('user.create');
+            Route::post('/store', [UsersController::class, 'store'])->name('user.store');
         });
     });
 });
