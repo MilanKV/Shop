@@ -56,11 +56,7 @@ class BrandController extends Controller
         // Creating brand
         $brand = Brand::create($validatedData);
 
-        if ($brand) {
-            return redirect()->route('brand.index')->with('success', 'Brand created successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to create brand. Please try again.');
-        }
+        return redirect()->route('brand.index')->with('success', 'Brand created successfully.');
     }
 
     /**
@@ -104,11 +100,7 @@ class BrandController extends Controller
         // Update brand
         $brand->update($validatedData);
 
-        if ($brand) {
-            return redirect()->route('brand.index')->with('success', 'Brand created successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to create brand. Please try again.');
-        }
+        return redirect()->route('brand.index')->with('success', 'Brand created successfully.');
     }
 
     /**
@@ -118,10 +110,6 @@ class BrandController extends Controller
     {
         $deleted = $brand->delete();
 
-        if ($deleted) {
-            return redirect()->route('brand.index')->with('success', 'Brand deleted successfully');
-        } else {
-            return redirect()->back()->with('error', 'Error while deleting brand');
-        }
+        return redirect()->route('brand.index')->with('success', 'Brand deleted successfully');
     }
 }

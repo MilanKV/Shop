@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -44,13 +45,9 @@ class UsersController extends Controller
         }
 
         // Create a new user with the validated data
-        $user = User::create($validatedData);
+        User::create($validatedData);
 
-        if ($user) {
-            return redirect()->route('user.index')->with('success', 'User created successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to create user. Please try again.');
-        }
+        return redirect()->route('user.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -80,8 +77,37 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function deactivated(User $user)
+    {
+        $users = User::onlyTrashed()->get();
+
+        return view('backend.pages.Users.deactivated', compact('users'));
+    }
+
+    public function restore($id)
+    {
+        $user = User::withTrashed()->findOrFail($id)->restore();
+
+        return redirect()->back()->with('success', 'User restored successfully.');
+    }
+
+    public function permanentDelete($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+
+        // Delete the user's image from storage if it exists
+        if ($user->image) {
+            Storage::delete('public/' . $user->image);
+        }
+
+        $user->forceDelete();
+
+        return redirect()->back();
     }
 }

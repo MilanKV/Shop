@@ -66,6 +66,10 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
             Route::get('/index', [UsersController::class, 'index'])->name('user.index');
             Route::get('/create', [UsersController::class, 'create'])->name('user.create');
             Route::post('/store', [UsersController::class, 'store'])->name('user.store');
+            Route::delete('/destroy/{user}', [UsersController::class, 'destroy'])->name('user.destroy');
+            Route::get('/deactivated', [UsersController::class, 'deactivated'])->name('user.deactivated');
+            Route::get('/{id}/restore', [UsersController::class, 'restore'])->name('user.restore');
+            Route::delete('/{id}/delete-permanent', [UsersController::class, 'permanentDelete'])->name('user.delete-permanent');
         });
     });
 });
