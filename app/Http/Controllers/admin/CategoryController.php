@@ -35,7 +35,7 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(CategoryRequest $request)
-    {   
+    {
         // Validation
         $validatedData = $request->validated();
 
@@ -56,17 +56,13 @@ class CategoryController extends Controller
         // Creating category
         $category = Category::create($validatedData);
 
-        if ($category) {
-            return redirect()->route('category.index')->with('success', 'Category created successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to create category. Please try again.');
-        }
+        return redirect()->route('category.index')->with('success', 'Category created successfully.');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category )
+    public function edit(Category $category)
     {
         $parent_cat = Category::where('is_parent', 1)->with('subcategories')->get();
         return view('backend.pages.Category.edit', compact('category', 'parent_cat'));
@@ -85,7 +81,7 @@ class CategoryController extends Controller
             $imagePath = $request->file('category_image')->store('public/backend/category/category_images');
             $validatedData['category_image'] = str_replace('public/', '', $imagePath);
         }
-        
+
         // Generating slug
         $slug = Str::slug($validatedData['category_name']);
         $count = Category::where('slug', $slug)->where('id', '!=', $category->id)->count();
@@ -97,11 +93,7 @@ class CategoryController extends Controller
         // Update category
         $category->update($validatedData);
 
-        if ($category) {
-            return redirect()->route('category.index')->with('success', 'Category updated successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to update category. Please try again.');
-        }
+        return redirect()->route('category.index')->with('success', 'Category updated successfully.');
     }
 
     /**
@@ -112,26 +104,22 @@ class CategoryController extends Controller
         $child_cat_id = Category::where('parent_id', $category->id)->pluck('id');
         $category->delete();
 
-        if ($category) {
-            if (count($child_cat_id) > 0) {
-                Category::whereIn('id', $child_cat_id)->update(['is_parent' => 1]);
-            }
-            return redirect()->route('category.index')->with('success', 'Category deleted');
-        } else {
-            return redirect()->back()->with('error', 'Error while deleting category');
+        if (count($child_cat_id) > 0) {
+            Category::whereIn('id', $child_cat_id)->update(['is_parent' => 1]);
         }
+        return redirect()->route('category.index')->with('success', 'Category deleted');
     }
 
     public function getChildByParent(Request $request)
     {
         $category = Category::find($request->id);
-        
+
         if (!$category) {
             return response()->json(['status' => false, 'msg' => 'Category not found', 'data' => null]);
         }
 
         $childCategories = Category::where('parent_id', $request->id)->orderBy('id', 'ASC')->pluck('title', 'id');
-    
+
         if ($childCategories->isEmpty()) {
             return response()->json(['status' => false, 'msg' => 'No child categories found', 'data' => null]);
         } else {

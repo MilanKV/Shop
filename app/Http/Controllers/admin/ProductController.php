@@ -62,11 +62,7 @@ class ProductController extends Controller
         // Creating product
         $product = Product::create($validatedData);
 
-        if ($product) {
-            return redirect()->route('product.index')->with('success', 'Product created successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to create product. Please try again.');
-        }
+        return redirect()->route('product.index')->with('success', 'Product created successfully.');
     }
 
     /**
@@ -104,11 +100,7 @@ class ProductController extends Controller
         // Updating product
         $product->update($validatedData);
 
-        if ($product) {
-            return redirect()->route('product.index')->with('success', 'Product updated successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to update product. Please try again.');
-        }
+        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }
 
     /**
@@ -118,11 +110,7 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        if ($product) {
-            return redirect()->route('product.index')->with('success', 'Product deleted successfully');
-        } else {
-            return redirect()->back()->with('error', 'Error while deleting product');
-        }
+        return redirect()->route('product.index')->with('success', 'Product deleted successfully');
     }
 }
 

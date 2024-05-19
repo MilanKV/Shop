@@ -31,7 +31,7 @@
                                                     <div class="d-flex">
                                                         <button class="btn btn-add mb-0 me-2" type="button" name="add">Add</button>
                                                         <input type="file" style="display: none;" name="image" id="add-image" value="{{ old('image') }}" accept="image/*">
-                                                        <button class="btn btn-outline mb-0" type="button" name="remove">Remove</button>
+                                                        <button class="btn btn-outline mb-0" type="button" name="remove" data-context="general-management">Remove</button>
                                                     </div>
                                                 </div>
                                             </div>

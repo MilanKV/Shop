@@ -113,12 +113,12 @@
         <li class="list-item">
             <div class="profile-details">
                 <div class="profile-content">
-                    <img src="https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
+                    <img src="{{ $currentUser->image ? asset('storage/' . $currentUser->image) : 'https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg' }}"
                         alt="profileImg">
                 </div>
                 <div class="name-job">
-                    <div class="profile_name">Milan</div>
-                    <div class="job">Admin</div>
+                    <div class="profile_name">{{ $currentUser->name }}</div>
+                    <div class="job">{{ ucfirst($currentUser->role->value) }}</div>
                 </div>
                 <i class='bx bx-log-out' onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></i>  
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
