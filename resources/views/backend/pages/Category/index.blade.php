@@ -17,6 +17,7 @@
                     </div>
                     <div class="card-body px-0 pb-0">
                         <div class="table">
+                            @if(count($categories)>0)
                             <div class="dataTable-header">
                                 <div class="dropdown">
                                     <label for="perPage">
@@ -107,6 +108,11 @@
                                 <div class="info">Showing {{ $categories->firstItem() }} to {{ $categories->lastItem() }} of {{ $categories->total() }} entries</div>
                                 {{ $categories->links('vendor.pagination.custom') }}
                             </div>
+                            @else
+                                <div class="no-item-found d-flex justify-content-center align-items-center">
+                                    <p class="text-center">No categories were found.</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -17,6 +17,7 @@
                     </div>
                     <div class="card-body px-0 pb-0">
                         <div class="table">
+                            @if(count($users)>0)
                             <div class="dataTable-header">
                                 <div class="dropdown">
                                     <label for="perPage">
@@ -35,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="dataTable-body">
-                                <table id="product-list" class="table table-flush">
+                                <table id="user-list" class="table table-flush">
                                     <thead>
                                         <th data-sortable>
                                             <a href="#" class="dataTable-sorter">Name</a>
@@ -77,6 +78,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @else
+                                <div class="no-item-found d-flex justify-content-center align-items-center">
+                                    <p class="text-center">No deactivated users were found.</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

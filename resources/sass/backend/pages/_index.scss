@@ -64,6 +64,10 @@
                         .table {
                             overflow-x: auto;
 
+                            .no-item-found {
+                                height: calc(100vh - 300px);
+                            }
+
                             .dataTable-header {
                                 padding: 1.5rem;
 

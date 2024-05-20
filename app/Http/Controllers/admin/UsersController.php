@@ -4,9 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserStoreRequest;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
+use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -61,17 +63,36 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('backend.pages.Users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, User $user)
     {
-        //
+        // Validate the incoming request
+        $validatedData = $request->validated();
+
+        // Handling file upload for product image
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/backend/users/user_images');
+            $validatedData['image'] = str_replace('public/', '', $imagePath);
+        }
+
+        // Update the password only if it's provided in the request
+        if ($request->filled('password')) {
+            $validatedData['password'] = Hash::make($request->input('password'));
+        } else {
+            // Remove the password field from the validated data if it's not provided
+            unset($validatedData['password']);
+        }
+
+        $user->update($validatedData);
+
+        return redirect()->route('user.index')->with('success', 'User updated successfully.');
     }
 
     /**
