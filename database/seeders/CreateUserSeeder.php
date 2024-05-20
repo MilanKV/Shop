@@ -18,10 +18,10 @@ class CreateUserSeeder extends Seeder
     {
         // User
         User::create([
-            "name" => "User",
-            'first_name' => 'User',
-            'last_name' => 'Classic',
-            'email' => 'user@gmail.com',
+            "name" => "Robb",
+            'first_name' => 'Robert',
+            'last_name' => 'Bond',
+            'email' => 'bond@gmail.com',
             'email_verified_at' => Date::now(),
             'password' => Hash::make('12345678'),
             'role' => RoleType::USER,
@@ -30,10 +30,10 @@ class CreateUserSeeder extends Seeder
 
         // Superadmin User
         User::create([
-            'name' => 'Superadmin User',
-            'first_name' => 'Superadmin',
-            'last_name' => 'User',
-            'email' => 'sadmin@gmail.com',
+            'name' => 'Stefo',
+            'first_name' => 'Stefan',
+            'last_name' => 'Musovic',
+            'email' => 'Musovic@gmail.com',
             'email_verified_at' => Date::now(),
             'password' => Hash::make('1234'),
             'role' => RoleType::SUPERADMIN,
@@ -42,10 +42,10 @@ class CreateUserSeeder extends Seeder
 
         // Admin User
         User::create([
-            'name' => 'Admin User',
-            'first_name' => 'Admin',
-            'last_name' => 'User',
-            'email' => 'admin@gmail.com',
+            'name' => 'Aleks',
+            'first_name' => 'Aless',
+            'last_name' => 'Schneider',
+            'email' => 'Aless@gmail.com',
             'email_verified_at' => Date::now(),
             'password' => Hash::make('123456'),
             'role' => RoleType::ADMIN,

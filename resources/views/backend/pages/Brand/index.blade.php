@@ -17,6 +17,7 @@
                     </div>
                     <div class="card-body px-0 pb-0">
                         <div class="table">
+                            @if(count($brands)>0)
                             <div class="dataTable-header">
                                 <div class="dropdown">
                                     <label for="perPage">
@@ -99,6 +100,11 @@
                                 <div class="info">Showing {{ $brands->firstItem() }} to {{ $brands->lastItem() }} of {{ $brands->total() }} entries</div>
                                 {{ $brands->links('vendor.pagination.custom') }}
                             </div>
+                            @else
+                                <div class="no-item-found d-flex justify-content-center align-items-center">
+                                    <p class="text-center">No brands were found.</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
