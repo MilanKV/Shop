@@ -20,4 +20,13 @@ $(document).ready(function () {
             deleteForm.submit();
         }
     });
+
+    $('#search').on('input', function () {
+        var searchValue = $(this).val().trim(); // Trim whitespace
+
+        // Handle clearing search
+        if (searchValue === '') {
+            window.location.href = window.location.href.split('?')[0]; // Refresh page to clear search
+        }
+    });
 });

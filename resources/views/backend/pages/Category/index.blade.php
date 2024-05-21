@@ -17,24 +17,11 @@
                     </div>
                     <div class="card-body px-0 pb-0">
                         <div class="table">
-                            @if(count($categories)>0)
                             <div class="dataTable-header">
-                                <div class="dropdown">
-                                    <label for="perPage">
-                                        <select class="dataTable-select" name="perPage" id="perPage">
-                                            <option value="5">5</option>
-                                            <option value="10">10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
-                                            <option value="25">25</option>
-                                        </select>
-                                        entries per page
-                                    </label>
-                                </div>
-                                <div class="search">
-                                    <input class="input-search" type="text" placeholder="Search...">
-                                </div>
+                                @include('backend.components.page-selection')
+                                @include('backend.components.search-bar', ['searchRoute' => route('category.index'), 'search' => $search])
                             </div>
+                            @if(count($categories)>0)
                             <div class="dataTable-body">
                                 <table id="product-list" class="table table-flush">
                                     <thead>
@@ -104,10 +91,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="dataTable-footer">
-                                <div class="info">Showing {{ $categories->firstItem() }} to {{ $categories->lastItem() }} of {{ $categories->total() }} entries</div>
-                                {{ $categories->links('vendor.pagination.custom') }}
-                            </div>
+                            @include('backend.components.pagination', ['items' => $categories])
                             @else
                                 <div class="no-item-found d-flex justify-content-center align-items-center">
                                     <p class="text-center">No categories were found.</p>
