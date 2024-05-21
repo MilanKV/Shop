@@ -19,10 +19,26 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('perPage', 5);
+        $search = $request->input('search');
 
-        $products = Product::orderBy('created_at', 'desc')->paginate($perPage);
-        $products->appends(['perPage' => $perPage]);
-        return view('backend.pages.Product.index', compact('products'));
+        $query = Product::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('product_name', 'LIKE', "%{$search}%")
+                    ->orWhere('product_SKU', 'LIKE', "%{$search}%")
+                    ->orWhere('purchase_price', 'LIKE', "%{$search}%")
+                    ->orWhere('quantity', 'LIKE', "%{$search}%")
+                    ->orWhere('status', '=', $search)
+                    ->orWhereHas('parentCategory', function ($q) use ($search) {
+                        $q->where('category_name', 'LIKE', "%{$search}%");
+                    });
+            });
+        }
+
+        $products = $query->orderBy('created_at', 'desc')->paginate($perPage);
+        $products->appends(['perPage' => $perPage, 'search' => $search]);
+        return view('backend.pages.Product.index', compact('products', 'search'));
     }
 
     /**

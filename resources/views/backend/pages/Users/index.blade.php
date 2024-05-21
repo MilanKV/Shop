@@ -18,24 +18,11 @@
                     </div>
                     <div class="card-body px-0 pb-0">
                         <div class="table">
-                            @if(count($users)>0)
                             <div class="dataTable-header">
-                                <div class="dropdown">
-                                    <label for="perPage">
-                                        <select class="dataTable-select" name="perPage" id="perPage">
-                                            <option value="5">5</option>
-                                            <option value="10">10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
-                                            <option value="25">25</option>
-                                        </select>
-                                        entries per page
-                                    </label>
-                                </div>
-                                <div class="search">
-                                    <input class="input-search" type="text" placeholder="Search...">
-                                </div>
+                                @include('backend.components.page-selection')
+                                @include('backend.components.search-bar', ['searchRoute' => route('user.index'), 'search' => $search])
                             </div>
+                            @if(count($users)>0)
                             <div class="dataTable-body">
                                 <table id="product-list" class="table table-flush">
                                     <thead>
@@ -96,10 +83,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="dataTable-footer">
-                                <div class="info">Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} of {{ $users->total() }} entries</div>
-                                {{ $users->links('vendor.pagination.custom') }}
-                            </div>
+                            @include('backend.components.pagination', ['items' => $users])
                             @else
                                 <div class="no-item-found d-flex justify-content-center align-items-center">
                                     <p class="text-center">No users were found.</p>

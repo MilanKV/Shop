@@ -19,21 +19,7 @@
                         <div class="table">
                             @if(count($users)>0)
                             <div class="dataTable-header">
-                                <div class="dropdown">
-                                    <label for="perPage">
-                                        <select class="dataTable-select" name="perPage" id="perPage">
-                                            <option value="5">5</option>
-                                            <option value="10">10</option>
-                                            <option value="15">15</option>
-                                            <option value="20">20</option>
-                                            <option value="25">25</option>
-                                        </select>
-                                        entries per page
-                                    </label>
-                                </div>
-                                <div class="search">
-                                    <input class="input-search" type="text" placeholder="Search...">
-                                </div>
+                                @include('backend.components.page-selection')
                             </div>
                             <div class="dataTable-body">
                                 <table id="user-list" class="table table-flush">

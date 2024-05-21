@@ -17,9 +17,24 @@ class CategoryController extends Controller
     {
         $perPage = $request->input('perPage', 5);
 
-        $categories = Category::orderBy('created_at', 'desc')->paginate($perPage);
-        $categories->appends(['perPage' => $perPage]);
-        return view('backend.pages.Category.index', compact('categories'));
+        $search = $request->input('search');
+
+        $query = Category::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('category_name', 'LIKE', "%{$search}%")
+                    ->orWhere('status', '=', $search)
+                    ->orWhere('short_description', 'LIKE', "%{$search}%")
+                    ->orWhereHas('parentCategory', function ($q) use ($search) {
+                        $q->where('category_name', 'LIKE', "%{$search}%");
+                    });
+            });
+        }
+
+        $categories = $query->orderBy('created_at', 'desc')->paginate($perPage);
+        $categories->appends(['perPage' => $perPage, 'search' => $search]);
+        return view('backend.pages.Category.index', compact('categories', 'search'));
     }
 
     /**

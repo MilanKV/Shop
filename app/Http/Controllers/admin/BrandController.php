@@ -17,10 +17,21 @@ class BrandController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('perPage', 5);
+        $search = $request->input('search');
 
-        $brands = Brand::orderBy('created_at', 'desc')->paginate($perPage);
-        $brands->appends(['perPage' => $perPage]);
-        return view('backend.pages.Brand.index', compact('brands'));
+        $query = Brand::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('brand_name', 'LIKE', "%{$search}%")
+                    ->orWhere('slug', 'LIKE', "%{$search}%")
+                    ->orWhere('status', '=', $search);
+            });
+        }
+
+        $brands = $query->orderBy('created_at', 'desc')->paginate($perPage);
+        $brands->appends(['perPage' => $perPage, 'search' => $search]);
+        return view('backend.pages.Brand.index', compact('brands', 'search'));
     }
 
     /**

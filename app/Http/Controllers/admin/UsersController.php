@@ -18,10 +18,21 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('perPage', 5);
+        $search = $request->input('search');
 
-        $users = User::orderBy('created_at', 'desc')->paginate($perPage);
-        $users->appends(['perPage' => $perPage]);
-        return view('backend.pages.Users.index', compact('users'));
+        $query = User::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('email', 'LIKE', "%{$search}%")
+                    ->orWhere('role', '=', $search);
+            });
+        }
+
+        $users = $query->orderBy('created_at', 'desc')->paginate($perPage);
+        $users->appends(['perPage' => $perPage, 'search' => $search]);
+        return view('backend.pages.Users.index', compact('users', 'search'));
     }
 
     /**
