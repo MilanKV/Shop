@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 {{-- Head --}}
-@include('backend.components.layout.head')
+@include('backend.includes.head')
 
 <body class="d-flex flex-column min-vh-100">
     {{-- Sidebar --}}
-    @include('backend.components.layout.sidebar')
+    @include('backend.includes.sidebar')
 
 
     <div class="page-section">
         {{-- Header --}}
-        @include('backend.components.layout.header')
+        @include('backend.includes.header')
 
         <div class="main">
             {{-- Page Content --}}
@@ -18,7 +18,7 @@
         </div>
 
         {{-- Footer --}}
-        @include('backend.components.layout.footer')
+        @include('backend.includes.footer')
     </div>
     {{-- app-body --}}
 

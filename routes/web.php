@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
         Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
         Route::put('/update/{category}', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+        Route::get('/deactivated', [CategoryController::class, 'deactivated'])->name('category.deactivated');
+        Route::get('/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
+        Route::delete('/{id}/delete-permanent', [CategoryController::class, 'permanentDelete'])->name('category.delete-permanent');
     });
 
     // Brand Management
@@ -45,17 +48,23 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
         Route::post('/store', [BrandController::class, 'store'])->name('brand.store');
         Route::put('/update/{brand}', [BrandController::class, 'update'])->name('brand.update');
         Route::delete('/destroy/{brand}', [BrandController::class, 'destroy'])->name('brand.destroy');
+        Route::get('/deactivated', [BrandController::class, 'deactivated'])->name('brand.deactivated');
+        Route::get('/{id}/restore', [BrandController::class, 'restore'])->name('brand.restore');
+        Route::delete('/{id}/delete-permanent', [BrandController::class, 'permanentDelete'])->name('brand.delete-permanent');
     });
 
     // Product Management
     Route::group(['prefix' => 'product'], function () {
-        // Route::resource('product', ProductController::class);
+        // Route::resource('product', ProductController::class)->except(['show']);
         Route::get('/index', [ProductController::class, 'index'])->name('product.index');
         Route::get('/create', [ProductController::class, 'create'])->name('product.create');
         Route::post('/store', [ProductController::class, 'store'])->name('product.store');
         Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
         Route::put('/update/{product}', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/destroy/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+        Route::get('/deactivated', [ProductController::class, 'deactivated'])->name('product.deactivated');
+        Route::get('/{id}/restore', [ProductController::class, 'restore'])->name('product.restore');
+        Route::delete('/{id}/delete-permanent', [ProductController::class, 'permanentDelete'])->name('product.delete-permanent');
     });
 
     Route::group(['middleware' => CheckRole::class . ':' . RoleType::SUPERADMIN->value], function () {

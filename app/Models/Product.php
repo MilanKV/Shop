@@ -9,7 +9,7 @@ use App\Enums\ProductStatus;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'product_name',

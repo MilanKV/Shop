@@ -19,8 +19,11 @@
 
                 .row {
                     .image {
+                        display: flex;
+                        align-items: center;
                         flex: 0 0 auto;
-                        width: 80%;
+                        width: 24rem;
+                        height: 24rem;
 
                         img {
                             border-radius: .75rem;

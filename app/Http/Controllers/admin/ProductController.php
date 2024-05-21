@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
@@ -30,7 +31,7 @@ class ProductController extends Controller
                     ->orWhere('purchase_price', 'LIKE', "%{$search}%")
                     ->orWhere('quantity', 'LIKE', "%{$search}%")
                     ->orWhere('status', '=', $search)
-                    ->orWhereHas('parentCategory', function ($q) use ($search) {
+                    ->orWhereHas('subcategory', function ($q) use ($search) {
                         $q->where('category_name', 'LIKE', "%{$search}%");
                     });
             });
@@ -127,6 +128,34 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('product.index')->with('success', 'Product deleted successfully');
+    }
+
+    public function deactivated(Product $product)
+    {
+        $products = Product::onlyTrashed()->get();
+
+        return view('backend.pages.Product.deactivated', compact('products'));
+    }
+
+    public function restore($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id)->restore();
+
+        return redirect()->back()->with('success', 'Product restored successfully.');
+    }
+
+    public function permanentDelete($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+
+        // Delete the product's image from storage if it exists
+        if ($product->image) {
+            Storage::delete('public/' . $product->image);
+        }
+
+        $product->forceDelete();
+
+        return redirect()->back();
     }
 }
 
