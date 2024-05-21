@@ -19,8 +19,8 @@
                     <div class="card-body px-0 pb-0">
                         <div class="table">
                             <div class="dataTable-header">
-                                @include('backend.components.page-selection')
-                                @include('backend.components.search-bar', ['searchRoute' => route('user.index'), 'search' => $search])
+                                @include('backend.partials.page-selection')
+                                @include('backend.partials.search-bar', ['searchRoute' => route('user.index'), 'search' => $search])
                             </div>
                             @if(count($users)>0)
                             <div class="dataTable-body">
@@ -64,7 +64,15 @@
                                                 </td>
                                                 <td class="text-sm">{{ $user->name }}</td>
                                                 <td class="text-sm">{{ $user->email }}</td>
-                                                <td class="text-sm">{{ $user->role }}</td>
+                                                <td>
+                                                    @if($user->role === \App\Enums\RoleType::ADMIN)
+                                                        <span class="badge badge-admin">{{ $user->role}}</span>
+                                                    @elseif($user->role === \App\Enums\RoleType::SUPERADMIN)
+                                                        <span class="badge badge-superadmin">{{ \App\Enums\RoleType::SUPERADMIN->value }}</span>
+                                                    @else
+                                                        <span class="badge badge-user">{{ \App\Enums\RoleType::USER->value }}</span>    
+                                                    @endif
+                                                </td>
                                                 <td class="text-sm">{{ $user->created_at }}</td>
                                                 <td class="text-sm">
                                                     <a href="{{ route('user.edit', ['user' => $user]) }}" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
@@ -83,7 +91,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            @include('backend.components.pagination', ['items' => $users])
+                            @include('backend.partials.pagination', ['items' => $users])
                             @else
                                 <div class="no-item-found d-flex justify-content-center align-items-center">
                                     <p class="text-center">No users were found.</p>

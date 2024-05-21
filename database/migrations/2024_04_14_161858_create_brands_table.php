@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->string('brand_image')->nullable();
             $table->string('status')->default(BrandStatus::ACTIVE->value);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

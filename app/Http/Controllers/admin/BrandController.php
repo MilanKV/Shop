@@ -7,7 +7,7 @@ use App\Http\Requests\BrandRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Brand;
-use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class BrandController extends Controller
 {
@@ -122,5 +122,33 @@ class BrandController extends Controller
         $deleted = $brand->delete();
 
         return redirect()->route('brand.index')->with('success', 'Brand deleted successfully');
+    }
+
+    public function deactivated(Brand $brand)
+    {
+        $brands = Brand::onlyTrashed()->get();
+
+        return view('backend.pages.Brand.deactivated', compact('brands'));
+    }
+
+    public function restore($id)
+    {
+        $brand = Brand::withTrashed()->findOrFail($id)->restore();
+
+        return redirect()->back()->with('success', 'Brand restored successfully.');
+    }
+
+    public function permanentDelete($id)
+    {
+        $brand = Brand::withTrashed()->findOrFail($id);
+
+        // Delete the user's image from storage if it exists
+        if ($brand->brand_image) {
+            Storage::delete('public/' . $brand->brand_image);
+        }
+
+        $brand->forceDelete();
+
+        return redirect()->back();
     }
 }

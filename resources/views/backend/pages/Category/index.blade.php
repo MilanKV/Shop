@@ -12,14 +12,15 @@
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
                                 <a href="{{route('category.create')}}" class="btn btn-add mb-0">New Category</a>
+                                <a href="{{ route('category.deactivated') }}" class="btn btn-outline mb-0">Deactivated</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body px-0 pb-0">
                         <div class="table">
                             <div class="dataTable-header">
-                                @include('backend.components.page-selection')
-                                @include('backend.components.search-bar', ['searchRoute' => route('category.index'), 'search' => $search])
+                                @include('backend.partials.page-selection')
+                                @include('backend.partials.search-bar', ['searchRoute' => route('category.index'), 'search' => $search])
                             </div>
                             @if(count($categories)>0)
                             <div class="dataTable-body">
@@ -91,7 +92,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            @include('backend.components.pagination', ['items' => $categories])
+                            @include('backend.partials.pagination', ['items' => $categories])
                             @else
                                 <div class="no-item-found d-flex justify-content-center align-items-center">
                                     <p class="text-center">No categories were found.</p>

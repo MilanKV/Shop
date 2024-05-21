@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -140,5 +141,33 @@ class CategoryController extends Controller
         } else {
             return response()->json(['status' => true, 'msg' => 'Child categories found', 'data' => $childCategories]);
         }
+    }
+
+    public function deactivated(Category $category)
+    {
+        $categories = Category::onlyTrashed()->get();
+
+        return view('backend.pages.Category.deactivated', compact('categories'));
+    }
+
+    public function restore($id)
+    {
+        $category = Category::withTrashed()->findOrFail($id)->restore();
+
+        return redirect()->back()->with('success', 'Category restored successfully.');
+    }
+
+    public function permanentDelete($id)
+    {
+        $category = Category::withTrashed()->findOrFail($id);
+
+        // Delete the category's image from storage if it exists
+        if ($category->category_image) {
+            Storage::delete('public/' . $category->category_image);
+        }
+
+        $category->forceDelete();
+
+        return redirect()->back();
     }
 }
