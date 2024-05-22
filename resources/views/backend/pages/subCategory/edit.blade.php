@@ -7,15 +7,15 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div class="title">
-                                <h5 class="mb-0">Edit category</h5>
+                                <h5 class="mb-0">Edit subcategory</h5>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
-                                <a href="{{route('category.index')}}" class="btn btn-outline mb-0">Back to List</a>
+                                <a href="{{route('subcategory.index')}}" class="btn btn-outline mb-0">Back to List</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('category.update', ['category' => $category]) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('subcategory.update', ['category' => $category]) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             
@@ -47,6 +47,16 @@
                                             <div class="form-group mb-0">
                                                 <input id="category_name" name="category_name" class="form-control default" type="text" placeholder="Category Name" value="{{ old('category_name', $category->category_name) }}" required>
                                             </div>
+
+                                            <div class="form-group" id='parent_cat_div'>
+                                            <label for="parent_id" class="form-label mt-2 row mt-4">Category</label>
+                                                <select name="parent_id" id="parent_id" class="form-control">
+                                                    @foreach($parent_cat as $parent)
+                                                        <option value='{{$parent->id}}' {{ $parent->id == $category->parent_id ? 'selected' : '' }}>{{$parent->category_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="is_parent" id="is_parent" value="{{ $category->is_parent }}">
 
                                             <label for="status" class="form-label mt-2 row mt-4">Status</label>
                                             <select name="status" class="form-control">

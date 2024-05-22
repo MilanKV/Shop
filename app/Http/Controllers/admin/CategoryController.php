@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -19,17 +20,13 @@ class CategoryController extends Controller
         $perPage = $request->input('perPage', 5);
 
         $search = $request->input('search');
-
-        $query = Category::query();
+        $query = Category::where('is_parent', 1);
 
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('category_name', 'LIKE', "%{$search}%")
                     ->orWhere('status', '=', $search)
-                    ->orWhere('short_description', 'LIKE', "%{$search}%")
-                    ->orWhereHas('parentCategory', function ($q) use ($search) {
-                        $q->where('category_name', 'LIKE', "%{$search}%");
-                    });
+                    ->orWhere('short_description', 'LIKE', "%{$search}%");
             });
         }
 
@@ -50,7 +47,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryRequest $request)
+    public function store(CategoryStoreRequest $request)
     {
         // Validation
         $validatedData = $request->validated();
@@ -87,7 +84,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryRequest $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         // Validate the incoming request
         $validatedData = $request->validated();
@@ -117,13 +114,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $child_cat_id = Category::where('parent_id', $category->id)->pluck('id');
         $category->delete();
+        $childCategories = Category::where('parent_id', $category->id)->get('id');
 
-        if (count($child_cat_id) > 0) {
-            Category::whereIn('id', $child_cat_id)->update(['is_parent' => 1]);
+        foreach ($childCategories as $childCategory) {
+            $childCategory->delete();
         }
-        return redirect()->route('category.index')->with('success', 'Category deleted');
+
+        return redirect()->route('category.index')->with('success', 'Category deleted successfully.s');
     }
 
     public function getChildByParent(Request $request)
@@ -145,7 +143,7 @@ class CategoryController extends Controller
 
     public function deactivated(Category $category)
     {
-        $categories = Category::onlyTrashed()->get();
+        $categories = Category::onlyTrashed()->whereNull('parent_id')->get();
 
         return view('backend.pages.Category.deactivated', compact('categories'));
     }
@@ -153,6 +151,12 @@ class CategoryController extends Controller
     public function restore($id)
     {
         $category = Category::withTrashed()->findOrFail($id)->restore();
+
+        // Restore soft-deleted subcategories
+        $subCategories = Category::onlyTrashed()->where('parent_id', $id)->get();
+        foreach ($subCategories as $subCategory) {
+            $subCategory->restore();
+        }
 
         return redirect()->back()->with('success', 'Category restored successfully.');
     }
@@ -166,8 +170,14 @@ class CategoryController extends Controller
             Storage::delete('public/' . $category->category_image);
         }
 
+        // Permanent delete subcategories
+        $subCategories = Category::onlyTrashed()->where('parent_id', $id)->get();
+        foreach ($subCategories as $subCategory) {
+            $subCategory->forceDelete();
+        }
+
         $category->forceDelete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Category permanently deleted.');
     }
 }

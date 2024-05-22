@@ -7,18 +7,17 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div class="title">
-                                <h5 class="mb-0">Edit category</h5>
+                                <h5 class="mb-0">Add a new SubCategory</h5>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
-                                <a href="{{route('category.index')}}" class="btn btn-outline mb-0">Back to List</a>
+                                <a href="{{route('subcategory.index')}}" class="btn btn-outline mb-0">Back to List</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('category.update', ['category' => $category]) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('subcategory.store') }}" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
-                            
+
                             <div class="row row-create mt-4">
                                 <div class="column-left col-lg-4">
                                     <div class="image-card h-100">
@@ -26,7 +25,7 @@
                                             <h5>Category Image</h5>
                                             <div class="row">
                                                 <div class="image">
-                                                    <img class="mt-3 w-100" src="{{ asset('storage/' . $category->category_image) }}" alt="category_image">
+                                                    <img class="mt-3 w-100" src="https://cdn.pixabay.com/photo/2017/04/20/07/07/add-2244771_960_720.png" alt="category_image">
                                                 </div>
                                                 <div class="action mt-4 col-12">
                                                     <div class="d-flex">
@@ -45,18 +44,29 @@
                                             <h5>Category Information</h5>
                                             <label for="category_name" class="form-label mt-2 row mt-4">Name</label>
                                             <div class="form-group mb-0">
-                                                <input id="category_name" name="category_name" class="form-control default" type="text" placeholder="Category Name" value="{{ old('category_name', $category->category_name) }}" required>
+                                                <input id="category_name" name="category_name" class="form-control default" type="text" placeholder="Category Name" value="{{ old('category_name') }}" required>
                                             </div>
+
+                                            <div class="form-group" id='parent_cat_div'>
+                                            <label for="parent_id" class="form-label mt-2 row mt-4">Category</label>
+                                                <select name="parent_id" id="parent_id" class="form-control">
+                                                    <option value="">--Select any category--</option>
+                                                    @foreach($parent_cat as $category)
+                                                        <option value='{{$category->id}}' data-isparent="0">{{$category->category_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="is_parent" id="is_parent" value="1">
 
                                             <label for="status" class="form-label mt-2 row mt-4">Status</label>
                                             <select name="status" class="form-control">
-                                                <option value="active" {{ $category->status == \App\Enums\CategoryStatus::ACTIVE ? 'selected' : '' }}>Active</option>
-                                                <option value="inactive" {{ $category->status == \App\Enums\CategoryStatus::INACTIVE ? 'selected' : '' }}>Inactive</option>
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
                                             </select>
 
                                             <label for="short_description" class="form-label mt-2 row mt-4">Description</label>
                                             <div class="form-group mb-0">
-                                                <textarea id="short_description" name="short_description" class="form-control m-0" cols="30" rows="4" placeholder="Description" value="{{ old('short_description') }}">{{ old('short_description', $category->short_description) }}</textarea>
+                                                <textarea id="short_description" name="short_description" class="form-control m-0" cols="30" rows="4" placeholder="Description" value="{{ old('short_description') }}"></textarea>
                                             </div>
 
                                             {{-- @if ($errors->any())

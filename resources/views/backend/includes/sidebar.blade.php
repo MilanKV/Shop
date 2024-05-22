@@ -51,12 +51,17 @@
             </ul>
         </li>
         <li class="list-item">
-            <a href="{{route('category.index')}}">
-                <i class='bx bx-category'></i>
-                <span class="link_name">Categories</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li class="list-item"><a class="link_name" href="{{route('category.index')}}">Categories</a></li>
+            <div class="icon-link">
+                <a href="{{route('category.index')}}">
+                    <i class='bx bx-collection'></i>
+                    <span class="link_name">Category</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li class="list-item"><a class="link_name" href="#">Category</a></li>
+                <li class="list-item"><a href="{{route('category.index')}}">Categories</a></li>
+                <li class="list-item"><a href="{{route('subcategory.index')}}">SubCategories</a></li>
             </ul>
         </li>
         <li class="list-item">
