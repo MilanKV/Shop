@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class CategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,6 @@ class CategoryRequest extends FormRequest
             'short_description' => 'nullable|string|max:1000',
             'category_image' => 'nullable|file|max:255',
             'status' => 'required|in:active,inactive',
-            'parent_id' => 'nullable|exists:categories,id',
-            'is_parent' => 'required|boolean',
         ];
     }
 }

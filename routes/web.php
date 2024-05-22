@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\subCategoryController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Middleware\CheckRole;
@@ -37,6 +38,19 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
         Route::get('/deactivated', [CategoryController::class, 'deactivated'])->name('category.deactivated');
         Route::get('/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
         Route::delete('/{id}/delete-permanent', [CategoryController::class, 'permanentDelete'])->name('category.delete-permanent');
+    });
+
+    // subCategory Management
+    Route::group(['prefix' => 'subcategory'], function () {
+        Route::get('/index', [subCategoryController::class, 'index'])->name('subcategory.index');
+        Route::get('/create', [subCategoryController::class, 'create'])->name('subcategory.create');
+        Route::get('/{category}/edit', [subCategoryController::class, 'edit'])->name('subcategory.edit');
+        Route::post('/store', [subCategoryController::class, 'store'])->name('subcategory.store');
+        Route::put('/update/{category}', [subCategoryController::class, 'update'])->name('subcategory.update');
+        Route::delete('/destroy/{category}', [subCategoryController::class, 'destroy'])->name('subcategory.destroy');
+        Route::get('/deactivated', [subCategoryController::class, 'deactivated'])->name('subcategory.deactivated');
+        Route::get('/{id}/restore', [subCategoryController::class, 'restore'])->name('subcategory.restore');
+        Route::delete('/{id}/delete-permanent', [subCategoryController::class, 'permanentDelete'])->name('subcategory.delete-permanent');
     });
 
     // Brand Management
