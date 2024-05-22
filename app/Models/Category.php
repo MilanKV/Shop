@@ -4,15 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
 use App\Enums\CategoryStatus;
+use App\Models\Traits\CategoryRelationshipsTrait;
+use App\Models\Traits\CategoryScopesTrait;
 
 class Category extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, CategoryRelationshipsTrait, CategoryScopesTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -44,24 +43,4 @@ class Category extends Model
     protected $casts = [
         'status' => CategoryStatus::class,
     ];
-
-    public function parentCategory(): BelongsTo
-    {
-        return $this->belongsTo(Category::class, 'parent_id');
-    }
-
-    public function subcategories(): HasMany
-    {
-        return $this->hasMany(Category::class, 'parent_id');
-    }
-
-    public function products(): HasMany
-    {
-        return $this->hasMany(Product::class);
-    }
-
-    public function scopeByParent(Builder $query, $parentId): Builder
-    {
-        return $query->where('parent_id', $parentId);
-    }
 }
