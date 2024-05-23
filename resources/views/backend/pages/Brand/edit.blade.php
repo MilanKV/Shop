@@ -26,7 +26,11 @@
                                             <h5>Brand Image</h5>
                                             <div class="row">
                                                 <div class="image">
-                                                    <img class="mt-3 w-100" src="{{ asset('storage/' . $brand->brand_image) }}" alt="brand_image">
+                                                    @if ($brand->brand_image)
+                                                        <img class="mt-3 w-100" src="{{ asset('storage/' . $brand->brand_image) }}" alt="brand_image">
+                                                    @else
+                                                        <img class="mt-3 w-100" src="https://cdn.pixabay.com/photo/2017/04/20/07/07/add-2244771_960_720.png" alt="Default Brand Image">
+                                                    @endif
                                                 </div>
                                                 <div class="action mt-4 col-12">
                                                     <div class="d-flex">

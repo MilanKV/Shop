@@ -19,6 +19,8 @@ class subCategoryController extends Controller
     {
         $perPage = $request->input('perPage', 5);
         $search = $request->input('search');
+        $sortColumn = $request->input('sortColumn', 'created_at');
+        $sortDirection = $request->input('sortDirection', 'desc');
 
         $query = Category::whereNotNull('parent_id');
         if ($search) {
@@ -30,10 +32,10 @@ class subCategoryController extends Controller
                 });
         }
 
-        $categories = $query->orderBy('created_at', 'desc')->paginate($perPage);
-        $categories->appends(['perPage' => $perPage, 'search' => $search]);
+        $categories = $query->orderBy($sortColumn, $sortDirection)->paginate($perPage);
+        $categories->appends(['perPage' => $perPage, 'search' => $search, 'sortColumn' => $sortColumn, 'sortDirection' => $sortDirection]);
 
-        return view('backend.pages.subCategory.index', compact('categories', 'search'));
+        return view('backend.pages.subCategory.index', compact('categories', 'search', 'sortColumn', 'sortDirection'));
     }
 
     /**

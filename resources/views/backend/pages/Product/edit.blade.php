@@ -26,7 +26,7 @@
                                             <h5>Product Image</h5>
                                             <div class="row">
                                                 <div class="image">
-                                                    <img class="mt-3 w-100" src="{{ asset('storage/' . $product->image) }}" alt="product_image">
+                                                    <img class="mt-3 w-100" src="{{ old('image') ? asset('storage/' . old('image')) : ($product->image ? (Str::startsWith($product->image, 'https') ? $product->image : asset('storage/' . $product->image)) : 'https://cdn.pixabay.com/photo/2017/04/20/07/07/add-2244771_960_720.png') }}" alt="product_image">
                                                 </div>
                                                 <div class="action mt-4 col-12">
                                                     <div class="d-flex">

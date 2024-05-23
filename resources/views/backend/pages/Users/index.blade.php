@@ -24,22 +24,22 @@
                             </div>
                             @if(count($users)>0)
                             <div class="dataTable-body">
-                                <table id="product-list" class="table table-flush">
+                                <table id="user-list" class="table table-flush">
                                     <thead>
                                         <th data-sortable="false">
                                             <a href="#" class="dataTable-sorterF">Picture</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Name</a>
+                                            <a href="{{ route('user.index', ['sortColumn' => 'name', 'sortDirection' => $sortColumn == 'name' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Name</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Email</a>
+                                            <a href="{{ route('user.index', ['sortColumn' => 'email', 'sortDirection' => $sortColumn == 'email' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Email</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Role</a>
+                                            <a href="{{ route('user.index', ['sortColumn' => 'role', 'sortDirection' => $sortColumn == 'role' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Role</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Created At</a>
+                                            <a href="{{ route('user.index', ['sortColumn' => 'created_at', 'sortDirection' => $sortColumn == 'created_at' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Created At</a>
                                         </th>
                                         <th data-sortable="false">
                                             <a href="#" class="dataTable-sorterF">ACTION</a>
@@ -57,9 +57,8 @@
                                                                 <img class="image ms-3" src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->image }}">
                                                             @endif
                                                         @else
-                                                            <img class="image ms-3" src="https://png.pngtree.com/png-clipart/20191122/original/pngtree-user-icon-isolated-on-abstract-background-png-image_5192004.jpg">
+                                                            <img class="image ms-3" src="https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg">
                                                         @endif
-                                                        
                                                     </div>
                                                 </td>
                                                 <td class="text-sm">{{ $user->name }}</td>

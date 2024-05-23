@@ -18,6 +18,8 @@ class BrandController extends Controller
     {
         $perPage = $request->input('perPage', 5);
         $search = $request->input('search');
+        $sortColumn = $request->input('sortColumn', 'created_at');
+        $sortDirection = $request->input('sortDirection', 'desc');
 
         $query = Brand::query();
 
@@ -29,9 +31,9 @@ class BrandController extends Controller
             });
         }
 
-        $brands = $query->orderBy('created_at', 'desc')->paginate($perPage);
-        $brands->appends(['perPage' => $perPage, 'search' => $search]);
-        return view('backend.pages.Brand.index', compact('brands', 'search'));
+        $brands = $query->orderBy($sortColumn, $sortDirection)->paginate($perPage);
+        $brands->appends(['perPage' => $perPage, 'search' => $search, 'sortColumn' => $sortColumn, 'sortDirection' => $sortDirection]);
+        return view('backend.pages.Brand.index', compact('brands', 'search', 'sortColumn', 'sortDirection'));
     }
 
     /**

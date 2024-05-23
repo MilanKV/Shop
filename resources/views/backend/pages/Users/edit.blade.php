@@ -26,7 +26,7 @@
                                             <h5>User Image</h5>
                                             <div class="row">
                                                 <div class="image">
-                                                    <img class="mt-3 w-100" src="{{ old('image') ? asset('storage/' . old('image')) : 'https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg' }}" alt="user_image">
+                                                    <img class="mt-3 w-100" src="{{ old('image') ? asset('storage/' . old('image')) : ($user->image ? (Str::startsWith($user->image, 'https') ? $user->image : asset('storage/' . $user->image)) : 'https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg') }}" alt="user_image">
                                                 </div>
                                                 <div class="action mt-4 col-12">
                                                     <div class="d-flex">

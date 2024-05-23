@@ -21,6 +21,8 @@ class ProductController extends Controller
     {
         $perPage = $request->input('perPage', 5);
         $search = $request->input('search');
+        $sortColumn = $request->input('sortColumn', 'created_at');
+        $sortDirection = $request->input('sortDirection', 'desc');
 
         $query = Product::query();
 
@@ -37,9 +39,9 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->orderBy('created_at', 'desc')->paginate($perPage);
-        $products->appends(['perPage' => $perPage, 'search' => $search]);
-        return view('backend.pages.Product.index', compact('products', 'search'));
+        $products = $query->orderBy($sortColumn, $sortDirection)->paginate($perPage);
+        $products->appends(['perPage' => $perPage, 'search' => $search, 'sortColumn' => $sortColumn, 'sortDirection' => $sortDirection]);
+        return view('backend.pages.Product.index', compact('products', 'search', 'sortColumn', 'sortDirection'));
     }
 
     /**
