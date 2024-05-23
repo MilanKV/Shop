@@ -61,7 +61,7 @@
             <ul class="sub-menu">
                 <li class="list-item"><a class="link_name" href="#">Category</a></li>
                 <li class="list-item"><a href="{{route('category.index')}}">Categories</a></li>
-                <li class="list-item"><a href="{{route('subcategory.index')}}">SubCategories</a></li>
+                <li class="list-item"><a href="{{route('subcategory.index')}}">Sub-categories</a></li>
             </ul>
         </li>
         <li class="list-item">
@@ -118,8 +118,7 @@
         <li class="list-item">
             <div class="profile-details">
                 <div class="profile-content">
-                    <img src="{{ $currentUser->image ? asset('storage/' . $currentUser->image) : 'https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg' }}"
-                        alt="profileImg">
+                    <img src="{{ $currentUser->image ? asset('storage/' . $currentUser->image) : 'https://st2.depositphotos.com/1104517/11965/v/950/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg' }}" alt="user_image">
                 </div>
                 <div class="name-job">
                     <div class="profile_name">{{ $currentUser->name }}</div>

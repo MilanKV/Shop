@@ -27,22 +27,22 @@
                                 <table id="product-list" class="table table-flush">
                                     <thead>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">PRODUCT</a>
+                                            <a href="{{ route('product.index', ['sortColumn' => 'product_name', 'sortDirection' => $sortColumn == 'product_name' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">PRODUCT</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">CATEGORY</a>
+                                            <a href="{{ route('product.index', ['sortColumn' => 'category_id', 'sortDirection' => $sortColumn == 'category_id' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">CATEGORY</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">PRICE</a>
+                                            <a href="{{ route('product.index', ['sortColumn' => 'purchase_price', 'sortDirection' => $sortColumn == 'purchase_price' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">PRICE</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">SKU</a>
+                                            <a href="{{ route('product.index', ['sortColumn' => 'product_SKU', 'sortDirection' => $sortColumn == 'product_SKU' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">SKU</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">INVENTORY</a>
+                                            <a href="{{ route('product.index', ['sortColumn' => 'quantity', 'sortDirection' => $sortColumn == 'quantity' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">INVENTORY</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">STATUS</a>
+                                            <a href="{{ route('product.index', ['sortColumn' => 'status', 'sortDirection' => $sortColumn == 'status' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">STATUS</a>
                                         </th>
                                         <th data-sortable>
                                             <a href="#" class="dataTable-sorterF">ACTION</a>

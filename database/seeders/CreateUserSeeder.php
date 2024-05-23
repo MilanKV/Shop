@@ -24,6 +24,7 @@ class CreateUserSeeder extends Seeder
             'email' => 'user@gmail.com',
             'email_verified_at' => Date::now(),
             'password' => Hash::make('12345678'),
+            'image' => 'https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg',
             'role' => RoleType::USER,
             'status' => UserStatus::ACTIVE,
         ]);
@@ -36,6 +37,7 @@ class CreateUserSeeder extends Seeder
             'email' => 'sadmin@gmail.com',
             'email_verified_at' => Date::now(),
             'password' => Hash::make('1234'),
+            'image' => 'https://images.pexels.com/photos/1310522/pexels-photo-1310522.jpeg?cs=srgb&dl=pexels-george-dolgikh-551816-1310522.jpg&fm=jpg',
             'role' => RoleType::SUPERADMIN,
             'status' => UserStatus::ACTIVE,
         ]);
@@ -48,6 +50,7 @@ class CreateUserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'email_verified_at' => Date::now(),
             'password' => Hash::make('123456'),
+            'image' => 'https://img.freepik.com/free-photo/portrait-optimistic-businessman-formalwear_1262-3600.jpg',
             'role' => RoleType::ADMIN,
             'status' => UserStatus::ACTIVE,
         ]);

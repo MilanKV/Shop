@@ -50,7 +50,6 @@
                                             <div class="form-group" id='parent_cat_div'>
                                             <label for="parent_id" class="form-label mt-2 row mt-4">Category</label>
                                                 <select name="parent_id" id="parent_id" class="form-control">
-                                                    <option value="">--Select any category--</option>
                                                     @foreach($parent_cat as $category)
                                                         <option value='{{$category->id}}' data-isparent="0">{{$category->category_name}}</option>
                                                     @endforeach

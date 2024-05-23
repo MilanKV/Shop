@@ -27,13 +27,13 @@
                                 <table id="product-list" class="table table-flush">
                                     <thead>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Name</a>
+                                            <a href="{{ route('brand.index', ['sortColumn' => 'brand_name', 'sortDirection' => $sortColumn == 'brand_name' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Name</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Slug</a>
+                                            <a href="{{ route('brand.index', ['sortColumn' => 'slug', 'sortDirection' => $sortColumn == 'slug' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Slug</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">STATUS</a>
+                                            <a href="{{ route('brand.index', ['sortColumn' => 'status', 'sortDirection' => $sortColumn == 'status' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">STATUS</a>
                                         </th>
                                         <th data-sortable>
                                             <a href="#" class="dataTable-sorterF">ACTION</a>

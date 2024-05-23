@@ -7,7 +7,7 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div class="title">
-                                <h5 class="mb-0">All SubCategories</h5>
+                                <h5 class="mb-0">All Sub-categories</h5>
                                 <p class="title-description mb-0">View all active subcategories for easy navigation and management.</p>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
@@ -27,16 +27,16 @@
                                 <table id="product-list" class="table table-flush">
                                     <thead>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Name</a>
+                                            <a href="{{ route('subcategory.index', ['sortColumn' => 'category_name', 'sortDirection' => $sortColumn == 'category_name' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Name</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Category</a>
+                                            <a href="{{ route('subcategory.index', ['sortColumn' => 'parent_id', 'sortDirection' => $sortColumn == 'parent_id' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Category</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">Description</a>
+                                            <a href="{{ route('subcategory.index', ['sortColumn' => 'short_description', 'sortDirection' => $sortColumn == 'short_description' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">Description</a>
                                         </th>
                                         <th data-sortable>
-                                            <a href="#" class="dataTable-sorter">STATUS</a>
+                                            <a href="{{ route('subcategory.index', ['sortColumn' => 'status', 'sortDirection' => $sortColumn == 'status' && $sortDirection == 'asc' ? 'desc' : 'asc']) }}" class="dataTable-sorter">STATUS</a>
                                         </th>
                                         <th data-sortable>
                                             <a href="#" class="dataTable-sorterF">ACTION</a>

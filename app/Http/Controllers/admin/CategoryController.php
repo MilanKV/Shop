@@ -20,6 +20,8 @@ class CategoryController extends Controller
         $perPage = $request->input('perPage', 5);
 
         $search = $request->input('search');
+        $sortColumn = $request->input('sortColumn', 'created_at');
+        $sortDirection = $request->input('sortDirection', 'desc');
         $query = Category::where('is_parent', 1);
 
         if ($search) {
@@ -30,9 +32,9 @@ class CategoryController extends Controller
             });
         }
 
-        $categories = $query->orderBy('created_at', 'desc')->paginate($perPage);
-        $categories->appends(['perPage' => $perPage, 'search' => $search]);
-        return view('backend.pages.Category.index', compact('categories', 'search'));
+        $categories = $query->orderBy($sortColumn, $sortDirection)->paginate($perPage);
+        $categories->appends(['perPage' => $perPage, 'search' => $search, 'sortColumn' => $sortColumn, 'sortDirection' => $sortDirection,]);
+        return view('backend.pages.Category.index', compact('categories', 'search', 'sortColumn', 'sortDirection'));
     }
 
     /**
