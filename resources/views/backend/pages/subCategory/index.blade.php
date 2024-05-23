@@ -7,7 +7,7 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div class="title">
-                                <h5 class="mb-0">All Sub-categories</h5>
+                                <h5 class="mb-0">All Subcategories</h5>
                                 <p class="title-description mb-0">View all active subcategories for easy navigation and management.</p>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">

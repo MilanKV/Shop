@@ -7,7 +7,7 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div class="title">
-                                <h5 class="mb-0">Add a new SubCategory</h5>
+                                <h5 class="mb-0">Add a new Subcategory</h5>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
                                 <a href="{{route('subcategory.index')}}" class="btn btn-outline mb-0">Back to List</a>
