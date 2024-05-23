@@ -61,7 +61,7 @@
             <ul class="sub-menu">
                 <li class="list-item"><a class="link_name" href="#">Category</a></li>
                 <li class="list-item"><a href="{{route('category.index')}}">Categories</a></li>
-                <li class="list-item"><a href="{{route('subcategory.index')}}">Sub-categories</a></li>
+                <li class="list-item"><a href="{{route('subcategory.index')}}">Subcategories</a></li>
             </ul>
         </li>
         <li class="list-item">

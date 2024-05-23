@@ -7,7 +7,7 @@
                     <div class="card-header pb-0">
                         <div class="d-lg-flex">
                             <div class="title">
-                                <h5 class="mb-0">Deactivated SubCategories</h5>
+                                <h5 class="mb-0">Deactivated Subcategories</h5>
                                 <p class="title-description mb-0">Manage deactivated subcategories separately for organizational clarity.</p>
                             </div>
                             <div class="card-action my-auto mt-4 ms-auto mt-lg-0">
