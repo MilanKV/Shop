@@ -1,7 +1,7 @@
 @php
     $superAdminRole = \App\Enums\RoleType::SUPERADMIN;
 @endphp
-<div class="sidebar close">
+<div class="sidebar">
     <div class="logo-details">
         <i class='bx bxl-c-plus-plus'></i>
         <span class="logo_name">Shop</span>
@@ -53,7 +53,7 @@
         <li class="list-item">
             <div class="icon-link">
                 <a href="{{route('category.index')}}">
-                    <i class='bx bx-collection'></i>
+                    <i class='bx bx-category'></i>
                     <span class="link_name">Category</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
