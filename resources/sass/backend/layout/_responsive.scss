@@ -19,3 +19,32 @@
         z-index: 100;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        // display: none;
+        left: -78px;
+        transition: left 0.5s ease;
+    }
+
+    .page-section {
+        left: 0;
+        width: 100%;
+        transition: left 0.5s ease;
+    }
+
+    .sidebar.close ~ .page-section {
+        left: 0;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .sidebar.close ~ .page-section {
+        .nav-container {
+            .breadcrumb {
+                display: none;
+            }
+        }
+    }
+}
