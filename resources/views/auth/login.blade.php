@@ -10,7 +10,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    @vite('resources/sass/frontend/app.scss')
+    @vite('resources/sass/backend/app.scss')
 </head>
 
 <body>
