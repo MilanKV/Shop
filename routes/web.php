@@ -15,11 +15,24 @@ use App\Enums\RoleType;
 
 Auth::routes(['verify' => true]);
 
-Route::redirect('/', '/login');
 // Frontend
-// Route::get('/', function () {
-//     return view('frontend/app');
-// });
+Route::get('/', function () {
+    return view('frontend/app');
+});
+
+Route::get('/api/auth-status', function () {
+    return response()->json([
+        'isAuthenticated' => auth()->check(),
+        'role' => auth()->check() ? auth()->user()->role : null
+    ]);
+});
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+
 
 
 // Admin Routes

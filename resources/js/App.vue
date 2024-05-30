@@ -1,12 +1,9 @@
-<script setup>
-import ExampleComponent from './components/ExampleComponent.vue'
-</script>
-
 <template>
-<router-view/>
-
+    <router-view/>
 </template>
 
-<style lang="scss">
-    
-</style>
+<script>
+    export default {
+        name: 'App',
+    }
+</script>
