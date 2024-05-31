@@ -2,7 +2,9 @@
     <div class="container-fluid">
         <div class="logo-menu">
             <Logo />
-            <Menu></Menu>
+            <div class="menu">
+                <Menu :menuItems="homeMenuItems"/>
+            </div>
         </div>
         <div class="utilities">
             <Search />
@@ -17,11 +19,11 @@
 </template>
 
 <script>
-import Logo from './Header/Logo.vue';
-import Menu from './Header/Menu.vue';
-import Search from './Header/Search.vue';
-import Action from './Header/Action.vue';
-import Hamburger from './Header/Hamburger.vue';
+import Logo from './Logo.vue';
+import Menu from './Menu.vue';
+import Search from './Search.vue';
+import Action from './Action.vue';
+import Hamburger from './Hamburger.vue';
 import Offcanvas from './Offcanvas.vue';
 
 import { mapState, mapActions } from 'vuex';
@@ -39,6 +41,12 @@ export default {
     data() {
         return {
             isOffCanvasActive: false,
+            homeMenuItems: [
+                { id: 1, title: 'Home', url: '/', class: 'link underline' },
+                { id: 2, title: 'About Us', url: '/about', class: 'link underline' },
+                { id: 3, title: 'Shop', url: '/shop', class: 'link underline' },
+                { id: 4, title: 'Contact Us', url: '/contact', class: 'link underline' },
+            ],
         };
     },
     computed: {
