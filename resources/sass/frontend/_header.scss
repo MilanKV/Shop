@@ -357,9 +357,9 @@
                 padding: 0;
                 width: 100%;
 
-                > li:first-child {
+                > li:last-child {
                     > a {
-                        border-top: 0;
+                        border-bottom: 0;
                     }
                 }
             }
@@ -370,7 +370,7 @@
                     width: 100%;
                     float: left;
     
-                    a {
+                    .off-links {
                         display: flex;
                         color: #423f74;
                         font-size: 14px;
@@ -382,7 +382,7 @@
                         text-transform: uppercase;
                         padding: 10px 0;
                         width: 100%;
-                        border-top: 1px solid #e0e3ed;
+                        border-bottom: 1px solid #e0e3ed;
                         cursor: pointer;
 
                         &:hover {
@@ -446,9 +446,8 @@
                     transition: all .3s ease-out 0s;
                     background-color: #423f74;
 
-                    svg path,
-                    svg circle {
-                        fill: #fff;
+                    img {
+                        filter: invert(1);
                     }
                 }
             }
