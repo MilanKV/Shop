@@ -11,3 +11,9 @@
   position: relative;
   background-color: #f0f2ee;
 }
+
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 15;
+}

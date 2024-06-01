@@ -4,8 +4,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    // border-bottom: 1px solid #e2e2e2;
-    background-color: transparent;
+    background-color: #E4E9F7;
 
     .logo-menu{
         display: flex;
@@ -326,7 +325,6 @@
 .offcanvas{
     transform: translateX(100%);
     transition: transform 0.4s ease-in-out;
-    overflow-y: auto;
     right: 0;
 
     &.show {
@@ -338,8 +336,9 @@
         height: 100%;
         top: 0;
         border-left: 1px solid #e2e2e2;
-        z-index: 100;
+        z-index: 12;
         transform: translateX(0);
+        overflow: hidden;
 
         .menu-links {
             position: relative;
@@ -464,7 +463,8 @@
     height: 100%;
     left: 0;
     top: 0;
-    z-index: 99;
+    z-index:11;
+    overflow: hidden;
 }
 
 @media (max-width: 1200px) {
@@ -514,13 +514,28 @@
             }
             .hamburger {
                 display: block;
-                z-index: 101;
+                z-index: 14;
             }
         }
     }
 }
-  
+
 @media (min-width: 320px) and (max-width: 426px) {
+    .container-fluid {
+        .logo-menu {
+            padding: 0;
+        }
+
+        .utilities {
+            padding: 0;
+            
+            .hamburger {
+                &.active{
+                    padding-right: 35px;
+                }
+            }
+        }
+    }
     .offcanvas.show {
       width: 100%;
       transition: transform 0.3s ease-in-out;

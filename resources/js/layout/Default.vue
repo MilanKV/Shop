@@ -1,6 +1,13 @@
 <template>
-    <Header />
-    <router-view/>
+    <header>
+        <Header />
+    </header>
+     <main>
+         <router-view/>
+     </main>
+     <footer>
+        <!-- <Footer /> -->
+     </footer>
 </template>
 
 <script>
