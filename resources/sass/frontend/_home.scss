@@ -1,0 +1,177 @@
+.Hero {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #E4E9F7;
+    padding: 0 55px;
+    z-index: 98;
+    overflow: hidden;
+    
+    .row {
+        width: 100%;
+        display: flex;
+
+        .left {
+            position: relative;
+            padding-left: 13px;
+
+            .small-title {
+                position: relative;
+                color: #344767;
+                display: inline-block;
+                font-size: 16px;
+                letter-spacing: 0.03em;
+                line-height: 1.12;
+                font-family: "Roboto", sans-serif;
+                margin-bottom: 11px;
+
+                .bold-text {
+                    font-weight: 700; 
+                    color: #000;
+                }
+            }
+            
+            .title {
+                color: #000;
+                font-size: 80px;
+                font-weight: 500;
+                letter-spacing: -.01em;
+                line-height: 1.05;
+                font-family: "Roboto", sans-serif;
+                margin-bottom: 45px;
+                z-index: 2;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: centers;
+                color: #fff;
+                border: 0;
+                letter-spacing: -0.025rem;
+                box-shadow: 0 4px 7px -1px rgba(0, 0, 0, 0.11), 0 2px 4px -1px rgba(0, 0, 0, 0.07);
+                background-size: 150%;
+                font-size: 0.75rem;
+                line-height: 1.4;
+                font-weight: 700;
+                padding: 0.5rem 2rem;
+                text-transform: uppercase;
+                text-decoration: none;
+                z-index: 2;
+            }
+
+            .btn-outline {
+                background-color: transparent;
+                opacity: .75;
+                color: #1f1f24;
+                border: 1px solid #000;
+                transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+
+                &:hover {
+                    background-color: #344767;
+                    color: #fff;
+                    opacity: 1;
+
+                    img {
+                        filter: invert(1);
+                        transition: filter 0.3s ease;
+                    }
+                }
+            }
+        } 
+
+        .right {
+            position: relative;
+            align-items: center;
+            
+            .circle {
+                position: absolute;
+                left: 20%;
+                background-color: #423f74;
+                border-radius: 50%;
+                width: 400px;
+                height: 400px;
+                opacity: 0.8;
+                animation: pulsing 6s ease-out infinite;
+                z-index: 1;
+
+                &:nth-of-type(1) {
+                    animation-delay: -3s;
+                }
+            }
+
+            img {
+                position: relative;
+                z-index: 2;
+                top: 4%;
+                left: 10%;
+            }
+
+            @keyframes pulsing {
+                0% {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+
+                50% {
+                    transform: scale(1);
+                    opacity: 0.4;
+                }
+
+                100% {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+    .Hero {
+        min-height: 900px;
+        align-items: center;
+        
+        .row {
+            margin-top: 60px;
+
+            .left {
+                .title {
+                    font-size: 60px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 426px) {
+    .Hero {
+        min-height: 650px;
+        padding: 0;
+        align-items: center;
+        overflow-x: hidden;
+
+        .row {
+            margin-top: 70px;
+            .left {
+                .title {
+                    font-size: 40px;
+                }
+            }
+
+            .right {
+                .circle {
+                    width: 250px;
+                    height: 250px;
+                }
+
+                img {
+                    height: auto;
+                    max-width: 300px;
+                }
+            }
+        }
+    }
+}
