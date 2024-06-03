@@ -1,11 +1,9 @@
 <template>
-    <div class="search">
-        <form>
-            <div class="search-input">
-                <input type="text" placeholder="Search for product...">
-            </div>
-        </form>
-    </div>
+    <form>
+        <div class="search-input">
+            <input type="text" placeholder="Search for product...">
+        </div>
+    </form>
 </template>
 
 <script>
