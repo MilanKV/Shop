@@ -15,26 +15,6 @@ use App\Enums\RoleType;
 
 Auth::routes(['verify' => true]);
 
-// Frontend
-Route::get('/', function () {
-    return view('frontend/app');
-});
-
-Route::get('/api/auth-status', function () {
-    return response()->json([
-        'isAuthenticated' => auth()->check(),
-        'role' => auth()->check() ? auth()->user()->role : null
-    ]);
-});
-
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/');
-})->name('logout');
-
-
-
-
 // Admin Routes
 Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . RoleType::SUPERADMIN->value . ',' . RoleType::ADMIN->value], 'prefix' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -111,3 +91,20 @@ Route::group(['middleware' => ['auth', 'verified', CheckRole::class . ':' . Role
         });
     });
 });
+
+
+Route::get('/api/auth-status', function () {
+    return response()->json([
+        'isAuthenticated' => auth()->check(),
+        'role' => auth()->check() ? auth()->user()->role : null
+    ]);
+});
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+Route::get('/{any}', function () {
+    return view('frontend.app');
+})->where('any', '.*');

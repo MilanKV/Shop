@@ -7,7 +7,9 @@
             </div>
         </div>
         <div class="utilities">
-            <Search />
+            <div class="search">
+                <Search />
+            </div>
             <Action />
             <Hamburger :isActive="isOffCanvasActive" :toggleActive="toggleOffCanvas" />
         </div>
