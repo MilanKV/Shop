@@ -4,7 +4,7 @@
             <h2 class="title">{{ title }}</h2>
             <img :class="{ 'rotated': isActive }" src="../../img/icons/chevron-down.svg">
         </div>
-        <div class="accordion-content" v-show="isActive">
+        <div :class="{ 'accordion-content': true, 'active': isActive }">
             <slot></slot>
         </div>
     </div>
