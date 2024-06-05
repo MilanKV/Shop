@@ -2,3 +2,8 @@
     transform: rotate(180deg);
     transition: transform 0.3s ease;
 }
+
+.fade-out {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}

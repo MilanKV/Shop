@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div :class="['container-fluid', { 'scrolled': isScrolled }]">
         <div class="logo-menu">
             <Logo />
             <div class="menu">
@@ -43,6 +43,7 @@ export default {
     data() {
         return {
             isOffCanvasActive: false,
+            isScrolled: false,
             homeMenuItems: [
                 { id: 1, title: 'Home', url: '/', class: 'link underline' },
                 { id: 2, title: 'About Us', url: '/about', class: 'link underline' },
@@ -64,13 +65,18 @@ export default {
                 this.isOffCanvasActive = false;
             }
         },
+        handleScroll() {
+            this.isScrolled = window.scrollY > 0;
+        },
     },
     mounted() {
         this.fetchAuthStatus();
         window.addEventListener('resize', this.handleScreenSizeChange);
+        window.addEventListener('scroll', this.handleScroll);
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.handleScreenSizeChange);
+        window.removeEventListener('scroll', this.handleScroll);
     },
 };
 </script>

@@ -4,7 +4,28 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: #E4E9F7;
+    background-color: transparent;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: #423f74;
+        transition: width 1s ease;
+    }
+
+    &.scrolled {
+        background-color: #fff;
+        transition: background-color 0.3s ease;
+
+        &::after {
+            width: 100%;
+        }
+    }
 
     .logo-menu{
         display: flex;
@@ -100,7 +121,7 @@
                 .search-input {
                     input {
                         background-color: #fff;
-                        border: 0;
+                        border: 1px solid #344767;
                         border-radius: 30px;
                         box-shadow: 0 1px 2px rgba(3,4,28,.1);
                         height: 46px;
