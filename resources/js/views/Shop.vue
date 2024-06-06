@@ -8,25 +8,14 @@
                     </div>
                     <div class="shop-sort col-lg-6 col-md-7">
                         <div class="sort">
-                            <div class="sort-tab">
-                                <button class="link" @click="setActiveView('grid')" :class="{ active: activeView === 'grid' }">
-                                    <img src="../../img/icons/grid.svg">
-                                </button>
-                                <button class="link" @click="setActiveView('list')" :class="{ active: activeView === 'list' }">
-                                    <img src="../../img/icons/list.svg">
-                                </button>
-                            </div>
-                            <div class="sorting" @click="toggleDropdown">
-                                <div class="title">
-                                    <span class="current">{{ currentSorting }}</span>
-                                    <img :class="{ 'rotated': dropdownActive }" src="../../img/icons/chevron-down.svg">
-                                </div>
-                                <ul class="submenu" :class="{ active: dropdownActive }">
-                                    <li v-for="option in sortingOptions" :key="option" :class="{ selected: option === currentSorting, focus: option === currentSorting }" class="option" @click.stop="selectOption(option)">
-                                        {{ option }}
-                                    </li>
-                                </ul>
-                            </div>
+                            <SortTabs :activeView="activeView" @update:view="setActiveView" />
+                            <SortingDropdown 
+                                :currentSorting="currentSorting" 
+                                :sortingOptions="sortingOptions" 
+                                :dropdownActive="dropdownActive" 
+                                @toggle:dropdown="toggleDropdown" 
+                                @select:option="selectOption" 
+                            />
                         </div>
                     </div>
                 </div>
@@ -34,41 +23,17 @@
             <div class="shop-body">
                 <div class="row">
                     <div class="left col-lg-3">
-                        <div class="sidebar">
-                            <div class="tab">
-                                <Accordion title="Brand" :active="true">
-                                    <div class="mini-search">
-                                        <Search />
-                                    </div>
-                                    <div class="list">
-                                        <div class="list-item" v-for="brand in brands" :key="brand">
-                                            <input type="checkbox" :id="brand" class="custom" :checked="selectedBrand === brand" @change="selectBrand(brand)">
-                                            <label :for="brand">{{ brand }}</label>
-                                        </div>
-                                    </div>
-                                </Accordion>
-                            </div>
-                            <div class="tab">
-                                <Accordion title="Color" :active="true">
-                                    <div class="list">
-                                        <div class="list-item-color" v-for="color in colors" :key="color">
-                                            <input type="checkbox" :id="color" class="color-checkbox" :checked="selectedColor === color" @change="selectColor(color)">
-                                            <label :for="color" :style="getColorStyle(color)">{{ color }}</label>
-                                        </div>
-                                    </div>
-                                </Accordion>
-                            </div>
-                            <div class="tab">
-                                <Accordion title="Price" :active="true">
-                                    <div class="list">
-                                        <div class="list-item" v-for="price in prices" :key="price">
-                                            <input type="checkbox" :id="price" class="custom" :checked="selectedPrice === price" @change="selectPrice(price)">
-                                            <label :for="price">{{ price }}</label>
-                                        </div>
-                                    </div>
-                                </Accordion>
-                            </div>
-                        </div>
+                       <Sidebar 
+                            :brands="brands"
+                            :selectedBrand="selectedBrand"
+                            @update:selectedBrand="selectBrand"
+                            :colors="colors"
+                            :selectedColor="selectedColor"
+                            @update:selectedColor="selectColor"
+                            :prices="prices"
+                            :selectedPrice="selectedPrice"
+                            @update:selectedPrice="selectPrice"
+                       /> 
                     </div>
                     <div class="right col-lg-9">
                         <div class="content mb-40">
@@ -114,6 +79,9 @@ import Search from '../components/Search.vue';
 import Accordion from '../components/Accordion.vue';
 import GridCard from '../components/Grid-Card.vue';
 import ListCard from '../components/List-Card.vue';
+import SortTabs from '../components/SortTabs.vue';
+import SortingDropdown from '../components/SortingDropdown.vue';
+import Sidebar from '../components/Sidebar.vue';
 
 export default {
     name: "Shop",
@@ -122,6 +90,9 @@ export default {
         Accordion,
         GridCard,
         ListCard,
+        SortTabs,
+        SortingDropdown,
+        Sidebar,
     },
     data() {
         return {
