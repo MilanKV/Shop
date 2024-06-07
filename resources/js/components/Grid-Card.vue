@@ -6,7 +6,7 @@
                     <img :src="imageUrl" :alt="productName">
                 </a>
                 <div v-if="discount" class="product-grid-discount">
-                    <span class="product-grid-discount-item">-{{ discount }}</span>
+                    <span class="product-grid-discount-item">-{{ discount }}%</span>
                 </div>
                 <div class="product-grid-action">
                     <button type="button" class="product-grid-button">
@@ -30,7 +30,7 @@
                     <a href="#">{{ productName }}</a>
                 </h3>
                 <div class="product-grid-price">
-                    <span class="product-grid-amount">{{ productPrice }}</span>
+                    <span class="product-grid-amount">${{ productPrice }}</span>
                 </div>
             </div>
         </div>
@@ -44,8 +44,9 @@ export default {
     props: {
         imageUrl: String,
         productName: String,
-        productPrice: String,
-        discount: String
+        productPrice: Number,
+        discount: Number,
+        description: String,
     },
 }
 </script>

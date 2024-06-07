@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Enums\ProductStatus;
 use App\Models\Traits\ProductRelationshipsTrait;
+use App\Models\Traits\ProductScopesTrait;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes, ProductRelationshipsTrait;
+    use HasFactory, SoftDeletes, ProductRelationshipsTrait, ProductScopesTrait;
 
     protected $fillable = [
         'product_name',

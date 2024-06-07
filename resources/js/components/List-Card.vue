@@ -8,7 +8,7 @@
                             <img :src="imageUrl" :alt="productName">
                         </a>
                         <div v-if="discount" class="product-list-discount">
-                            <span class="product-list-discount-item">-{{ discount }}</span>
+                            <span class="product-list-discount-item">-{{ discount }}%</span>
                         </div>
                     </div>
                 </div>
@@ -18,9 +18,9 @@
                             <a href="#">{{ productName }}</a>
                         </h3>
                         <div class="product-list-price">
-                            <span class="product-list-amount">{{ productPrice }}</span>
+                            <span class="product-list-amount">${{ productPrice }}</span>
                         </div>
-                        <p class="product-list-description">{{ description }}</p>
+                        <p class="product-list-description">{{ truncatedDescription }}</p>
                         <div class="product-list-action">
                             <button type="button" class="product-list-add-cart">
                                 <img src="../../img/icons/cart.svg">
@@ -49,9 +49,16 @@ export default {
     props: {
         imageUrl: String,
         productName: String,
-        productPrice: String,
-        discount: String,
+        productPrice: Number,
+        discount: Number,
         description: String,
+    },
+    computed: {
+        truncatedDescription() {
+            return this.description.length > 250
+                ? this.description.substring(0, 250) + '...'
+                : this.description;
+        }
     },
 }
 </script>

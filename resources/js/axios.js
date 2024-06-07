@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
     withCredentials: true,
 });
 
-export default axiosInstance;
+export { axiosInstance };
 
 export const checkAuthStatus = () => {
     return axiosInstance.get('/api/auth-status');
