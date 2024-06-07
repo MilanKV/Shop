@@ -60,5 +60,24 @@ The project features a custom admin layout design with a sidebar, navigation, fo
 - Composer
 - Apache
 
+## Technology Stack
+
+- **Frontend:**
+  - Vue.js 3
+  - Vuex
+  - Axios
+  - jQuery (used with Blade in the admin panel)
+
+- **Backend:**
+  - Laravel
+  - PHP
+  - MySQL
+  - Blade for admin panel views
+
+- **Development Tools:**
+  - Node.js and NPM
+  - Composer
+  - Apache
+
 ## License
 This project is licensed under the MIT License.
