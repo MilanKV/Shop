@@ -1,4 +1,4 @@
-import { checkAuthStatus, logout } from '../axios';
+import { checkAuthStatus, logout, axiosInstance } from '../axios';
 import mutations from './mutations';
 
 export default {
@@ -21,5 +21,22 @@ export default {
         } catch (error) {
             console.error('Error logging out:', error);
         }
+    },
+
+    async fetchProducts({ commit, state }) {
+        try {
+            const response = await axiosInstance.get('/api/products', {
+                params: {
+                    sort: state.sortingOption,
+                },
+            });
+            commit('SET_PRODUCTS', response.data);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    },
+    updateSorting({ commit, dispatch }, sortingOption) {
+        commit('SET_SORTING_OPTION', sortingOption);
+        dispatch('fetchProducts');
     },
 };
