@@ -12,4 +12,7 @@ export default {
   SET_SORTING_OPTION(state, sortingOption) {
     state.sortingOption = sortingOption;
   },
+  SET_BRANDS(state, brands) {
+    state.brands = brands;
+  },
 };

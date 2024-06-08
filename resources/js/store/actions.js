@@ -23,11 +23,12 @@ export default {
         }
     },
 
-    async fetchProducts({ commit, state }) {
+    async fetchProducts({ commit, state }, selectedBrand) {
         try {
             const response = await axiosInstance.get('/api/products', {
                 params: {
                     sort: state.sortingOption,
+                    brand: selectedBrand,
                 },
             });
             commit('SET_PRODUCTS', response.data);
@@ -38,5 +39,13 @@ export default {
     updateSorting({ commit, dispatch }, sortingOption) {
         commit('SET_SORTING_OPTION', sortingOption);
         dispatch('fetchProducts');
+    },
+    async fetchBrands({ commit }) {
+        try {
+            const response = await axiosInstance.get('/api/brands');
+            commit('SET_BRANDS', response.data);
+        } catch (error) {
+            console.error('Error fetching brands:', error);
+        }
     },
 };
