@@ -12,8 +12,15 @@ class ProductController extends Controller
     public function index(Request $request) {
 
         $sort = $request->query('sort', 'Low to High');
+        $brand = $request->query('brand', null);
 
-        $products = Product::orderBySort($sort)->get();
+        $query = Product::query();
+
+        if ($brand) {
+            $query->where('brand_id', $brand);
+        }
+
+        $products = $query->orderBySort($sort)->get();
         return response()->json(ProductResource::collection($products));
     }
 }

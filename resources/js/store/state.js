@@ -4,4 +4,5 @@ export default {
 
     sortingOption: 'Low to High',
     products: [],
+    brands: [],
 };

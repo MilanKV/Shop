@@ -6,9 +6,9 @@
                     <Search />
                 </div>
                 <div class="list">
-                    <div class="list-item" v-for="brand in brands" :key="brand">
-                        <input type="checkbox" :id="brand" class="custom" :checked="selectedBrand === brand" @change="selectBrand(brand)">
-                        <label :for="brand">{{ brand }}</label>
+                    <div class="list-item" v-for="brand in brands" :key="brand.id">
+                        <input type="checkbox" :id="brand.id" class="custom" :checked="selectedBrand === brand.id" @change="selectBrand(brand.id)">
+                        <label :for="brand.id">{{ brand.brand_name }}</label>
                     </div>
                 </div>
             </Accordion>
@@ -48,7 +48,7 @@ export default {
     },
     props: {
         brands: Array,
-        selectedBrand: String,
+        selectedBrand: Number,
         colors: Array,
         selectedColor: String,
         prices: Array,

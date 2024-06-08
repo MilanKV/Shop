@@ -103,7 +103,6 @@ export default {
             switchingView: false,
             sortingOptions: ['Low to High', 'High to Low', 'Latest', 'On Sale'],
             rotated: false,
-            brands: ['Sony', 'Samsung', 'LG', 'Lenovo', 'Sam'],
             selectedBrand: null,
             colors: ['Green', 'Yellow', 'Black', 'Blue', 'Red'],
             selectedColor: null,
@@ -114,6 +113,7 @@ export default {
     computed: {
         ...mapState({
             products: state => state.products,
+            brands: state => state.brands,
             currentSorting: state => state.sortingOption,
         }),
         colorMap() {
@@ -127,7 +127,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['fetchProducts', 'updateSorting']),
+        ...mapActions(['fetchProducts', 'updateSorting', 'fetchBrands']),
 
         toggleDropdown() {
             this.dropdownActive = !this.dropdownActive;
@@ -140,8 +140,9 @@ export default {
         toggleAccordion(index) {
             this.accordions[index].active = !this.accordions[index].active;
         },
-        selectBrand(brand) {
-            this.selectedBrand = this.selectedBrand === brand ? null : brand;
+        selectBrand(brandId) {
+            this.selectedBrand = this.selectedBrand === brandId ? null : brandId;
+            this.fetchProducts(this.selectedBrand);
         },
         selectColor(color) {
             this.selectedColor = this.selectedColor === color ? null : color;
@@ -163,7 +164,8 @@ export default {
         },
     },
     created() {
-        this.fetchProducts();
+        this.fetchProducts(this.selectedBrand);
+        this.fetchBrands();
     }
 };
 </script>
