@@ -142,13 +142,27 @@ export default {
         },
         selectBrand(brandId) {
             this.selectedBrand = this.selectedBrand === brandId ? null : brandId;
-            this.fetchProducts(this.selectedBrand);
+            this.fetchProducts({
+                selectedBrand: this.selectedBrand,
+                selectedColor: this.selectedColor,
+                selectedPrice: this.selectedPrice
+            });
         },
         selectColor(color) {
             this.selectedColor = this.selectedColor === color ? null : color;
+            this.fetchProducts({
+                selectedBrand: this.selectedBrand,
+                selectedColor: this.selectedColor,
+                selectedPrice: this.selectedPrice
+            });
         },
         selectPrice(price) {
             this.selectedPrice = this.selectedPrice === price ? null : price;
+            this.fetchProducts({
+                selectedBrand: this.selectedBrand,
+                selectedColor: this.selectedColor,
+                selectedPrice: this.selectedPrice
+            });
         },
         getColorStyle(color) {
             return {
@@ -164,7 +178,11 @@ export default {
         },
     },
     created() {
-        this.fetchProducts(this.selectedBrand);
+        this.fetchProducts({
+            selectedBrand: this.selectedBrand,
+            selectedColor: this.selectedColor,
+            selectedPrice: this.selectedPrice
+        });
         this.fetchBrands();
     }
 };

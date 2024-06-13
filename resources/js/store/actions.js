@@ -23,12 +23,14 @@ export default {
         }
     },
 
-    async fetchProducts({ commit, state }, selectedBrand) {
+    async fetchProducts({ commit, state }, { selectedBrand, selectedColor, selectedPrice }) {
         try {
             const response = await axiosInstance.get('/api/products', {
                 params: {
                     sort: state.sortingOption,
                     brand: selectedBrand,
+                    color: selectedColor,
+                    price: selectedPrice,
                 },
             });
             commit('SET_PRODUCTS', response.data);
@@ -38,7 +40,11 @@ export default {
     },
     updateSorting({ commit, dispatch }, sortingOption) {
         commit('SET_SORTING_OPTION', sortingOption);
-        dispatch('fetchProducts');
+        dispatch('fetchProducts', { 
+            selectedBrand: null, 
+            selectedColor: null, 
+            selectedPrice: null 
+        });
     },
     async fetchBrands({ commit }) {
         try {
