@@ -41,7 +41,10 @@ class ProductController extends Controller
             }
         }
 
-        $products = $query->orderBySort($sort)->get();
+        $products = $query->orderBySort($sort)->get()->map(function ($product) {
+            $product->image_url = asset('storage/backend/product/product_images/' . $product->image);
+            return $product;
+        });
         return response()->json(ProductResource::collection($products));
     }
 }

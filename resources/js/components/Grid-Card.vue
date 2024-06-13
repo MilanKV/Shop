@@ -3,7 +3,7 @@
         <div class="product-grid-item">
             <div class="product-grid-image">
                 <a href="#">
-                    <img :src="imageUrl" :alt="productName">
+                    <img :src="fullImageUrl" :alt="productName">
                 </a>
                 <div v-if="discount" class="product-grid-discount">
                     <span class="product-grid-discount-item">-{{ discount }}%</span>
@@ -47,6 +47,11 @@ export default {
         productPrice: Number,
         discount: Number,
         description: String,
+    },
+    computed: {
+        fullImageUrl() {
+            return `/storage/${this.imageUrl}`;
+        }
     },
 }
 </script>
