@@ -3,10 +3,10 @@
         <div class="tab">
             <Accordion title="Brand" :active="true">
                 <div class="mini-search">
-                    <Search />
+                    <Search :placeholder="'Search Brands...'" @search="filterBrands" />
                 </div>
                 <div class="list">
-                    <div class="list-item" v-for="brand in brands" :key="brand.id">
+                    <div class="list-item" v-for="brand in filteredBrands" :key="brand.id">
                         <input type="checkbox" :id="brand.id" class="custom" :checked="selectedBrand === brand.id" @change="selectBrand(brand.id)">
                         <label :for="brand.id">{{ brand.brand_name }}</label>
                     </div>
@@ -54,6 +54,18 @@ export default {
         prices: Array,
         selectedPrice: String,
     },
+    data() {
+        return {
+            searchQuery: "",
+        };
+    },
+    computed: {
+        filteredBrands() {
+            return this.brands.filter(brand =>
+                brand.brand_name.toLowerCase().includes(this.searchQuery.toLowerCase())
+            );
+        },
+    },
     methods: {
         selectBrand(brand) {
             this.$emit('update:selectedBrand', brand);
@@ -68,6 +80,9 @@ export default {
             return {
                 '--checkbox-color': color.toLowerCase()
             };
+        },
+        filterBrands(query) {
+            this.searchQuery = query;
         },
     }
 }
