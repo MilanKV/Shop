@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
 
         $sort = $request->query('sort', 'Low to High');
         $brand = $request->query('brand', null);
         $color = $request->query('color', null);
         $priceRange = $request->query('price', null);
+        $perPage = $request->input('perPage', 9);
 
         $query = Product::query();
 
@@ -41,10 +43,25 @@ class ProductController extends Controller
             }
         }
 
-        $products = $query->orderBySort($sort)->get()->map(function ($product) {
+        $query->orderBySort($sort);
+
+        $products = $query->paginate($perPage);
+
+        $products->getCollection()->transform(function ($product) {
             $product->image_url = asset('storage/backend/product/product_images/' . $product->image);
             return $product;
         });
-        return response()->json(ProductResource::collection($products));
+
+        return response()->json([
+            'products' => ProductResource::collection($products),
+            'pagination' => [
+                'total' => $products->total(),
+                'per_page' => $products->perPage(),
+                'current_page' => $products->currentPage(),
+                'last_page' => $products->lastPage(),
+                'from' => $products->firstItem(),
+                'to' => $products->lastItem(),
+            ],
+        ]);
     }
 }

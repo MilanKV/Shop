@@ -4,18 +4,15 @@
             <div class="shop-header">
                 <div class="row">
                     <div class="shop-result col-lg-6 col-md-5">
-                        <p class="result">Showing 1-1 of 1 results</p>
+                        <p class="result">Showing {{ pagination.from }}-{{ pagination.to }} of {{ pagination.total }}
+                            results</p>
                     </div>
                     <div class="shop-sort col-lg-6 col-md-7">
                         <div class="sort">
                             <SortTabs :activeView="activeView" @update:view="setActiveView" />
-                            <SortingDropdown 
-                                :currentSorting="currentSorting" 
-                                :sortingOptions="sortingOptions" 
-                                :dropdownActive="dropdownActive" 
-                                @toggle:dropdown="toggleDropdown" 
-                                @select:option="selectOption" 
-                            />
+                            <SortingDropdown :currentSorting="currentSorting" :sortingOptions="sortingOptions"
+                                :dropdownActive="dropdownActive" @toggle:dropdown="toggleDropdown"
+                                @select:option="selectOption" />
                         </div>
                     </div>
                 </div>
@@ -23,50 +20,34 @@
             <div class="shop-body">
                 <div class="row">
                     <div class="left col-lg-3">
-                       <Sidebar 
-                            :brands="brands"
-                            :selectedBrand="selectedBrand"
-                            @update:selectedBrand="selectBrand"
-                            :colors="colors"
-                            :selectedColor="selectedColor"
-                            @update:selectedColor="selectColor"
-                            :prices="prices"
-                            :selectedPrice="selectedPrice"
-                            @update:selectedPrice="selectPrice"
-                       /> 
+                        <Sidebar :brands="brands" :selectedBrand="selectedBrand" @update:selectedBrand="selectBrand"
+                            :colors="colors" :selectedColor="selectedColor" @update:selectedColor="selectColor"
+                            :prices="prices" :selectedPrice="selectedPrice" @update:selectedPrice="selectPrice" />
                     </div>
                     <div class="right col-lg-9">
                         <div class="content mb-40">
                             <div class="tab-panel">
-                                <div v-if="activeView === 'grid'" class="tab-grid-view" :class="{ 'fade-out': switchingView }">
+                                <div v-if="activeView === 'grid'" class="tab-grid-view"
+                                    :class="{ 'fade-out': switchingView }">
                                     <div class="row">
-                                        <GridCard 
-                                            v-for="product in products" 
-                                            :key="product.id"
-                                            :productName="product.product_name"
-                                            :imageUrl="product.image"
-                                            :productPrice="product.purchase_price"
-                                            :discount="product.discount_price"
-                                            :description="product.short_description"
-                                        />
+                                        <GridCard v-for="product in products" :key="product.id"
+                                            :productName="product.product_name" :imageUrl="product.image"
+                                            :productPrice="product.purchase_price" :discount="product.discount_price"
+                                            :description="product.short_description" />
                                     </div>
                                 </div>
-                                <div v-else-if="activeView === 'list'" class="tab-list-view" :class="{ 'fade-out': switchingView }">
+                                <div v-else-if="activeView === 'list'" class="tab-list-view"
+                                    :class="{ 'fade-out': switchingView }">
                                     <div class="row">
-                                        <ListCard 
-                                            v-for="product in products" 
-                                            :key="product.id"
-                                            :productName="product.product_name"
-                                            :imageUrl="product.image"
-                                            :productPrice="product.purchase_price"
-                                            :discount="product.discount_price"
-                                            :description="product.short_description"
-                                        />
+                                        <ListCard v-for="product in products" :key="product.id"
+                                            :productName="product.product_name" :imageUrl="product.image"
+                                            :productPrice="product.purchase_price" :discount="product.discount_price"
+                                            :description="product.short_description" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="row pagination"></div>
                         </div>
+                        <Pagination :pagination="pagination" @page-changed="changePage" />
                     </div>
                 </div>
             </div>
@@ -84,6 +65,7 @@ import ListCard from '../components/List-Card.vue';
 import SortTabs from '../components/SortTabs.vue';
 import SortingDropdown from '../components/SortingDropdown.vue';
 import Sidebar from '../components/Sidebar.vue';
+import Pagination from '../components/Pagination.vue';
 
 export default {
     name: "Shop",
@@ -95,6 +77,7 @@ export default {
         SortTabs,
         SortingDropdown,
         Sidebar,
+        Pagination,
     },
     data() {
         return {
@@ -115,6 +98,7 @@ export default {
             products: state => state.products,
             brands: state => state.brands,
             currentSorting: state => state.sortingOption,
+            pagination: state => state.pagination,
         }),
         colorMap() {
             return {
@@ -175,6 +159,16 @@ export default {
                 this.activeView = view;
                 this.switchingView = false;
             }, 300);
+        },
+        changePage(page) {
+            if (page > 0 && page <= this.pagination.last_page) {
+                this.fetchProducts({
+                    selectedBrand: this.selectedBrand,
+                    selectedColor: this.selectedColor,
+                    selectedPrice: this.selectedPrice,
+                    page,
+                });
+            }
         },
     },
     created() {

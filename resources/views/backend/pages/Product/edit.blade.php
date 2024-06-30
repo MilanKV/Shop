@@ -168,7 +168,7 @@
 
                                             <label for="discount" class="form-label mt-2 row mt-4">Discount(%)</label>
                                             <div class="form-group mb-0">
-                                                <input id="discount_price" name="discount_price" class="form-control default" type="number" min="0" max="100" placeholder="10" value="{{ old('discount_price', $product->discount_price) }}" required>
+                                                <input id="discount_price" name="discount_price" class="form-control default" type="number" min="0" max="100" placeholder="10" value="{{ old('discount_price', $product->discount_price) }}">
                                             </div>
 
                                             @if ($errors->any())

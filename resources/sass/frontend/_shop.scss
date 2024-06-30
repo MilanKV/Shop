@@ -21,7 +21,7 @@
                 .shop-result {
                     .result {
                         color: #000;
-                        font-family: "Roboto",sans-serif;
+                        font-family: "Roboto", sans-serif;
                         line-height: 26px;
                         font-weight: 400;
                         font-size: 16px;
@@ -59,7 +59,7 @@
                             border-radius: 0;
                             color: #000;
                             background-color: #fff;
-                            font-family: "Roboto",sans-serif;
+                            font-family: "Roboto", sans-serif;
                             font-size: 14px;
                             font-weight: 400;
                             height: 40px;
@@ -105,7 +105,7 @@
                                     position: relative;
                                     line-height: 30px;
                                     font-size: 14px;
-                                    font-family: "Roboto",sans-serif;
+                                    font-family: "Roboto", sans-serif;
                                     text-align: left;
                                     padding-left: 18px;
                                     padding-right: 29px;
@@ -127,6 +127,7 @@
                 }
             }
         }
+
         .shop-body {
             .row {
                 .left {
@@ -145,11 +146,11 @@
 
                                     .title {
                                         font-size: 17px;
-                                        font-family: "Roboto",sans-serif;
+                                        font-family: "Roboto", sans-serif;
                                         margin: 0;
                                     }
                                 }
-                                
+
                                 .accordion-content {
                                     max-height: 0;
                                     transition: max-height 0.4s ease-out;
@@ -162,15 +163,15 @@
                                     .mini-search {
                                         padding-bottom: 25px;
                                         padding-top: 10px;
-                                        
+
                                         form {
-                                            .search-input{
+                                            .search-input {
                                                 position: relative;
 
-                                                input{
+                                                input {
                                                     background-color: #fff;
                                                     border: 1px solid #000;
-                                                    font-family: "Roboto",sans-serif;
+                                                    font-family: "Roboto", sans-serif;
                                                     font-size: 14px;
                                                     height: 46px;
                                                     padding: 0 45px 0 20px;
@@ -187,7 +188,7 @@
                                         &::-webkit-scrollbar {
                                             display: none;
                                         }
-                                        
+
                                         .list-item,
                                         .list-item-color {
                                             margin-bottom: 6px;
@@ -196,11 +197,11 @@
                                             .color-checkbox {
                                                 opacity: 0;
                                                 position: absolute;
-                                                z-index: -1; 
+                                                z-index: -1;
                                             }
 
-                                            .custom:checked + label:before,
-                                            .color-checkbox:checked + label:before  {
+                                            .custom:checked+label:before,
+                                            .color-checkbox:checked+label:before {
                                                 background-color: #000;
                                                 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
                                                 background-size: 14px 14px;
@@ -212,7 +213,7 @@
                                                 position: relative;
                                                 display: inline-block;
                                                 color: #000;
-                                                font-family: "Roboto",sans-serif;
+                                                font-family: "Roboto", sans-serif;
                                                 font-size: 14px;
                                                 font-weight: 400;
                                                 padding-left: 31px;
@@ -249,7 +250,7 @@
                                                 width: 22px;
                                             }
 
-                                            &.list-item-color .color-checkbox:checked + label:before {
+                                            &.list-item-color .color-checkbox:checked+label:before {
                                                 background-color: var(--checkbox-color);
                                             }
                                         }
@@ -282,6 +283,7 @@
                                                     }
 
                                                     .product-grid-action {
+
                                                         a:first-child,
                                                         button:first-child {
                                                             transition-delay: 0s;
@@ -291,7 +293,7 @@
                                                         button:nth-child(2) {
                                                             transition-delay: .1s;
                                                         }
-                                            
+
                                                         a,
                                                         button {
                                                             opacity: 1;
@@ -360,15 +362,15 @@
                                                         border: none;
                                                         opacity: 0;
                                                         background-color: #fff;
-                                                        box-shadow: 0 1px 3px rgba(3,4,28,.12);
+                                                        box-shadow: 0 1px 3px rgba(3, 4, 28, .12);
                                                         transform: translateX(100%);
-                                                        transition: visibility .3s ease-out .1s,opacity .3s ease-out .15s,transform .3s ease-out .1s;
+                                                        transition: visibility .3s ease-out .1s, opacity .3s ease-out .15s, transform .3s ease-out .1s;
                                                         visibility: hidden;
                                                         transition: all .3s ease-out 0s;
 
                                                         &:hover {
                                                             background-color: #423f74;
-                                                            
+
                                                             img {
                                                                 filter: brightness(0) invert(1);
                                                                 transition: all .3s ease-out 0s;
@@ -379,7 +381,7 @@
                                                                 right: 100%;
                                                                 visibility: visible;
                                                             }
-                                                            
+
                                                         }
 
                                                         &:first-child {
@@ -417,7 +419,7 @@
                                                         }
                                                     }
                                                 }
-                                                
+
                                                 .product-grid-add {
                                                     position: absolute;
                                                     bottom: -60px;
@@ -438,7 +440,7 @@
                                                         color: #fff;
                                                         background-color: #000;
                                                         transition: all .3s ease-out 0s;
-                                                        
+
                                                         img {
                                                             margin-right: 7px;
                                                             margin-bottom: 5px;
@@ -489,6 +491,7 @@
                                             background: #fff;
                                             border: 1px solid #e9e9f0;
                                             margin-bottom: 30px;
+
                                             .row {
                                                 .image {
                                                     .product-list-image {
@@ -510,7 +513,7 @@
                                                                 object-fit: cover;
                                                             }
                                                         }
-                                                        
+
                                                         .product-list-discount {
                                                             position: absolute;
                                                             display: flex;
@@ -568,6 +571,9 @@
                                                             font-size: 14px;
                                                             line-height: 1.57;
                                                             margin-bottom: 28px;
+                                                            word-wrap: break-word;
+                                                            overflow-wrap: break-word;
+                                                            white-space: pre-wrap;
                                                         }
 
                                                         .product-list-action {
@@ -577,7 +583,7 @@
 
                                                             button {
                                                                 margin-bottom: 6px;
-                                                                
+
                                                                 &:not(:last-child) {
                                                                     margin-right: 6px;
                                                                 }
@@ -621,7 +627,7 @@
 
                                                                 &:hover {
                                                                     background-color: #423f74;
-                                                                    
+
                                                                     img {
                                                                         filter: brightness(0) invert(1);
                                                                         transition: all .3s ease-out 0s;
@@ -668,6 +674,63 @@
                                                     }
                                                 }
                                             }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .pagination {
+                        nav {
+                            margin-top: 10px;
+
+                            ul {
+                                margin: 0;
+                                padding: 0;
+
+                                li {
+                                    display: inline-block;
+                                    margin-right: 5px;
+                                    margin-bottom: 10px;
+
+                                    .pointer {
+                                        line-height: 42px;
+                                        padding: 12px 19px;
+                                        color: #000;
+                                        border: 1px solid #423f74;
+                                        outline: none;
+                                        text-decoration: none;
+                                        background: transparent;
+                                        cursor: pointer;
+
+                                        &:hover {
+                                            background-color: #423f74;
+                                            color: #fff;
+                                            transition: all 0.3s ease;
+
+                                            .pagination-prev,
+                                            .pagination-next {
+                                                img {
+                                                    filter: brightness(0) invert(1);
+                                                    transition: all 0.3s ease;
+                                                }
+                                            }
+                                        }
+
+                                        &.active {
+                                            background-color: #423f74;
+                                            color: #fff;
+                                        }
+
+                                        .pagination-prev,
+                                        .pagination-next {
+                                            display: inline-block;
+                                            font-size: 16px;
+                                            font-weight: 500;
+                                            min-height: 44px;
+                                            min-width: 44px;
+                                            text-align: center;
                                         }
                                     }
                                 }

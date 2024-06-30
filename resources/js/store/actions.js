@@ -1,5 +1,4 @@
 import { checkAuthStatus, logout, axiosInstance } from '../axios';
-import mutations from './mutations';
 
 export default {
     async fetchAuthStatus({ commit }) {
@@ -23,7 +22,7 @@ export default {
         }
     },
 
-    async fetchProducts({ commit, state }, { selectedBrand, selectedColor, selectedPrice }) {
+    async fetchProducts({ commit, state }, { selectedBrand, selectedColor, selectedPrice, page = 1, perPage = 9 }) {
         try {
             const response = await axiosInstance.get('/api/products', {
                 params: {
@@ -31,19 +30,22 @@ export default {
                     brand: selectedBrand,
                     color: selectedColor,
                     price: selectedPrice,
+                    page,
+                    perPage,
                 },
             });
-            commit('SET_PRODUCTS', response.data);
+            commit('SET_PRODUCTS', response.data.products);
+            commit('SET_PAGINATION', response.data.pagination);
         } catch (error) {
             console.error('Error fetching products:', error);
         }
     },
     updateSorting({ commit, dispatch }, sortingOption) {
         commit('SET_SORTING_OPTION', sortingOption);
-        dispatch('fetchProducts', { 
-            selectedBrand: null, 
-            selectedColor: null, 
-            selectedPrice: null 
+        dispatch('fetchProducts', {
+            selectedBrand: null,
+            selectedColor: null,
+            selectedPrice: null
         });
     },
     async fetchBrands({ commit }) {
