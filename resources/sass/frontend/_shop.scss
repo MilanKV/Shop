@@ -11,7 +11,7 @@
         margin-top: 100px;
 
         .shop-header {
-            border: 1px solid #344767;
+            border: 1px solid #dadce0;
             padding: 15px 20px 15px 30px;
             margin-bottom: 50px;
 
@@ -55,7 +55,7 @@
 
                         .sorting {
                             position: relative;
-                            border: 1px solid #344767;
+                            border: 1px solid #dadce0;
                             border-radius: 0;
                             color: #000;
                             background-color: #fff;
@@ -141,7 +141,7 @@
                                     align-items: center;
                                     justify-content: space-between;
                                     flex-direction: row;
-                                    border-bottom: 1px solid #344767;
+                                    border-bottom: 1px solid #dadce0;
                                     margin-bottom: 25px;
 
                                     .title {
@@ -170,7 +170,7 @@
 
                                                 input {
                                                     background-color: #fff;
-                                                    border: 1px solid #000;
+                                                    border: 1px solid #dadce0;
                                                     font-family: "Roboto", sans-serif;
                                                     font-size: 14px;
                                                     height: 46px;
@@ -212,10 +212,10 @@
                                             label {
                                                 position: relative;
                                                 display: inline-block;
-                                                color: #000;
+                                                color: #525258;
                                                 font-family: "Roboto", sans-serif;
                                                 font-size: 14px;
-                                                font-weight: 400;
+                                                font-weight: 500;
                                                 padding-left: 31px;
 
                                                 &:before,
@@ -238,7 +238,7 @@
                                                 }
 
                                                 &:after {
-                                                    border: 1px solid #000;
+                                                    border: 1px solid #dadce0;
                                                     background-color: #fff;
                                                 }
                                             }
@@ -262,6 +262,10 @@
                 }
 
                 .right {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
                     .content {
                         .tab-panel {
                             .tab-grid-view {
