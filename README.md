@@ -6,6 +6,13 @@
 Authentication is managed using Laravel UI, with a custom design applied.
 - **Custom Layout Design:**
 The project features a custom admin layout design with a sidebar, navigation, footer, and pagination for improved user experience. Custom layouts are applied to index, edit, and create pages for brands and categories. Additionally, Laravel UI components are customized to match the overall project design.
+- **CRUD Operations:**
+  - **Products:** Create, delete, edit, update, and soft delete products. Soft-deleted products can be restored or permanently deleted.
+  - **Brands:** Create, delete, edit, update, and soft delete brands. Soft-deleted brands can be restored or permanently deleted.
+  - **Categories:** Create, delete, edit, update, and soft delete categories. Soft-deleted categories can be restored or permanently deleted.
+  - **Subcategories:** Create, delete, edit, update, and soft delete subcategories. Soft-deleted subcategories can be restored or permanently deleted.
+  - **Users:** Create, delete, edit, update, and soft delete user accounts. Soft-deleted users can be restored or permanently deleted.
+
 
 ## Installation
 
