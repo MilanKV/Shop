@@ -9,8 +9,11 @@
     overflow: hidden;
 
     .row {
-        width: 100%;
         display: flex;
+        width: 100%;
+        height: 600px;
+        padding-left: 90px;
+        padding-right: 90px;
 
         .left {
             position: relative;
@@ -62,11 +65,12 @@
             }
 
             .btn-outline {
-                background-color: transparent;
-                opacity: .75;
+                position: relative;
+                background-color: #E4E9F7;
                 color: #1f1f24;
                 border: 1px solid #000;
                 transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+                z-index: 10;
 
                 &:hover {
                     background-color: #344767;
@@ -83,11 +87,14 @@
 
         .right {
             position: relative;
+            display: flex;
             align-items: center;
+            justify-content: center;
 
             .circle {
                 position: absolute;
-                left: 20%;
+                top: 22%;
+                left: 25%;
                 background-color: #423f74;
                 border-radius: 50%;
                 width: 400px;
@@ -104,8 +111,8 @@
             img {
                 position: relative;
                 z-index: 2;
-                top: 4%;
-                left: 10%;
+                top: 15%;
+                left: -4%;
             }
 
             @keyframes pulsing {
@@ -128,23 +135,6 @@
     }
 }
 
-@media (min-width: 426px) and (max-width: 768px) {
-    .Hero {
-        min-height: 900px;
-        align-items: center;
-
-        .row {
-            margin-top: 60px;
-
-            .left {
-                .title {
-                    font-size: 60px;
-                }
-            }
-        }
-    }
-}
-
 @media (min-width: 320px) and (max-width: 425px) {
     .Hero {
         min-height: 650px;
@@ -153,9 +143,13 @@
         overflow-x: hidden;
 
         .row {
-            margin-top: 70px;
+            padding-left: 0;
+            padding-right: 0;
 
             .left {
+                margin-bottom: -100px;
+                padding-left: 15px;
+
                 .title {
                     font-size: 40px;
                 }
@@ -163,13 +157,78 @@
 
             .right {
                 .circle {
-                    width: 250px;
-                    height: 250px;
+                    width: 350px;
+                    height: 350px;
+                    left: 28%;
+                    top: 40%;
                 }
 
                 img {
+                    top: 40%;
+                    left: 10%;
                     height: auto;
-                    max-width: 300px;
+                    max-width: 400px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+    .Hero {
+        min-height: 900px;
+        align-items: center;
+
+        .row {
+            padding-left: 0;
+            padding-right: 0;
+
+            .left {
+                padding-left: 15px;
+                margin-bottom: -100px;
+
+                .title {
+                    font-size: 60px;
+                }
+            }
+
+            .right {
+                .circle {
+                    top: 25%;
+                    left: 35%;
+                }
+
+                img {
+                    top: 28%;
+                    left: 10%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .Hero {
+        .row {
+            padding-left: 0;
+            padding-right: 0;
+
+            .right {
+                .circle {
+                    top: 25%;
+                    left: 15%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+    .Hero {
+        .row {
+            .right {
+                img {
+                    left: 2%;
                 }
             }
         }
