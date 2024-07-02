@@ -1,0 +1,36 @@
+.back-to-top {
+    position: fixed;
+    display: block;
+    height: 44px;
+    width: 44px;
+    right: 50px;
+    bottom: 50px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.3s, visibility 0.3s;
+
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .back-to-top-button {
+        display: inline-block;
+        width: 44px;
+        height: 44px;
+        line-height: 44px;
+        text-align: center;
+        transition: all .2s ease-out 0s;
+        border-radius: 50%;
+        border: none;
+        background: #423f74;
+        box-shadow: 0 8px 16px rgba(130, 126, 181, 1);
+
+        img {
+            filter: brightness(0) invert(1);
+        }
+    }
+}
