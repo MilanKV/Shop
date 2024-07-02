@@ -49,6 +49,12 @@ export default {
         changePage(page) {
             if (page > 0 && page <= this.pagination.last_page) {
                 this.$emit('page-changed', page);
+                this.$nextTick(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
             }
         }
     }

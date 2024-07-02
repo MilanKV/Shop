@@ -47,7 +47,8 @@
                                 </div>
                             </div>
                         </div>
-                        <Pagination :pagination="pagination" @page-changed="changePage" />
+                        <NotFound v-if="products.length === 0" />
+                        <Pagination v-if="products.length > 0" :pagination="pagination" @page-changed="changePage" />
                     </div>
                 </div>
             </div>
@@ -66,6 +67,7 @@ import SortTabs from '../components/SortTabs.vue';
 import SortingDropdown from '../components/SortingDropdown.vue';
 import Sidebar from '../components/Sidebar.vue';
 import Pagination from '../components/Pagination.vue';
+import NotFound from '../components/NotFound.vue';
 
 export default {
     name: "Shop",
@@ -78,6 +80,7 @@ export default {
         SortingDropdown,
         Sidebar,
         Pagination,
+        NotFound,
     },
     data() {
         return {
@@ -167,6 +170,12 @@ export default {
                     selectedColor: this.selectedColor,
                     selectedPrice: this.selectedPrice,
                     page,
+                });
+                this.$nextTick(() => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
             }
         },

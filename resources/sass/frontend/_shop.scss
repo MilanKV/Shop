@@ -131,6 +131,8 @@
         .shop-body {
             .row {
                 .left {
+                    order: 1;
+
                     .sidebar {
                         .tab {
                             margin-bottom: 25px;
@@ -264,7 +266,7 @@
                 .right {
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
+                    order: 2;
 
                     .content {
                         .tab-panel {
@@ -540,6 +542,8 @@
                                                 }
 
                                                 .content {
+                                                    align-self: center;
+
                                                     .product-list-content {
                                                         margin-left: -5px;
                                                         padding-top: 47px;
@@ -685,6 +689,35 @@
                         }
                     }
 
+                    .not-found {
+                        .cart-text {
+                            text-align: center;
+
+                            img {
+                                margin-bottom: 30px;
+                                background-color: transparent;
+                            }
+
+                            .title {
+                                font-size: 20px;
+                                color: #03041c;
+                                font-family: "Space Grotesk", sans-serif;
+                                font-weight: 700;
+                                line-height: 1.2;
+                                margin-top: 0;
+                            }
+
+                            .description {
+                                color: #03041c;
+                                font-size: 16px;
+                                margin-bottom: 15px;
+                                font-family: "Inter", sans-serif;
+                                font-weight: 400;
+                                line-height: 26px;
+                            }
+                        }
+                    }
+
                     .pagination {
                         nav {
                             margin-top: 10px;
@@ -740,6 +773,134 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 425px) and (max-width: 1024px) {
+    .shop {
+        .container {
+            .shop-body {
+                .row {
+                    .right {
+                        .content {
+                            .tab-panel {
+                                .tab-list-view {
+                                    .row {
+                                        .list-card {
+                                            .product-list-item {
+                                                .row {
+                                                    .image {
+                                                        .product-list-image {
+                                                            a {
+                                                                img {
+                                                                    width: 100%;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .content {
+                                                        .product-list-content {
+                                                            margin-left: 20px;
+                                                            padding-right: 20px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 425px) {
+    .shop {
+        padding: 0;
+
+        .container {
+            .shop-header {
+                .row {
+                    .shop-sort {
+                        .sort {
+                            justify-content: start;
+                        }
+                    }
+                }
+            }
+
+            .shop-body {
+                .row {
+                    .left {
+                        order: 2;
+                    }
+
+                    .right {
+                        order: 1;
+
+                        .content {
+                            .tab-panel {
+                                .tab-list-view {
+                                    .row {
+                                        .list-card {
+                                            .product-list-item {
+                                                .row {
+                                                    .image {
+                                                        .product-list-image {
+                                                            a {
+                                                                img {
+                                                                    width: 100%;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .content {
+                                                        .product-list-content {
+                                                            margin-left: 20px;
+                                                            padding-right: 20px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .pagination {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 991px) {
+    .shop {
+        .container {
+            .shop-body {
+                .row {
+                    .left {
+                        margin-top: 40px;
+                        order: 2;
+                    }
+
+                    .right {
+                        order: 1;
                     }
                 }
             }
