@@ -2,7 +2,7 @@
     <div class="accordion">
         <div class="accordion-header" @click="toggleAccordion">
             <h2 class="title">{{ title }}</h2>
-            <img :class="{ 'rotated': isActive }" src="../../img/icons/chevron-down.svg">
+            <img :class="{ 'rotated': isActive }" src="../../img/icons/arrow-down.svg">
         </div>
         <div :class="{ 'accordion-content': true, 'active': isActive }">
             <slot></slot>
