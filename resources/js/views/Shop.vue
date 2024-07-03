@@ -23,7 +23,11 @@
                         <Sidebar :brands="brands" :selectedBrand="selectedBrand" @update:selectedBrand="selectBrand"
                             :colors="colors" :selectedColor="selectedColor" @update:selectedColor="selectColor"
                             :prices="prices" :selectedPrice="selectedPrice" @update:selectedPrice="selectPrice"
-                            :brandCounts="brandCounts" :colorCounts="colorCounts" :priceCounts="priceCounts" />
+                            :brandCounts="brandCounts" :colorCounts="colorCounts" :priceCounts="priceCounts"
+                            :subCategoryCounts="subCategoryCounts" :categories="categories"
+                            :selectedCategory="selectedCategory" @update:selectedCategory="selectCategory"
+                            :selectedSubcategory="selectedSubcategory"
+                            @update:selectedSubcategory="selectSubcategory" />
                     </div>
                     <div class="right col-lg-9">
                         <div class="content mb-40">
@@ -95,17 +99,21 @@ export default {
             selectedColor: null,
             prices: ['Under $50', '$50 - $100', '$100 - $200', 'Above $200'],
             selectedPrice: null,
+            selectedCategory: null,
+            selectedSubcategory: null,
         };
     },
     computed: {
         ...mapState({
             products: state => state.products,
             brands: state => state.brands,
+            categories: state => state.categories,
             currentSorting: state => state.sortingOption,
             pagination: state => state.pagination,
             brandCounts: state => state.brandCounts,
             colorCounts: state => state.colorCounts,
             priceCounts: state => state.priceCounts,
+            subCategoryCounts: state => state.subCategoryCounts,
         }),
         colorMap() {
             return {
@@ -118,7 +126,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['fetchProducts', 'updateSorting', 'fetchBrands']),
+        ...mapActions(['fetchProducts', 'updateSorting', 'fetchBrands', 'fetchCategories']),
 
         toggleDropdown() {
             this.dropdownActive = !this.dropdownActive;
@@ -136,7 +144,9 @@ export default {
             this.fetchProducts({
                 selectedBrand: this.selectedBrand,
                 selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice
+                selectedPrice: this.selectedPrice,
+                selectedCategory: this.selectedCategory,
+                selectedSubcategory: this.selectedSubcategory,
             });
         },
         selectColor(color) {
@@ -144,7 +154,9 @@ export default {
             this.fetchProducts({
                 selectedBrand: this.selectedBrand,
                 selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice
+                selectedPrice: this.selectedPrice,
+                selectedCategory: this.selectedCategory,
+                selectedSubcategory: this.selectedSubcategory,
             });
         },
         selectPrice(price) {
@@ -152,7 +164,30 @@ export default {
             this.fetchProducts({
                 selectedBrand: this.selectedBrand,
                 selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice
+                selectedPrice: this.selectedPrice,
+                selectedCategory: this.selectedCategory,
+                selectedSubcategory: this.selectedSubcategory,
+            });
+        },
+        selectCategory(categoryId) {
+            this.selectedCategory = this.selectedCategory === categoryId ? null : categoryId;
+            this.fetchProducts({
+                selectedBrand: this.selectedBrand,
+                selectedColor: this.selectedColor,
+                selectedPrice: this.selectedPrice,
+                selectedCategory: this.selectedCategory,
+                selectedSubcategory: this.selectedSubcategory,
+            });
+        },
+        selectSubcategory({ categoryId, subcategoryId }) {
+            this.selectedCategory = categoryId;
+            this.selectedSubcategory = subcategoryId;
+            this.fetchProducts({
+                selectedBrand: this.selectedBrand,
+                selectedColor: this.selectedColor,
+                selectedPrice: this.selectedPrice,
+                selectedCategory: this.selectedCategory,
+                selectedSubcategory: this.selectedSubcategory,
             });
         },
         getColorStyle(color) {
@@ -173,6 +208,8 @@ export default {
                     selectedBrand: this.selectedBrand,
                     selectedColor: this.selectedColor,
                     selectedPrice: this.selectedPrice,
+                    selectedCategory: this.selectedCategory,
+                    selectedSubcategory: this.selectedSubcategory,
                     page,
                 });
                 this.$nextTick(() => {
@@ -188,9 +225,12 @@ export default {
         this.fetchProducts({
             selectedBrand: this.selectedBrand,
             selectedColor: this.selectedColor,
-            selectedPrice: this.selectedPrice
+            selectedPrice: this.selectedPrice,
+            selectedCategory: this.selectedCategory,
+            selectedSubcategory: this.selectedSubcategory,
         });
         this.fetchBrands();
+        this.fetchCategories();
     }
 };
 </script>

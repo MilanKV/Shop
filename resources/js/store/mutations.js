@@ -13,6 +13,13 @@ export default {
   SET_BRANDS(state, brands) {
     state.brands = brands;
   },
+  SET_CATEGORIES(state, categories) {
+    state.categories = categories;
+  },
+
+  SET_SELECTED_CATEGORY(state, categoryId) {
+    state.selectedCategory = categoryId;
+  },
 
   SET_BRAND_COUNTS(state, counts) {
     state.brandCounts = counts;
@@ -22,6 +29,9 @@ export default {
   },
   SET_PRICE_COUNTS(state, counts) {
     state.priceCounts = counts;
+  },
+  SET_SUBCATEGORY_COUNTS(state, counts) {
+    state.subCategoryCounts = counts;
   },
 
   SET_SORTING_OPTION(state, sortingOption) {

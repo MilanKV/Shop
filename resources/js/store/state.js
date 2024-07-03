@@ -5,10 +5,15 @@ export default {
     sortingOption: 'Low to High',
     products: [],
     brands: [],
+    categories: [],
+
+    selectedCategory: null,
+    selectedSubcategory: null,
 
     brandCounts: {},
     colorCounts: {},
     priceCounts: {},
+    subCategoryCounts: {},
 
     pagination: {
         total: 0,

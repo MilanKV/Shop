@@ -22,7 +22,7 @@ export default {
         }
     },
 
-    async fetchProducts({ commit, state }, { selectedBrand, selectedColor, selectedPrice, page = 1, perPage = 9 }) {
+    async fetchProducts({ commit, state }, { selectedBrand, selectedColor, selectedPrice, selectedCategory, selectedSubcategory, page = 1, perPage = 9 }) {
         try {
             const response = await axiosInstance.get('/api/products', {
                 params: {
@@ -30,6 +30,8 @@ export default {
                     brand: selectedBrand,
                     color: selectedColor,
                     price: selectedPrice,
+                    category: selectedCategory,
+                    subcategory: selectedSubcategory,
                     page,
                     perPage,
                 },
@@ -39,6 +41,7 @@ export default {
             commit('SET_BRAND_COUNTS', response.data.counts.brands);
             commit('SET_COLOR_COUNTS', response.data.counts.colors);
             commit('SET_PRICE_COUNTS', response.data.counts.prices);
+            commit('SET_SUBCATEGORY_COUNTS', response.data.counts.subCategorys);
         } catch (error) {
             console.error('Error fetching products:', error);
         }
@@ -57,6 +60,14 @@ export default {
             commit('SET_BRANDS', response.data);
         } catch (error) {
             console.error('Error fetching brands:', error);
+        }
+    },
+    async fetchCategories({ commit }) {
+        try {
+            const response = await axiosInstance.get('/api/categories');
+            commit('SET_CATEGORIES', response.data);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
         }
     },
 };

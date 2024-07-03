@@ -16,6 +16,8 @@ class ProductController extends Controller
         $sort = $request->query('sort', 'Low to High');
         $brand = $request->query('brand', null);
         $color = $request->query('color', null);
+        $category = $request->query('category', null);
+        $subcategory = $request->query('subcategory', null);
         $priceRange = $request->query('price', null);
         $perPage = $request->input('perPage', 9);
 
@@ -26,6 +28,12 @@ class ProductController extends Controller
         }
         if ($color) {
             $query->where('product_color', $color);
+        }
+        if ($category) {
+            $query->where('category_id', $category);
+        }
+        if ($subcategory) {
+            $query->where('subcategory_id', $subcategory);
         }
         if ($priceRange) {
             switch ($priceRange) {
@@ -69,6 +77,10 @@ class ProductController extends Controller
             'Above $200' => Product::where('purchase_price', '>', 200)->count(),
         ];
 
+        $subCategoryCounts = Product::select('subcategory_id', DB::raw('count(*) as count'))
+            ->groupBy('subcategory_id')
+            ->pluck('count', 'subcategory_id');
+
         return response()->json([
             'products' => ProductResource::collection($products),
             'pagination' => [
@@ -83,6 +95,7 @@ class ProductController extends Controller
                 'brands' => $brandCounts,
                 'colors' => $colorCounts,
                 'prices' => $priceCounts,
+                'subCategorys' => $subCategoryCounts,
             ],
         ]);
     }
