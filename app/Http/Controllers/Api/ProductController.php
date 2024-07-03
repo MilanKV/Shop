@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
+use DB;
 
 class ProductController extends Controller
 {
@@ -52,6 +53,22 @@ class ProductController extends Controller
             return $product;
         });
 
+        // Count products by brand, color, and price range
+        $brandCounts = Product::select('brand_id', DB::raw('count(*) as count'))
+            ->groupBy('brand_id')
+            ->pluck('count', 'brand_id');
+
+        $colorCounts = Product::select('product_color', DB::raw('count(*) as count'))
+            ->groupBy('product_color')
+            ->pluck('count', 'product_color');
+
+        $priceCounts = [
+            'Under $50' => Product::where('purchase_price', '<=', 50)->count(),
+            '$50 - $100' => Product::whereBetween('purchase_price', [50, 100])->count(),
+            '$100 - $200' => Product::whereBetween('purchase_price', [100, 200])->count(),
+            'Above $200' => Product::where('purchase_price', '>', 200)->count(),
+        ];
+
         return response()->json([
             'products' => ProductResource::collection($products),
             'pagination' => [
@@ -61,6 +78,11 @@ class ProductController extends Controller
                 'last_page' => $products->lastPage(),
                 'from' => $products->firstItem(),
                 'to' => $products->lastItem(),
+            ],
+            'counts' => [
+                'brands' => $brandCounts,
+                'colors' => $colorCounts,
+                'prices' => $priceCounts,
             ],
         ]);
     }

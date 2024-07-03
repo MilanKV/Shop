@@ -36,6 +36,9 @@ export default {
             });
             commit('SET_PRODUCTS', response.data.products);
             commit('SET_PAGINATION', response.data.pagination);
+            commit('SET_BRAND_COUNTS', response.data.counts.brands);
+            commit('SET_COLOR_COUNTS', response.data.counts.colors);
+            commit('SET_PRICE_COUNTS', response.data.counts.prices);
         } catch (error) {
             console.error('Error fetching products:', error);
         }

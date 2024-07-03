@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    public function index(Request $request) 
+    public function index(Request $request)
     {
         $query = $request->query('query');
 
         $brands = Brand::query()
-        ->when($query, function ($query, $search) {
-            return $query->where('brand_name', 'like', $search . '%');
-        })
-        ->get();
+            ->when($query, function ($query, $search) {
+                return $query->where('brand_name', 'like', $search . '%');
+            })
+            ->get();
 
         return response()->json(BrandResource::collection($brands));
     }

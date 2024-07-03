@@ -4,4 +4,8 @@ export default {
 
     products: state => state.products,
     brands: state => state.brands,
+
+    brandCounts: state => state.brandCounts,
+    colorCounts: state => state.colorCounts,
+    priceCounts: state => state.priceCounts
 };
