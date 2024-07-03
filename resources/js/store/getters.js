@@ -7,5 +7,6 @@ export default {
 
     brandCounts: state => state.brandCounts,
     colorCounts: state => state.colorCounts,
-    priceCounts: state => state.priceCounts
+    priceCounts: state => state.priceCounts,
+    subCategoryCounts: state => state.subCategoryCounts,
 };

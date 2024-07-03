@@ -3,15 +3,17 @@
         <div class="tab">
             <Accordion title="Categories" :active="true">
                 <div v-for="(category, index) in categories" :key="index" class="category-container">
-                    <div class="category-header" @click="toggleCategory(index)">
-                        <h5 :class="['category-title', { active: category.isActive }]">{{ category.title }}</h5>
+                    <div :class="['category-header', { active: category.isActive }]" @click="toggleCategory(index)">
+                        <h5 class="category-title">{{ category.category_name }}</h5>
                         <img :class="{ 'rotated': category.isActive }" src="../../img/icons/arrow-down.svg">
                     </div>
                     <div class="category-content" :class="{ 'active': category.isActive }">
                         <ul class="category-list">
-                            <li v-for="item in category.items" :key="item.id" class="category-item">
-                                <a href="#" class="category-link">{{ item.name }}</a>
-                                <span class="product-count">{{ item.count }}</span>
+                            <li v-for="subcategory in category.subcategories" :key="subcategory.id"
+                                class="category-item" :class="{ active: selectedSubcategory === subcategory.id }"
+                                @click="selectSubcategory(category.id, subcategory.id)">
+                                <a href="#" class="category-link">{{ subcategory.category_name }}</a>
+                                <span class="product-count">{{ subCategoryCounts[subcategory.id] || 0 }}</span>
                             </li>
                         </ul>
                     </div>
@@ -78,50 +80,22 @@ export default {
     },
     props: {
         brands: Array,
+        categories: Array,
         selectedBrand: Number,
         colors: Array,
         selectedColor: String,
         prices: Array,
         selectedPrice: String,
+        selectedCategory: Number,
+        selectedSubcategory: Number,
         brandCounts: Object,
         colorCounts: Object,
         priceCounts: Object,
+        subCategoryCounts: Object,
     },
     data() {
         return {
             searchQuery: "",
-            categories: [
-                {
-                    title: 'Ipad Phone & Tablets',
-                    isActive: false,
-                    items: [
-                        { id: 1, name: 'Joystick', count: 12 },
-                        { id: 2, name: 'Laptops', count: 5 },
-                        { id: 3, name: 'Monitor', count: 29 },
-                        { id: 4, name: 'Desktop', count: 45 }
-                    ]
-                },
-                {
-                    title: 'Ipad',
-                    isActive: false,
-                    items: [
-                        { id: 5, name: 'Joystick', count: 67 },
-                        { id: 6, name: 'Laptops', count: 21 },
-                        { id: 7, name: 'Monitor', count: 2 },
-                        { id: 8, name: 'Desktop', count: 33 }
-                    ]
-                },
-                {
-                    title: 'Tablets',
-                    isActive: false,
-                    items: [
-                        { id: 9, name: 'Joystick', count: 21 },
-                        { id: 10, name: 'Laptops', count: 67 },
-                        { id: 11, name: 'Monitor', count: 99 },
-                        { id: 12, name: 'Desktop', count: 150 }
-                    ]
-                }
-            ]
         };
     },
     computed: {
@@ -150,12 +124,18 @@ export default {
             this.searchQuery = query;
         },
         toggleCategory(index) {
+            const selectedCategoryId = this.categories[index].id;
+            this.$emit('update:selectedCategory', selectedCategoryId);
+
             this.categories.forEach((category, idx) => {
                 if (idx !== index) {
                     category.isActive = false;
                 }
             });
             this.categories[index].isActive = !this.categories[index].isActive;
+        },
+        selectSubcategory(categoryId, subcategoryId) {
+            this.$emit('update:selectedSubcategory', { categoryId, subcategoryId });
         },
     },
 }
