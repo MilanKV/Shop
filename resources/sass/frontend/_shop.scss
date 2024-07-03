@@ -184,7 +184,7 @@
                                     }
 
                                     .list {
-                                        height: 120px;
+                                        max-height: 120px;
                                         overflow-y: auto;
 
                                         &::-webkit-scrollbar {
@@ -193,6 +193,8 @@
 
                                         .list-item,
                                         .list-item-color {
+                                            display: flex;
+                                            justify-content: space-between;
                                             margin-bottom: 6px;
 
                                             .custom,
@@ -254,6 +256,90 @@
 
                                             &.list-item-color .color-checkbox:checked+label:before {
                                                 background-color: var(--checkbox-color);
+                                            }
+
+                                            .total-products {
+                                                .product-count {
+                                                    color: #525258;
+                                                    font-size: 14px;
+                                                    font-family: "Roboto", sans-serif;
+                                                    font-weight: 500;
+                                                    padding-right: 10px;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    .category-container {
+                                        border: none;
+                                        border-radius: 0;
+                                        padding: 0;
+
+                                        .category-header {
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: space-between;
+                                            cursor: pointer;
+
+                                            .category-title {
+                                                color: #232323;
+                                                font-size: 14px;
+                                                line-height: 1.2;
+                                                font-family: "Space Grotesk", sans-serif;
+                                                margin-bottom: 0;
+                                                margin-top: 0;
+
+                                                &:hover,
+                                                &.active {
+                                                    color: #423f74;
+                                                    font-weight: 600;
+                                                }
+                                            }
+                                        }
+
+                                        .category-content {
+                                            padding-top: 12px;
+                                            max-height: 0;
+                                            transition: max-height 0.4s ease-out;
+                                            overflow: hidden;
+
+                                            &.active {
+                                                max-height: 500px;
+                                            }
+
+                                            .category-list {
+                                                list-style: none;
+                                                padding-left: 20px;
+                                                margin: 0;
+
+                                                .category-item {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: space-between;
+                                                    margin-bottom: 10px;
+
+                                                    .category-link {
+                                                        color: #525258;
+                                                        background: transparent;
+                                                        border: none;
+                                                        outline: none;
+                                                        text-decoration: none;
+                                                        cursor: pointer;
+
+                                                        &:hover {
+                                                            color: #423f74;
+                                                            font-weight: 600;
+                                                        }
+                                                    }
+
+                                                    .product-count {
+                                                        color: #525258;
+                                                        font-size: 14px;
+                                                        font-family: "Roboto", sans-serif;
+                                                        font-weight: 500;
+                                                        padding-right: 9px;
+                                                    }
+                                                }
                                             }
                                         }
                                     }

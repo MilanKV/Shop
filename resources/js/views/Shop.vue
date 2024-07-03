@@ -22,7 +22,8 @@
                     <div class="left col-lg-3">
                         <Sidebar :brands="brands" :selectedBrand="selectedBrand" @update:selectedBrand="selectBrand"
                             :colors="colors" :selectedColor="selectedColor" @update:selectedColor="selectColor"
-                            :prices="prices" :selectedPrice="selectedPrice" @update:selectedPrice="selectPrice" />
+                            :prices="prices" :selectedPrice="selectedPrice" @update:selectedPrice="selectPrice"
+                            :brandCounts="brandCounts" :colorCounts="colorCounts" :priceCounts="priceCounts" />
                     </div>
                     <div class="right col-lg-9">
                         <div class="content mb-40">
@@ -102,6 +103,9 @@ export default {
             brands: state => state.brands,
             currentSorting: state => state.sortingOption,
             pagination: state => state.pagination,
+            brandCounts: state => state.brandCounts,
+            colorCounts: state => state.colorCounts,
+            priceCounts: state => state.priceCounts,
         }),
         colorMap() {
             return {

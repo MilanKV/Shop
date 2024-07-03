@@ -5,6 +5,11 @@ export default {
     sortingOption: 'Low to High',
     products: [],
     brands: [],
+
+    brandCounts: {},
+    colorCounts: {},
+    priceCounts: {},
+
     pagination: {
         total: 0,
         per_page: 9,
