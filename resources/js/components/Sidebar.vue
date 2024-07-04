@@ -10,7 +10,8 @@
                     <div class="category-content" :class="{ 'active': category.isActive }">
                         <ul class="category-list">
                             <li v-for="subcategory in category.subcategories" :key="subcategory.id"
-                                class="category-item" :class="{ active: selectedSubcategory === subcategory.id }"
+                                class="category-item"
+                                :class="{ active: isSubcategorySelected(category.id, subcategory.id) }"
                                 @click="selectSubcategory(category.id, subcategory.id)">
                                 <a href="#" class="category-link">{{ subcategory.category_name }}</a>
                                 <span class="product-count">{{ subCategoryCounts[subcategory.id] || 0 }}</span>
@@ -26,10 +27,10 @@
                     <Search :placeholder="'Search Brands...'" @search="filterBrands" />
                 </div>
                 <div class="list">
-                    <div class="list-item" v-for="brand in filteredBrands" :key="brand.id">
-                        <input type="checkbox" :id="brand.id" class="custom" :checked="selectedBrand === brand.id"
-                            @change="selectBrand(brand.id)">
-                        <label :for="brand.id">{{ brand.brand_name }}</label>
+                    <div class="list-item custom" v-for="brand in filteredBrands" :key="brand.id"
+                        v-if="brands && brands.length > 0" :class="{ 'selected': selectedBrand === brand.id }"
+                        @click="selectBrand(brand.id)">
+                        <label>{{ brand.brand_name }}</label>
                         <div class="total-products">
                             <span class="product-count">{{ brandCounts[brand.id] || 0 }}</span>
                         </div>
@@ -40,10 +41,9 @@
         <div class="tab">
             <Accordion title="Color" :active="true">
                 <div class="list">
-                    <div class="list-item-color" v-for="color in colors" :key="color">
-                        <input type="checkbox" :id="color" class="color-checkbox" :checked="selectedColor === color"
-                            @change="selectColor(color)">
-                        <label :for="color" :style="getColorStyle(color)">{{ color }}</label>
+                    <div class="list-item-color" v-for="color in filteredColors" :key="color"
+                        :class="{ 'selected': selectedColor === color }" @click="selectColor(color)">
+                        <label :style="getColorStyle(color)">{{ color }}</label>
                         <div class="total-products">
                             <span class="product-count">{{ colorCounts[color.toLowerCase()] || 0 }}</span>
                         </div>
@@ -54,10 +54,9 @@
         <div class="tab">
             <Accordion title="Price" :active="true">
                 <div class="list">
-                    <div class="list-item" v-for="price in prices" :key="price">
-                        <input type="checkbox" :id="price" class="custom" :checked="selectedPrice === price"
-                            @change="selectPrice(price)">
-                        <label :for="price">{{ price }}</label>
+                    <div class="list-item" v-for="price in filteredPrices" :key="price"
+                        :class="{ 'selected': selectedPrice === price }" @click="selectPrice(price)">
+                        <label>{{ price }}</label>
                         <div class="total-products">
                             <span class="product-count">{{ priceCounts[price] || 0 }}</span>
                         </div>
@@ -104,6 +103,12 @@ export default {
                 brand.brand_name.toLowerCase().includes(this.searchQuery.toLowerCase())
             );
         },
+        filteredColors() {
+            return this.colors.filter(color => (this.colorCounts[color.toLowerCase()] || 0) > 0);
+        },
+        filteredPrices() {
+            return this.prices.filter(price => (this.priceCounts[price] || 0) > 0);
+        },
     },
     methods: {
         selectBrand(brand) {
@@ -133,9 +138,16 @@ export default {
                 }
             });
             this.categories[index].isActive = !this.categories[index].isActive;
+
+            if (this.selectedCategory !== selectedCategoryId) {
+                this.$emit('update:selectedSubcategory', { categoryId: selectedCategoryId, subcategoryId: null });
+            }
         },
         selectSubcategory(categoryId, subcategoryId) {
             this.$emit('update:selectedSubcategory', { categoryId, subcategoryId });
+        },
+        isSubcategorySelected(categoryId, subcategoryId) {
+            return this.selectedCategory === categoryId && this.selectedSubcategory === subcategoryId;
         },
     },
 }
