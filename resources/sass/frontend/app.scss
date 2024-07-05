@@ -14,6 +14,11 @@
 @import './footer';
 @import './back-to-top';
 
-// Pages
-@import './home';
+// Pages //
+
+// Home page
+@import './home/hero-section';
+@import './home/category-section';
+
+// Shop page
 @import './shop';

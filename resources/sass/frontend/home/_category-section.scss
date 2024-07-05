@@ -1,0 +1,99 @@
+.category-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+    .container {
+        .row {
+            .category-slider {
+                .slider-horizontal {
+                    position: relative;
+                    touch-action: pan-y;
+                    display: block;
+                    list-style: none;
+                    margin-left: auto;
+                    margin-right: auto;
+                    overflow: hidden;
+                    padding: 0;
+                    z-index: 1;
+
+                    .swiper-wrapper {
+                        .category-item {
+                            position: relative;
+                            display: block;
+                            flex-shrink: 0;
+                            height: 100%;
+                            width: 100%;
+                            text-align: center;
+                            margin-bottom: 20px;
+                            margin-right: 20px;
+                            transition-property: transform;
+                            transform: translateZ(0);
+                            backface-visibility: hidden;
+
+                            .category-image {
+                                .image {
+                                    cursor: pointer;
+                                    background: transparent;
+                                    border: none;
+                                    color: inherit;
+                                    outline: none;
+                                    text-decoration: none;
+
+                                    img {
+                                        width: 100%;
+                                        height: 207px;
+                                        // height: auto;
+                                        object-fit: cover;
+                                    }
+                                }
+                            }
+
+                            .category-content {
+                                padding-bottom: 21px;
+                                padding-top: 21px;
+
+                                .category-title {
+                                    color: #929292;
+                                    font-size: 16px;
+                                    font-family: "Roboto", sans-serif;
+                                    font-weight: 400;
+                                    line-height: 1;
+                                    margin-bottom: 0;
+                                    transition: color 0.3s ease, opacity 0.3s ease;
+
+                                    .title {
+                                        cursor: pointer;
+                                        background: transparent;
+                                        border: none;
+                                        color: inherit;
+                                        outline: none;
+                                        text-decoration: none;
+
+                                        &:hover {
+                                            color: #000;
+                                            font-weight: 500;
+                                            opacity: 1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .swiper-scrollbar {
+                        background-color: #e7e7e7;
+                        height: 2px;
+
+                        .swiper-scrollbar-drag {
+                            background-color: #344767;
+                            border-radius: 0;
+                            height: 2px;
+                            left: 0;
+                            top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
