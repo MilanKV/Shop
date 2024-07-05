@@ -3,11 +3,14 @@
         <div class="tab">
             <Accordion title="Categories" :active="true">
                 <div v-for="(category, index) in categories" :key="index" class="category-container">
-                    <div :class="['category-header', { active: category.isActive }]" @click="toggleCategory(index)">
+                    <div :class="['category-header', { active: category.isActive || selectedCategory === category.id }]"
+                        @click="toggleCategory(index)">
                         <h5 class="category-title">{{ category.category_name }}</h5>
-                        <img :class="{ 'rotated': category.isActive }" src="../../img/icons/arrow-down.svg">
+                        <img :class="{ 'rotated': category.isActive || selectedCategory === category.id }"
+                            src="../../img/icons/arrow-down.svg">
                     </div>
-                    <div class="category-content" :class="{ 'active': category.isActive }">
+                    <div class="category-content"
+                        :class="{ 'active': category.isActive || selectedCategory === category.id }">
                         <ul class="category-list">
                             <li v-for="subcategory in category.subcategories" :key="subcategory.id"
                                 class="category-item"

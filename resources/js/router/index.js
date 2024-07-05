@@ -9,35 +9,42 @@ const routes = [
     {
         path: '/',
         name: 'Default',
-        component:Default,
+        component: Default,
         children: [
             {
                 path: '',
                 name: 'Home',
-                component:Home
+                component: Home
             },
             {
                 path: 'shop',
                 name: 'Shop',
-                component:Shop
+                component: Shop
             },
             {
                 path: 'about',
                 name: 'About',
-                component:About
+                component: About
             },
             {
                 path: 'contact',
                 name: 'Contact',
-                component:Contact
+                component: Contact
             },
-        ]
+        ],
     },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { top: 0 };
+        }
+    }
 });
-  
+
 export default router;

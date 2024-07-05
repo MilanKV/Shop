@@ -141,54 +141,24 @@ export default {
         },
         selectBrand(brandId) {
             this.selectedBrand = this.selectedBrand === brandId ? null : brandId;
-            this.fetchProducts({
-                selectedBrand: this.selectedBrand,
-                selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice,
-                selectedCategory: this.selectedCategory,
-                selectedSubcategory: this.selectedSubcategory,
-            });
+            this.fetchProducts(this.getFilterParams());
         },
         selectColor(color) {
             this.selectedColor = this.selectedColor === color ? null : color;
-            this.fetchProducts({
-                selectedBrand: this.selectedBrand,
-                selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice,
-                selectedCategory: this.selectedCategory,
-                selectedSubcategory: this.selectedSubcategory,
-            });
+            this.fetchProducts(this.getFilterParams())
         },
         selectPrice(price) {
             this.selectedPrice = this.selectedPrice === price ? null : price;
-            this.fetchProducts({
-                selectedBrand: this.selectedBrand,
-                selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice,
-                selectedCategory: this.selectedCategory,
-                selectedSubcategory: this.selectedSubcategory,
-            });
+            this.fetchProducts(this.getFilterParams())
         },
         selectCategory(categoryId) {
             this.selectedCategory = this.selectedCategory === categoryId ? null : categoryId;
-            this.fetchProducts({
-                selectedBrand: this.selectedBrand,
-                selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice,
-                selectedCategory: this.selectedCategory,
-                selectedSubcategory: this.selectedSubcategory,
-            });
+            this.fetchProducts(this.getFilterParams())
         },
         selectSubcategory({ categoryId, subcategoryId }) {
             this.selectedCategory = categoryId;
             this.selectedSubcategory = subcategoryId;
-            this.fetchProducts({
-                selectedBrand: this.selectedBrand,
-                selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice,
-                selectedCategory: this.selectedCategory,
-                selectedSubcategory: this.selectedSubcategory,
-            });
+            this.fetchProducts(this.getFilterParams())
         },
         getColorStyle(color) {
             return {
@@ -220,15 +190,22 @@ export default {
                 });
             }
         },
+        getFilterParams() {
+            return {
+                selectedBrand: this.selectedBrand,
+                selectedColor: this.selectedColor,
+                selectedPrice: this.selectedPrice,
+                selectedCategory: this.selectedCategory,
+                selectedSubcategory: this.selectedSubcategory,
+            };
+        }
     },
     created() {
-        this.fetchProducts({
-            selectedBrand: this.selectedBrand,
-            selectedColor: this.selectedColor,
-            selectedPrice: this.selectedPrice,
-            selectedCategory: this.selectedCategory,
-            selectedSubcategory: this.selectedSubcategory,
-        });
+        const category = this.$route.query.category;
+        if (category) {
+            this.selectedCategory = parseInt(category);
+        }
+        this.fetchProducts(this.getFilterParams());
         this.fetchBrands();
         this.fetchCategories();
     }
