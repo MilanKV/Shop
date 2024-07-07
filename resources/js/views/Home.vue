@@ -41,6 +41,36 @@
             </div>
         </div>
     </section>
+    <section class="products-section">
+        <div class="container">
+            <div class="row">
+                <div class="products-title col-xl-6 col-lg-6 col-md-6">
+                    <h3 class="title">Popular Products</h3>
+                </div>
+                <div class="products-tab col-xl-6 col-lg-6 col-md-6">
+                    <div class="tab">
+                        <ul class="nav-tabs justify-content-md-end">
+                            <li class="nav-item">
+                                <button class="nav-link underline active">Top Rated</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link underline">Best Selling</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link underline">Latest</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="product-grid">
+                <div class="row">
+                    <GridCard v-for="product in products" :key="product.id" v-bind="getDetails(product)"
+                        :cardClass="'grid-card col-xl-3 col-lg-4 col-md-6 col-sm-6'" />
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -51,11 +81,14 @@ import { Scrollbar } from 'swiper/modules';
 import "swiper/css";
 import 'swiper/css/scrollbar';
 
+import GridCard from '../components/Grid-Card.vue';
+
 export default {
     name: 'Home',
     components: {
         Swiper,
         SwiperSlide,
+        GridCard,
     },
     data() {
         return {
@@ -82,17 +115,18 @@ export default {
                 1440: {
                     slidesPerView: 4,
                 }
-            }
+            },
         };
     },
     computed: {
         ...mapState({
             categories: state => state.categories,
+            products: state => state.products,
         }),
 
     },
     methods: {
-        ...mapActions(['fetchCategories']),
+        ...mapActions(['fetchCategories', 'fetchProducts']),
 
         getImageUrl(category) {
             return `/storage/${category.category_image}`;
@@ -106,9 +140,19 @@ export default {
         goToShopWithCategory(categoryId) {
             this.$router.push({ name: 'Shop', query: { category: categoryId } });
         },
+        getDetails(product) {
+            return {
+                productName: product.product_name,
+                imageUrl: product.image,
+                productPrice: product.purchase_price,
+                discount: product.discount_price,
+                description: product.short_description,
+            };
+        }
     },
     created() {
         this.fetchCategories();
+        this.fetchProducts({});
     }
 }
 </script>

@@ -22,8 +22,9 @@ export default {
         }
     },
 
-    async fetchProducts({ commit, state }, { selectedBrand, selectedColor, selectedPrice, selectedCategory, selectedSubcategory, page = 1, perPage = 9 }) {
+    async fetchProducts({ commit, state }, params = {}) {
         try {
+            const { selectedBrand, selectedColor, selectedPrice, selectedCategory, selectedSubcategory, page = 1, perPage = 9 } = params;
             const response = await axiosInstance.get('/api/products', {
                 params: {
                     sort: state.sortingOption,
@@ -38,21 +39,14 @@ export default {
             });
             commit('SET_PRODUCTS', response.data.products);
             commit('SET_PAGINATION', response.data.pagination);
-            commit('SET_BRAND_COUNTS', response.data.counts.brands);
-            commit('SET_COLOR_COUNTS', response.data.counts.colors);
-            commit('SET_PRICE_COUNTS', response.data.counts.prices);
-            commit('SET_SUBCATEGORY_COUNTS', response.data.counts.subCategorys);
+            commit('SET_COUNTS', response.data.counts);
         } catch (error) {
             console.error('Error fetching products:', error);
         }
     },
     updateSorting({ commit, dispatch }, sortingOption) {
         commit('SET_SORTING_OPTION', sortingOption);
-        dispatch('fetchProducts', {
-            selectedBrand: null,
-            selectedColor: null,
-            selectedPrice: null
-        });
+        dispatch('fetchProducts');
     },
     async fetchBrands({ commit }) {
         try {

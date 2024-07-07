@@ -20,14 +20,7 @@
             <div class="shop-body">
                 <div class="row">
                     <div class="left col-lg-3">
-                        <Sidebar :brands="brands" :selectedBrand="selectedBrand" @update:selectedBrand="selectBrand"
-                            :colors="colors" :selectedColor="selectedColor" @update:selectedColor="selectColor"
-                            :prices="prices" :selectedPrice="selectedPrice" @update:selectedPrice="selectPrice"
-                            :brandCounts="brandCounts" :colorCounts="colorCounts" :priceCounts="priceCounts"
-                            :subCategoryCounts="subCategoryCounts" :categories="categories"
-                            :selectedCategory="selectedCategory" @update:selectedCategory="selectCategory"
-                            :selectedSubcategory="selectedSubcategory"
-                            @update:selectedSubcategory="selectSubcategory" />
+                        <Sidebar v-bind="sidebarProps" v-on="sidebarEvents" />
                     </div>
                     <div class="right col-lg-9">
                         <div class="content mb-40">
@@ -36,18 +29,15 @@
                                     :class="{ 'fade-out': switchingView }">
                                     <div class="row">
                                         <GridCard v-for="product in products" :key="product.id"
-                                            :productName="product.product_name" :imageUrl="product.image"
-                                            :productPrice="product.purchase_price" :discount="product.discount_price"
-                                            :description="product.short_description" />
+                                            v-bind="getDetails(product)"
+                                            :cardClass="'grid-card col-xl-4 col-lg-4 col-md-4 col-sm-6'" />
                                     </div>
                                 </div>
                                 <div v-else-if="activeView === 'list'" class="tab-list-view"
                                     :class="{ 'fade-out': switchingView }">
                                     <div class="row">
                                         <ListCard v-for="product in products" :key="product.id"
-                                            :productName="product.product_name" :imageUrl="product.image"
-                                            :productPrice="product.purchase_price" :discount="product.discount_price"
-                                            :description="product.short_description" />
+                                            v-bind="getDetails(product)" />
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +52,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 import Search from '../components/Search.vue';
 import Accordion from '../components/Accordion.vue';
@@ -123,7 +113,33 @@ export default {
                 Yellow: '#e2e20d',
                 Green: '#95c995',
             };
-        }
+        },
+        sidebarProps() {
+            return {
+                brands: this.brands,
+                selectedBrand: this.selectedBrand,
+                colors: this.colors,
+                selectedColor: this.selectedColor,
+                prices: this.prices,
+                selectedPrice: this.selectedPrice,
+                brandCounts: this.brandCounts,
+                colorCounts: this.colorCounts,
+                priceCounts: this.priceCounts,
+                subCategoryCounts: this.subCategoryCounts,
+                categories: this.categories,
+                selectedCategory: this.selectedCategory,
+                selectedSubcategory: this.selectedSubcategory
+            };
+        },
+        sidebarEvents() {
+            return {
+                'update:selectedBrand': this.selectBrand,
+                'update:selectedColor': this.selectColor,
+                'update:selectedPrice': this.selectPrice,
+                'update:selectedCategory': this.selectCategory,
+                'update:selectedSubcategory': this.selectSubcategory
+            };
+        },
     },
     methods: {
         ...mapActions(['fetchProducts', 'updateSorting', 'fetchBrands', 'fetchCategories']),
@@ -174,12 +190,9 @@ export default {
         },
         changePage(page) {
             if (page > 0 && page <= this.pagination.last_page) {
+                const filterParams = this.getFilterParams();
                 this.fetchProducts({
-                    selectedBrand: this.selectedBrand,
-                    selectedColor: this.selectedColor,
-                    selectedPrice: this.selectedPrice,
-                    selectedCategory: this.selectedCategory,
-                    selectedSubcategory: this.selectedSubcategory,
+                    ...filterParams,
                     page,
                 });
                 this.$nextTick(() => {
@@ -191,12 +204,16 @@ export default {
             }
         },
         getFilterParams() {
+            const { selectedBrand, selectedColor, selectedPrice, selectedCategory, selectedSubcategory } = this;
+            return { selectedBrand, selectedColor, selectedPrice, selectedCategory, selectedSubcategory };
+        },
+        getDetails(product) {
             return {
-                selectedBrand: this.selectedBrand,
-                selectedColor: this.selectedColor,
-                selectedPrice: this.selectedPrice,
-                selectedCategory: this.selectedCategory,
-                selectedSubcategory: this.selectedSubcategory,
+                productName: product.product_name,
+                imageUrl: product.image,
+                productPrice: product.purchase_price,
+                discount: product.discount_price,
+                description: product.short_description,
             };
         }
     },
