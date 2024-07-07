@@ -6,7 +6,6 @@ export default {
     state.isAdmin = status;
   },
 
-
   SET_PRODUCTS(state, products) {
     state.products = products;
   },
@@ -17,23 +16,12 @@ export default {
     state.categories = categories;
   },
 
-  SET_SELECTED_CATEGORY(state, categoryId) {
-    state.selectedCategory = categoryId;
+  SET_COUNTS(state, counts) {
+    state.brandCounts = counts.brands;
+    state.colorCounts = counts.colors;
+    state.priceCounts = counts.prices;
+    state.subCategoryCounts = counts.subCategorys;
   },
-
-  SET_BRAND_COUNTS(state, counts) {
-    state.brandCounts = counts;
-  },
-  SET_COLOR_COUNTS(state, counts) {
-    state.colorCounts = counts;
-  },
-  SET_PRICE_COUNTS(state, counts) {
-    state.priceCounts = counts;
-  },
-  SET_SUBCATEGORY_COUNTS(state, counts) {
-    state.subCategoryCounts = counts;
-  },
-
   SET_SORTING_OPTION(state, sortingOption) {
     state.sortingOption = sortingOption;
   },

@@ -7,9 +7,6 @@ export default {
     brands: [],
     categories: [],
 
-    selectedCategory: null,
-    selectedSubcategory: null,
-
     brandCounts: {},
     colorCounts: {},
     priceCounts: {},

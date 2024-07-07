@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-card col-xl-4 col-lg-4 col-md-4 col-sm-6">
+    <div :class="cardClass">
         <div class="product-grid-item">
             <div class="product-grid-image">
                 <a href="#">
@@ -47,6 +47,10 @@ export default {
         productPrice: Number,
         discount: Number,
         description: String,
+        cardClass: {
+            type: String,
+            required: true
+        },
     },
     computed: {
         fullImageUrl() {
