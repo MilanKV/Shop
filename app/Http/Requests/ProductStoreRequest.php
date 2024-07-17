@@ -31,7 +31,6 @@ class ProductStoreRequest extends FormRequest
             'product_color' => 'nullable|string|max:50',
             'product_size' => 'nullable|string|max:20',
             'quantity' => 'required|integer|min:0',
-            'image' => 'nullable|image|max:2048',
             'weight' => 'nullable|numeric|min:0',
             'status' => 'required|in:in stock,out of stock',
             'brand_id' => 'nullable|exists:brands,id',

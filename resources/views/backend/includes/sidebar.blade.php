@@ -2,10 +2,12 @@
     $superAdminRole = \App\Enums\RoleType::SUPERADMIN;
 @endphp
 <div class="sidebar">
-    <div class="logo-details">
-        <i class='bx bxl-c-plus-plus'></i>
-        <span class="logo_name">Shop</span>
-    </div>
+    <a href="/" class="logo-link"> 
+        <div class="logo-details">
+            <i class='bx bxl-c-plus-plus'></i>
+            <span class="logo_name">Shop</span>
+        </div>
+    </a>
     <ul class="nav-links">
         <li class="list-item">
             <a href="{{route('dashboard')}}">

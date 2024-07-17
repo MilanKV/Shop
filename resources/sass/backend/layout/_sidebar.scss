@@ -13,11 +13,19 @@
   &.close {
     width: 78px;
 
-    .logo-details {
-      .logo_name {
-        transition-delay: 0s;
-        opacity: 0;
-        pointer-events: none;
+    .logo-link {
+      background: transparent;
+      border: none;
+      color: inherit;
+      outline: none;
+      text-decoration: none;
+
+      .logo-details {
+        .logo_name {
+          transition-delay: 0s;
+          opacity: 0;
+          pointer-events: none;
+        }
       }
     }
 
@@ -110,27 +118,35 @@
     }
   }
 
-  .logo-details {
-    height: 60px;
-    width: 100%;
-    display: flex;
-    align-items: center;
+  .logo-link {
+    background: transparent;
+    border: none;
+    color: inherit;
+    outline: none;
+    text-decoration: none;
 
-    i {
-      font-size: 30px;
-      color: #fff;
-      height: 50px;
-      min-width: 78px;
-      text-align: center;
-      line-height: 50px;
-    }
+    .logo-details {
+      height: 60px;
+      width: 100%;
+      display: flex;
+      align-items: center;
 
-    .logo_name {
-      font-size: 22px;
-      color: #fff;
-      font-weight: 600;
-      transition: 0.3s ease;
-      transition-delay: 0.1s;
+      i {
+        font-size: 30px;
+        color: #fff;
+        height: 50px;
+        min-width: 78px;
+        text-align: center;
+        line-height: 50px;
+      }
+
+      .logo_name {
+        font-size: 22px;
+        color: #fff;
+        font-weight: 600;
+        transition: 0.3s ease;
+        transition-delay: 0.1s;
+      }
     }
   }
 
