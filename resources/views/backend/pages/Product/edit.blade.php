@@ -24,16 +24,28 @@
                                     <div class="image-card h-100">
                                         <div class="body">
                                             <h5>Product Image</h5>
-                                            <div class="row">
-                                                <div class="image">
-                                                    <img class="mt-3 w-100" src="{{ old('image') ? asset('storage/' . old('image')) : ($product->image ? (Str::startsWith($product->image, 'https') ? $product->image : asset('storage/' . $product->image)) : 'https://cdn.pixabay.com/photo/2017/04/20/07/07/add-2244771_960_720.png') }}" alt="product_image">
+                                            <div class="row mt-4">
+                                                <a id="main-image-link" class="image" href="{{ old('photo_name') ? asset('storage/' . old('photo_name')) : ($product->images->first() ? asset('storage/' . $product->images->first()->photo_name) : 'https://cdn.pixabay.com/photo/2017/04/20/07/07/add-2244771_960_720.png') }}" target="_blank">
+                                                    <img id="main-image" class="mt-3 w-100" src="{{ old('image') ? asset('storage/' . old('image')) : ($product->images->first() ? asset('storage/' . $product->images->first()->photo_name) : 'https://cdn.pixabay.com/photo/2017/04/20/07/07/add-2244771_960_720.png') }}" alt="product_image">
+                                                </a>
+                                                <div class="image-row mt-5">
+                                                    <nav>
+                                                        <div class="image-gallery d-flex flex-wrap" id="image-gallery">
+                                                            @foreach($product->images as $image)
+                                                                <a href="{{ asset('storage/' . $image->photo_name) }}" target="_blank" class="nav-link" data-image-id="{{ $image->id }}">
+                                                                    <img src="{{ asset('storage/' . $image->photo_name) }}" alt="photo_name">
+                                                                </a>
+                                                            @endforeach
+                                                        </div>
+                                                    </nav>
                                                 </div>
                                                 <div class="action mt-4 col-12">
                                                     <div class="d-flex">
                                                         <button class="btn btn-add mb-0 me-2" type="button" name="add">Add</button>
-                                                        <input type="file" style="display: none;" name="image" id="add-image" value="{{ old('image') }}" accept="image/*">
-                                                        <button class="btn btn-outline mb-0" type="button" name="remove" data-context="general-management">Remove</button>
+                                                        <input type="file" style="display: none;" name="image[]" id="add-image" value="{{ old('image') }}" accept="image/*" multiple>
+                                                        <button class="btn btn-outline mb-0" type="button" name="remove-all-images" id="remove-all-images">Remove</button>
                                                     </div>
+                                                    <input type="hidden" name="remove_all_images" id="remove-all-images-input" value="0">
                                                 </div>
                                             </div>
                                         </div>
@@ -65,17 +77,18 @@
                                                 <div class="form-group flex-grow-1 mb-0 pe-4">
                                                     <label for="product_color" class="form-label mt-2 row mt-4">Color</label>
                                                     <select name="product_color" class="form-control">
-                                                        <option value="">--Select any color--</option>
+                                                        <option value="">Color</option>
                                                         <option value="red" {{ $product->product_color == 'red' ? 'selected' : '' }}>Red</option>
                                                         <option value="blue" {{ $product->product_color == 'blue' ? 'selected' : '' }}>Blue</option>
                                                         <option value="black" {{ $product->product_color == 'black' ? 'selected' : '' }}>Black</option>
                                                         <option value="green" {{ $product->product_color == 'green' ? 'selected' : '' }}>Green</option>
+                                                        <option value="yellow" {{ $product->product_color == 'yellow' ? 'selected' : '' }}>Yellow</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group flex-grow-1 mb-0 pe-4">
                                                     <label for="product_size" class="form-label mt-2 row mt-4">Size</label>
                                                     <select name="product_size" class="form-control">
-                                                        <option value="">--Select any size--</option>
+                                                        <option value="">Size</option>
                                                         <option value="small" {{ $product->product_size == 'small' ? 'selected' : '' }}>Small</option>
                                                         <option value="medium" {{ $product->product_size == 'medium' ? 'selected' : '' }}>Medium</option>
                                                         <option value="large" {{ $product->product_size == 'large' ? 'selected' : '' }}>Large</option>
@@ -112,14 +125,14 @@
                                             <h5>Status Overview</h5>
                                             <label for="status" class="form-label mt-2 row mt-4">Product Status</label>
                                             <select name="status" class="form-control">
-                                                <option value="">--Select status--</option>
+                                                <option value="">Status</option>
                                                 <option value="in stock" {{ $product->status == \App\Enums\ProductStatus::INSTOCK ? 'selected' : '' }}>In Stock</option>
                                                 <option value="out of stock" {{ $product->status == \App\Enums\ProductStatus::OUTOFSTOCK ? 'selected' : '' }}>Out of Stock</option>
                                             </select>
 
                                             <label for="brand_id" class="form-label mt-2 row mt-4">Brand</label>
                                             <select name="brand_id" class="form-control">
-                                                <option value="">--Select brand--</option>
+                                                <option value="">Brand</option>
                                                 @foreach($brands as $brand)
                                                     <option value='{{$brand->id}}' {{ $product->brand_id == $brand->id ? 'selected' : '' }}>{{$brand->brand_name}}</option>
                                                 @endforeach
@@ -127,7 +140,7 @@
 
                                             <label for="category_id" class="form-label mt-2 row mt-4">Category</label>
                                             <select name="category_id" id="category_id" class="form-control">
-                                                <option value="">--Select category--</option>
+                                                <option value="">Category</option>
                                                 @foreach($categories as $category)
                                                     @if ($category->is_parent && is_null($category->parent_id))
                                                         <option value='{{$category->id}}' {{ $product->category_id == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>
@@ -137,7 +150,7 @@
 
                                             <label for="subcategory_id" class="form-label mt-2 row mt-4">Subcategory</label>
                                             <select name="subcategory_id" id="subcategory_id" class="form-control">
-                                                <option value="">--Select subcategory--</option>
+                                                <option value="">Subcategory</option>
                                                 @foreach($categories as $subcategory)
                                                     @if (!$subcategory->is_parent && !is_null($subcategory->parent_id))
                                                         <option value='{{$subcategory->id}}' data-parent-id='{{$subcategory->parent_id}}' {{ $product->subcategory_id == $subcategory->id ? 'selected' : '' }}>{{$subcategory->category_name}}</option>

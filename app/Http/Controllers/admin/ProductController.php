@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Images;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 
@@ -24,7 +25,7 @@ class ProductController extends Controller
         $sortColumn = $request->input('sortColumn', 'created_at');
         $sortDirection = $request->input('sortDirection', 'desc');
 
-        $query = Product::query();
+        $query = Product::with('images');
 
         if ($search) {
             $query->where(function ($q) use ($search) {
@@ -62,12 +63,6 @@ class ProductController extends Controller
         // Validate the incoming request
         $validatedData = $request->validated();
 
-        // Handling file upload for product image
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/backend/product/product_images');
-            $validatedData['image'] = str_replace('public/', '', $imagePath);
-        }
-
         // Generating slug
         $slug = Str::slug($validatedData['product_name']);
         $count = Product::where('slug', $slug)->count();
@@ -80,6 +75,15 @@ class ProductController extends Controller
 
         // Creating product
         $product = Product::create($validatedData);
+
+        // Handling file upload for product image
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $file) {
+                $imagePath = $file->store('public/backend/product/product_images');
+                $photoName = str_replace('public/', '', $imagePath);
+                $product->images()->create(['photo_name' => $photoName]);
+            }
+        }
 
         return redirect()->route('product.index')->with('success', 'Product created successfully.');
     }
@@ -110,10 +114,22 @@ class ProductController extends Controller
         // Validate the incoming request
         $validatedData = $request->validated();
 
-        // Handling file upload for product image
+        // Handle removal of all images if requested
+        if ($request->input('remove_all_images') == '1') {
+            // Delete images from storage
+            foreach ($product->images as $image) {
+                Storage::delete('public/' . $image->photo_name);
+                $image->delete();
+            }
+        }
+
+        // Handle file upload for new product images
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/backend/product/product_images');
-            $validatedData['image'] = str_replace('public/', '', $imagePath);
+            foreach ($request->file('image') as $file) {
+                $imagePath = $file->store('public/backend/product/product_images');
+                $photoName = str_replace('public/', '', $imagePath);
+                $product->images()->create(['photo_name' => $photoName]);
+            }
         }
 
         // Updating product
@@ -127,6 +143,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        // Delete the products images from storage if they exist
+        foreach ($product->images as $image) {
+            if ($image->photo_name) {
+                Storage::delete('public/' . $image->photo_name);
+            }
+            $image->delete();
+        }
+
         $product->delete();
 
         return redirect()->route('product.index')->with('success', 'Product deleted successfully');
@@ -150,9 +174,12 @@ class ProductController extends Controller
     {
         $product = Product::withTrashed()->findOrFail($id);
 
-        // Delete the product's image from storage if it exists
-        if ($product->image) {
-            Storage::delete('public/' . $product->image);
+        // Delete the product's images from storage if they exist
+        foreach ($product->images as $image) {
+            if ($image->photo_name) {
+                Storage::delete('public/' . $image->photo_name);
+            }
+            $image->forceDelete();
         }
 
         $product->forceDelete();
@@ -160,4 +187,3 @@ class ProductController extends Controller
         return redirect()->back();
     }
 }
-

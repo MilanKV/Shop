@@ -2,9 +2,9 @@
 
 namespace App\Models\Traits;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Images;
 
 trait ProductRelationshipsTrait
 {
@@ -21,5 +21,10 @@ trait ProductRelationshipsTrait
     public function subcategory()
     {
         return $this->belongsTo(Category::class, 'subcategory_id', 'id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Images::class, 'product_id', 'id');
     }
 }
