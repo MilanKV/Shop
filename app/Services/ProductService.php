@@ -10,14 +10,11 @@ class ProductService
 {
     public function getFilteredProducts(array $filters, int $perPage): LengthAwarePaginator
     {
-        $query = Product::query()->applyFilters($filters)->orderBySort($filters['sort'] ?? 'Low to High');
+        $query = Product::query()
+            ->applyFilters($filters)
+            ->orderBySort($filters['sort'] ?? 'Low to High');
 
         $products = $query->paginate($perPage);
-
-        $products->getCollection()->transform(function ($product) {
-            $product->image_url = asset('storage/backend/product/product_images/' . $product->image);
-            return $product;
-        });
 
         return $products;
     }
