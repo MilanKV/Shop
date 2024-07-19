@@ -210,7 +210,7 @@ export default {
         getDetails(product) {
             return {
                 productName: product.product_name,
-                imageUrl: product.image,
+                imageUrl: product.images[0],
                 productPrice: product.purchase_price,
                 discount: product.discount_price,
                 description: product.short_description,

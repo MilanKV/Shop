@@ -25,7 +25,9 @@ class ProductResource extends JsonResource
             'product_color' => $this->product_color,
             'product_size' => $this->product_size,
             'quantity' => $this->quantity,
-            'image' => $this->image,
+            'images' => $this->images->map(function ($image) {
+                return asset('storage/' . $image->photo_name);
+            }),
             'weight' => $this->weight,
         ];
     }

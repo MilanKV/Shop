@@ -5,7 +5,7 @@
                 <div class="image col-xl-5 col-lg-5">
                     <div class="product-list-image">
                         <a href="#">
-                            <img :src="fullImageUrl" :alt="productName">
+                            <img :src="imageUrl" :alt="productName">
                         </a>
                         <div v-if="discount" class="product-list-discount">
                             <span class="product-list-discount-item">-{{ discount }}%</span>
@@ -59,9 +59,6 @@ export default {
                 ? this.description.substring(0, 250) + '...'
                 : this.description;
         },
-        fullImageUrl() {
-            return `/storage/${this.imageUrl}`;
-        }
     },
 }
 </script>
