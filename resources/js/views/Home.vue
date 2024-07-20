@@ -51,7 +51,7 @@
                     <div class="tab">
                         <ul class="nav-tabs justify-content-md-end">
                             <li class="nav-item">
-                                <button class="nav-link underline active">Top Rated</button>
+                                <button class="nav-link underline active">Top Viewed</button>
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link underline">Best Selling</button>
@@ -152,7 +152,7 @@ export default {
     },
     created() {
         this.fetchCategories();
-        this.fetchProducts({});
+        this.fetchProducts({ perPage: 12 });
     }
 }
 </script>

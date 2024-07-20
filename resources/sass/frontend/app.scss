@@ -12,7 +12,6 @@
 // Layout
 @import './header';
 @import './footer';
-@import './back-to-top';
 
 // Pages //
 
@@ -23,3 +22,19 @@
 
 // Shop page
 @import './shop';
+
+// Components
+@import './components/sort-tab';
+@import './components/sortingDropdown';
+@import './components/sidebar';
+@import './components/pagination';
+@import './components/notFound';
+@import './components/gridCard';
+@import './components/listCard';
+@import './components/back-to-top';
+@import './components/logo';
+@import './components/menu';
+@import './components/search';
+@import './components/action';
+@import './components/hamburger';
+@import './components/offcanvas';

@@ -1,0 +1,61 @@
+.pagination {
+    @media (max-width: 425px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    nav {
+        margin-top: 10px;
+
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: inline-block;
+                margin-right: 5px;
+                margin-bottom: 10px;
+
+                .pointer {
+                    line-height: 42px;
+                    padding: 12px 19px;
+                    color: #000;
+                    border: 1px solid #423f74;
+                    outline: none;
+                    text-decoration: none;
+                    background: transparent;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #423f74;
+                        color: #fff;
+                        transition: all 0.3s ease;
+
+                        .pagination-prev,
+                        .pagination-next {
+                            img {
+                                filter: brightness(0) invert(1);
+                                transition: all 0.3s ease;
+                            }
+                        }
+                    }
+
+                    &.active {
+                        background-color: #423f74;
+                        color: #fff;
+                    }
+
+                    .pagination-prev,
+                    .pagination-next {
+                        display: inline-block;
+                        font-size: 16px;
+                        font-weight: 500;
+                        min-height: 44px;
+                        min-width: 44px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

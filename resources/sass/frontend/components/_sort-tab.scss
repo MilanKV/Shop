@@ -1,0 +1,17 @@
+.sort-tab {
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    .link {
+        margin-right: 20px;
+        border: 0;
+        background-color: transparent;
+
+        &.active {
+            img {
+                filter: brightness(0);
+            }
+        }
+    }
+}

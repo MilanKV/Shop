@@ -1,0 +1,59 @@
+.menu {
+    padding-left: 80px;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            position: relative;
+            display: inline-block;
+            margin-right: 30px;
+            list-style: none;
+            transition: all .3s ease-out 0s;
+
+            .link {
+                display: inline-block;
+                color: #423f74;
+                padding: 22px 0;
+                font-size: 16px;
+                font-weight: 500;
+                text-align: left;
+                outline: none;
+                text-decoration: none;
+                border: 0;
+                background: transparent;
+
+                &:hover {
+                    transition: all .5s ease-out 0s;
+                    color: #1f1f24;
+                    opacity: 1;
+                }
+
+                &:before {
+                    transition: 400ms;
+                    height: 3px;
+                    border-radius: 2px;
+                    content: "";
+                    position: absolute;
+                    background-color: #1f1f24;
+                }
+            }
+
+            .underline {
+                &:before {
+                    width: 0%;
+                    bottom: 15px;
+                }
+
+                &:hover::before {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
