@@ -1,0 +1,201 @@
+.list-card {
+    .product-list-item {
+        background: #fff;
+        border: 1px solid #e9e9f0;
+        margin-bottom: 30px;
+
+        .row {
+            .image {
+                .product-list-image {
+                    position: relative;
+                    height: 100%;
+                    overflow: hidden;
+
+                    a {
+                        background: transparent;
+                        border: none;
+                        color: inherit;
+                        outline: none;
+                        text-decoration: none;
+
+                        img {
+                            width: 330px;
+                            max-width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+
+                            @media (max-width: 1024px) {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .product-list-discount {
+                        position: absolute;
+                        display: flex;
+                        flex-wrap: wrap;
+                        left: 0;
+                        top: 20px;
+
+                        .product-list-discount-item {
+                            display: inline-block;
+                            font-size: 13px;
+                            line-height: 1;
+                            margin-bottom: 5px;
+                            padding: 4px 10px;
+                            text-transform: capitalize;
+                            color: #fff;
+                            background-color: #000;
+                        }
+                    }
+                }
+            }
+
+            .content {
+                align-self: center;
+
+                .product-list-content {
+                    margin-left: -5px;
+                    padding-top: 47px;
+                    padding-right: 75px;
+                    padding-bottom: 40px;
+
+                    @media (max-width: 1024px) {
+                        margin-left: 20px;
+                        padding-right: 20px;
+                    }
+
+                    .product-list-title {
+                        font-size: 20px;
+                        font-weight: 500;
+                        font-family: "Inter", sans-serif;
+                        margin-bottom: 12px;
+
+                        a {
+                            background: transparent;
+                            border: none;
+                            color: inherit;
+                            outline: none;
+                            text-decoration: none;
+                        }
+                    }
+
+                    .product-list-price {
+                        margin-bottom: 8px;
+
+                        .product-list-amount {
+                            color: #000;
+                            font-size: 18px;
+                            font-weight: 500;
+                        }
+                    }
+
+                    .product-list-description {
+                        font-size: 14px;
+                        line-height: 1.57;
+                        margin-bottom: 28px;
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
+                        white-space: pre-wrap;
+                    }
+
+                    .product-list-action {
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+
+                        button {
+                            margin-bottom: 6px;
+
+                            &:not(:last-child) {
+                                margin-right: 6px;
+                            }
+                        }
+
+                        .product-list-add-cart {
+                            color: #000;
+                            border: 1px solid #423f74;
+                            font-size: 15px;
+                            font-weight: 500;
+                            padding: 6px 33px;
+                            background-color: #fff;
+
+                            img {
+                                margin-right: 7px;
+                                margin-bottom: 5px;
+                                filter: brightness(0);
+                            }
+
+                            &:hover {
+                                color: #fff;
+                                background-color: #423f74;
+
+                                img {
+                                    filter: brightness(0) invert(1);
+                                }
+                            }
+                        }
+
+                        .product-list-button {
+                            position: relative;
+                            font-size: 18px;
+                            line-height: 38px;
+                            text-align: center;
+                            color: #000;
+                            height: 40px;
+                            width: 40px;
+                            border: 1px solid #423f74;
+                            background-color: #fff;
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: #423f74;
+
+                                img {
+                                    filter: brightness(0) invert(1);
+                                    transition: all .3s ease-out 0s;
+                                }
+
+                                .product-list-button-tooltip {
+                                    opacity: 1;
+                                    visibility: visible;
+                                }
+                            }
+
+                            .product-list-button-tooltip {
+                                position: absolute;
+                                display: inline-block;
+                                bottom: 90%;
+                                transform: translate(-60%);
+                                color: #fff;
+                                font-size: 12px;
+                                font-weight: 500;
+                                line-height: 1;
+                                opacity: 0;
+                                margin: auto auto 10px;
+                                padding: 4px 8px;
+                                width: max-content;
+                                visibility: hidden;
+                                background-color: #000;
+                                z-index: 1;
+                                transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+
+                                &:after {
+                                    position: absolute;
+                                    left: auto;
+                                    right: 50%;
+                                    top: 100%;
+                                    content: "";
+                                    height: 8px;
+                                    width: 8px;
+                                    background-color: #000;
+                                    transform: translate(50%, -50%) rotate(45deg);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

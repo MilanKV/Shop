@@ -1,0 +1,28 @@
+.not-found {
+    .cart-text {
+        text-align: center;
+
+        img {
+            margin-bottom: 30px;
+            background-color: transparent;
+        }
+
+        .title {
+            font-size: 20px;
+            color: #03041c;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-top: 0;
+        }
+
+        .description {
+            color: #03041c;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-family: "Inter", sans-serif;
+            font-weight: 400;
+            line-height: 26px;
+        }
+    }
+}

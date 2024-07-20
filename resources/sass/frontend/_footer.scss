@@ -14,6 +14,10 @@
                         padding-right: 70px;
                         margin-bottom: 50px;
 
+                        @media (max-width: 1024px) {
+                            padding-right: 0;
+                        }
+
                         .logo-section {
                             margin-bottom: 15px;
 
@@ -60,6 +64,10 @@
                     .footer-section {
                         padding-left: 28px;
                         margin-bottom: 50px;
+
+                        @media (min-width: 320px) and (max-width: 425px) {
+                            padding-left: 0;
+                        }
 
                         .title {
                             color: #000;
@@ -111,6 +119,10 @@
                         padding-left: 42px;
                         margin-bottom: 50px;
 
+                        @media (max-width: 1024px) {
+                            padding-left: 0;
+                        }
+
                         .title {
                             color: #000;
                             font-family: "Roboto", sans-serif;
@@ -161,6 +173,10 @@
                         padding-left: -13px;
                         margin-bottom: 50px;
 
+                        @media (min-width: 426px) and (max-width: 768px) {
+                            padding-left: 28px;
+                        }
+
                         .title {
                             color: #000;
                             font-family: "Roboto", sans-serif;
@@ -210,6 +226,10 @@
                     .contact-info {
                         padding-left: 70px;
                         margin-bottom: 50px;
+
+                        @media (max-width: 1024px) {
+                            padding-left: 0;
+                        }
 
                         .title {
                             color: #000;
@@ -313,114 +333,16 @@
                     flex-direction: row;
                     justify-content: end;
 
+                    @media (min-width: 320px) and (max-width: 425px) {
+                        justify-content: start;
+                    }
+
                     .payment {
                         padding-right: 10px;
 
                         img {
                             width: 40px;
                             height: 40px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 320px) and (max-width: 425px) {
-    .footer {
-        .footer-top {
-            .container {
-                .row {
-                    .company {
-                        .footer-section {
-                            padding-left: 0;
-                        }
-                    }
-
-                    .store {
-                        .footer-section {
-                            padding-left: 0;
-                        }
-                    }
-
-                    .info {
-                        .contact-info {
-                            padding-left: 0;
-                        }
-                    }
-                }
-            }
-        }
-
-        .footer-bottom {
-            .container {
-                .row {
-                    .payments {
-                        justify-content: start;
-                    }
-                }
-            }
-
-        }
-
-    }
-}
-
-@media (min-width: 426px) and (max-width: 768px) {
-    .footer {
-        .footer-top {
-            .container {
-                .row {
-                    .footer-logo-content {
-                        .footer-logo {
-                            padding-right: 0;
-                        }
-                    }
-
-                    .store {
-                        .footer-section {
-                            padding-left: 0;
-                        }
-                    }
-
-                    .support {
-                        .footer-section {
-                            padding-left: 28px;
-                        }
-                    }
-
-                    .info {
-                        .contact-info {
-                            padding-left: 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .footer {
-        .footer-top {
-            .container {
-                .row {
-                    .footer-logo-content {
-                        .footer-logo {
-                            padding-right: 0;
-                        }
-                    }
-
-                    .store {
-                        .footer-section {
-                            padding-left: 0;
-                        }
-                    }
-
-                    .info {
-                        .contact-info {
-                            padding-left: 0;
                         }
                     }
                 }

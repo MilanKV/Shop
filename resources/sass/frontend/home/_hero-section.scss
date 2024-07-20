@@ -8,6 +8,18 @@
     padding: 0 55px;
     overflow: hidden;
 
+    @media (max-width: 768px) {
+        min-height: 900px;
+        align-items: center;
+
+    }
+
+    @media (max-width: 425px) {
+        min-height: 650px;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
     .row {
         display: flex;
         width: 100%;
@@ -15,9 +27,27 @@
         padding-left: 90px;
         padding-right: 90px;
 
+        @media (max-width: 1024px) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
         .left {
             position: relative;
             padding-left: 13px;
+
+            @media (max-width: 768px) {
+                padding-left: 15px;
+                margin-bottom: -100px;
+
+                @media (max-width: 425px) {
+                    top: 15%;
+                }
+
+                @media (min-width: 426px) {
+                    top: 12%;
+                }
+            }
 
             .small-title {
                 position: relative;
@@ -52,6 +82,14 @@
                 animation-name: fadeInUp;
                 animation-delay: .5s;
                 animation-duration: 1s;
+
+                @media (max-width: 768px) {
+                    font-size: 60px;
+                }
+
+                @media (max-width: 425px) {
+                    font-size: 40px;
+                }
             }
 
             .btn {
@@ -117,12 +155,12 @@
 
             .circle {
                 position: absolute;
-                top: 22%;
-                left: 25%;
+                top: 4%;
+                left: 28%;
                 background-color: #423f74;
                 border-radius: 50%;
-                width: 400px;
-                height: 400px;
+                width: 500px;
+                height: 500px;
                 opacity: 0.8;
                 animation: pulsing 6s ease-out infinite;
                 z-index: 1;
@@ -130,17 +168,63 @@
                 &:nth-of-type(1) {
                     animation-delay: -3s;
                 }
+
+                @media (max-width: 1024px) {
+                    top: 20%;
+                    left: 15%;
+                }
+
+                @media (max-width: 768px) {
+                    top: 30%;
+                    left: 50%;
+                    width: 400px;
+                    height: 400px;
+                }
+
+                @media (max-width: 425px) {
+                    width: 350px;
+                    height: 350px;
+                    left: 28%;
+                    top: 48%;
+                }
             }
 
             img {
                 position: relative;
                 z-index: 2;
-                top: 15%;
-                left: -4%;
+                top: 5%;
+                left: 3%;
+                width: 600px;
+                height: 600px;
                 animation-fill-mode: both;
                 animation-name: fadeInRight;
                 animation-delay: .9s;
                 animation-duration: 1s;
+
+                @media (min-width: 1025px) and (max-width: 1440px) {
+                    left: 10%;
+                }
+
+                @media (max-width: 1024px) {
+                    top: 16%;
+                    left: 10%;
+                    width: 450px;
+                    height: 450px;
+                }
+
+                @media (max-width: 768px) {
+                    top: 34%;
+                    left: 25%;
+                    width: 400px;
+                    height: 400px;
+                }
+
+                @media (max-width: 425px) {
+                    top: 45%;
+                    left: 10%;
+                    height: auto;
+                    width: 350px;
+                }
             }
 
             @keyframes pulsing {
@@ -169,106 +253,6 @@
                 100% {
                     transform: translateX(0);
                     opacity: 1;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 320px) and (max-width: 425px) {
-    .hero-section {
-        min-height: 650px;
-        padding: 0;
-        align-items: center;
-        overflow-x: hidden;
-
-        .row {
-            padding-left: 0;
-            padding-right: 0;
-
-            .left {
-                margin-bottom: -100px;
-                padding-left: 15px;
-
-                .title {
-                    font-size: 40px;
-                }
-            }
-
-            .right {
-                .circle {
-                    width: 350px;
-                    height: 350px;
-                    left: 28%;
-                    top: 40%;
-                }
-
-                img {
-                    top: 40%;
-                    left: 10%;
-                    height: auto;
-                    max-width: 400px;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 426px) and (max-width: 768px) {
-    .hero-section {
-        min-height: 900px;
-        align-items: center;
-
-        .row {
-            padding-left: 0;
-            padding-right: 0;
-
-            .left {
-                padding-left: 15px;
-                margin-bottom: -100px;
-
-                .title {
-                    font-size: 60px;
-                }
-            }
-
-            .right {
-                .circle {
-                    top: 25%;
-                    left: 35%;
-                }
-
-                img {
-                    top: 33%;
-                    left: 10%;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .hero-section {
-        .row {
-            padding-left: 0;
-            padding-right: 0;
-
-            .right {
-                .circle {
-                    top: 25%;
-                    left: 15%;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1440px) {
-    .hero-section {
-        .row {
-            .right {
-                img {
-                    left: 2%;
                 }
             }
         }
