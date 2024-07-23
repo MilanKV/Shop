@@ -1,6 +1,6 @@
 <template>
     <div class="accordion">
-        <div class="accordion-header" @click="toggleAccordion">
+        <div class="accordion-header d-flex align-items-center justify-content-between" @click="toggleAccordion">
             <h2 class="title">{{ title }}</h2>
             <img :class="{ 'rotated': isActive }" src="../../img/icons/arrow-down.svg">
         </div>

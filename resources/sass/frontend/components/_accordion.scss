@@ -1,0 +1,216 @@
+.accordion {
+    .accordion-header {
+        flex-direction: row;
+        border-bottom: 1px solid #dadce0;
+        margin-bottom: 25px;
+        cursor: pointer;
+
+        .title {
+            font-size: 17px;
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+        }
+    }
+
+    .accordion-content {
+        max-height: 0;
+        transition: max-height 0.4s ease-out;
+        overflow: hidden;
+
+        &.active {
+            max-height: 500px;
+            width: 100%;
+        }
+
+        .mini-search {
+            padding-bottom: 25px;
+            padding-top: 10px;
+
+            form {
+                .search-input {
+                    position: relative;
+
+                    input {
+                        background-color: #fff;
+                        border: 1px solid #dadce0;
+                        font-family: "Roboto", sans-serif;
+                        font-size: 14px;
+                        height: 46px;
+                        padding: 0 45px 0 20px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .list {
+            max-height: 120px;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .list-item,
+            .list-item-color {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 6px;
+                cursor: pointer;
+
+                .selected {
+                    opacity: 0;
+                    position: absolute;
+                    z-index: -1;
+                }
+
+                .selected:checked+label:before,
+                &.selected label:before {
+                    background-color: #000;
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+                    background-size: 14px 14px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                }
+
+                label {
+                    position: relative;
+                    display: inline-block;
+                    color: #525258;
+                    font-family: "Roboto", sans-serif;
+                    font-size: 14px;
+                    font-weight: 500;
+                    padding-left: 31px;
+                    cursor: pointer;
+
+                    &:before,
+                    &:after {
+                        box-sizing: border-box;
+                        position: absolute;
+                        content: "";
+                        height: 18px;
+                        width: 18px;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        transition: all 0.1s ease-out 0s;
+                    }
+
+                    &:before {
+                        z-index: 1;
+                        text-align: center;
+                        line-height: 18px;
+                    }
+
+                    &:after {
+                        border: 1px solid #dadce0;
+                        background-color: #fff;
+                    }
+                }
+
+                &.list-item-color label:before,
+                &.list-item-color label:after {
+                    border-radius: 50%;
+                    height: 22px;
+                    width: 22px;
+                }
+
+                &.list-item-color.selected label:before {
+                    background-color: var(--checkbox-color);
+                }
+
+                .total-products {
+                    .product-count {
+                        color: #525258;
+                        font-size: 14px;
+                        font-family: "Roboto", sans-serif;
+                        font-weight: 500;
+                        padding-right: 10px;
+                    }
+                }
+            }
+        }
+
+        .category-container {
+            border: none;
+            border-radius: 0;
+            padding: 0;
+
+            .category-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+
+                &:hover,
+                &.active {
+                    .category-title {
+                        color: #423f74;
+                        font-weight: 600;
+                    }
+                }
+
+                .category-title {
+                    color: #232323;
+                    font-size: 14px;
+                    line-height: 1.2;
+                    font-family: "Space Grotesk", sans-serif;
+                    margin-bottom: 0;
+                    margin-top: 0;
+                }
+            }
+
+            .category-content {
+                padding-top: 12px;
+                max-height: 0;
+                transition: max-height 0.4s ease-out;
+                overflow: hidden;
+
+                &.active {
+                    max-height: 500px;
+                }
+
+                .category-list {
+                    list-style: none;
+                    padding-left: 20px;
+                    margin: 0;
+
+                    .category-item {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin-bottom: 10px;
+                        transition: color 0.3s ease-out;
+                        cursor: pointer;
+
+                        &:hover,
+                        &.active {
+
+                            .category-link,
+                            .product-count {
+                                color: #423f74;
+                                font-weight: 600;
+                            }
+                        }
+
+                        .category-link {
+                            color: #525258;
+                            background: transparent;
+                            border: none;
+                            outline: none;
+                            text-decoration: none;
+                        }
+
+                        .product-count {
+                            color: #525258;
+                            font-size: 14px;
+                            font-family: "Roboto", sans-serif;
+                            font-weight: 500;
+                            padding-right: 9px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
