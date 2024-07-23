@@ -52,6 +52,12 @@
                 .left {
                     order: 1;
 
+                    .sidebar {
+                        .tab {
+                            margin-bottom: 25px;
+                        }
+                    }
+
                     @media (min-width: 320px) and (max-width: 425px) {
                         order: 2;
                     }
