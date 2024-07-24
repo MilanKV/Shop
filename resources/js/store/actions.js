@@ -44,6 +44,18 @@ export default {
             console.error('Error fetching products:', error);
         }
     },
+    async fetchProduct({ commit }, productId) {
+        try {
+            const response = await axiosInstance.get(`/api/products/${productId}`);
+            const product = response.data;
+            if (product.images.length) {
+                commit('SET_ACTIVE_IMAGE_INDEX', 0);
+            }
+            commit('SET_PRODUCT', product);
+        } catch (error) {
+            console.error("Error fetching product data:", error);
+        }
+    },
     updateSorting({ commit, dispatch }, sortingOption) {
         commit('SET_SORTING_OPTION', sortingOption);
         dispatch('fetchProducts');

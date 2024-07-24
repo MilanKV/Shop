@@ -2,7 +2,7 @@
     <div :class="cardClass">
         <div class="product-grid-item">
             <div class="product-grid-image">
-                <a href="#">
+                <a @click.prevent="goToProductDetails">
                     <img :src="imageUrl" :alt="productName">
                 </a>
                 <div v-if="discount" class="product-grid-discount">
@@ -13,7 +13,7 @@
                         <img src="../../img/icons/wishlist.svg">
                         <span class="product-grid-button-tooltip">Add To Wishlist</span>
                     </button>
-                    <button type="button" class="product-grid-button">
+                    <button type="button" class="product-grid-button" @click.prevent="goToProductDetails">
                         <img src="../../img/icons/eye.svg">
                         <span class="product-grid-button-tooltip">Quick View</span>
                     </button>
@@ -27,7 +27,7 @@
             </div>
             <div class="product-grid-content">
                 <h3 class="product-grid-title">
-                    <a href="#">{{ productName }}</a>
+                    <a @click.prevent="goToProductDetails">{{ productName }}</a>
                 </h3>
                 <div class="product-grid-price">
                     <span class="product-grid-amount">${{ productPrice }}</span>
@@ -46,11 +46,20 @@ export default {
         productName: String,
         productPrice: Number,
         discount: Number,
-        description: String,
+        short_desc: String,
         cardClass: {
             type: String,
             required: true
         },
+        productId: {
+            type: Number,
+            required: true
+        }
+    },
+    methods: {
+        goToProductDetails() {
+            this.$router.push({ name: 'ProductDetails', params: { id: this.productId } });
+        }
     },
 }
 </script>

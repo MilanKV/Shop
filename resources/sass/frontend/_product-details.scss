@@ -53,7 +53,7 @@
                         .stock {
                             border: 1px solid rgba(66, 63, 116, 1);
                             color: #423f74;
-                            font-family: "inter", sans-serif;
+                            font-family: "Roboto", sans-serif;
                             font-size: 14px;
                             font-weight: 500;
                             line-height: 1;
@@ -73,6 +73,7 @@
                         font-family: "Roboto", sans-serif;
                         font-size: 15px;
                         line-height: 1.6;
+                        color: #525258;
                     }
 
                     .product-price-discount {
@@ -81,6 +82,7 @@
                         .product-price {
                             color: #03041c;
                             font-size: 24px;
+                            font-family: "Roboto", sans-serif;
                             font-weight: 600;
                             margin-left: 1px;
                         }
@@ -303,8 +305,7 @@
                             font-size: 15px;
                             line-height: 1;
 
-                            .category-link,
-                            .subcategory-link {
+                            .category-link {
                                 background: transparent;
                                 border: none;
                                 outline: none;

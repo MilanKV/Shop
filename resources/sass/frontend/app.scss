@@ -23,6 +23,9 @@
 // Shop page
 @import './shop';
 
+// Product Details
+@import './product-details.scss';
+
 // Components
 @import './components/sort-tab';
 @import './components/sortingDropdown';
@@ -38,4 +41,3 @@
 @import './components/action';
 @import './components/hamburger';
 @import './components/offcanvas';
-@import './components/product-details.scss';

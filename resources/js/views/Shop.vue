@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 import Search from '../components/Search.vue';
 import Accordion from '../components/Accordion.vue';
@@ -209,11 +209,13 @@ export default {
         },
         getDetails(product) {
             return {
+                productId: product.id,
                 productName: product.product_name,
                 imageUrl: product.images[0],
                 productPrice: product.purchase_price,
                 discount: product.discount_price,
-                description: product.short_description,
+                short_desc: product.short_description,
+                long_desc: product.long_description,
             };
         }
     },

@@ -7,6 +7,8 @@
         &:hover {
             .product-grid-image {
                 a {
+                    cursor: pointer;
+
                     img {
                         transform: scale(1.1);
                     }
@@ -199,6 +201,11 @@
                 border: none;
                 outline: none;
                 text-decoration: none;
+                cursor: pointer;
+            }
+
+            &:hover {
+                color: #150ba3;
             }
         }
 

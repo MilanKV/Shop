@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\ProductService;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -34,5 +35,16 @@ class ProductController extends Controller
             ],
             'counts' => $counts,
         ]);
+    }
+
+    public function show($id)
+    {
+        $product = Product::with(['category', 'subcategory', 'images'])->findOrFail($id);
+
+        $product->images->each(function ($image) {
+            $image->url = url('storage/' . $image->photo_name);
+        });
+
+        return response()->json($product);
     }
 }
