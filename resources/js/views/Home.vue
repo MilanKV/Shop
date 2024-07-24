@@ -51,7 +51,7 @@
                     <div class="tab">
                         <ul class="nav-tabs justify-content-md-end">
                             <li class="nav-item">
-                                <button class="nav-link underline active">Top Viewed</button>
+                                <button class="nav-link underline active-underline">Most Viewed</button>
                             </li>
                             <li class="nav-item">
                                 <button class="nav-link underline">Best Selling</button>
@@ -142,11 +142,13 @@ export default {
         },
         getDetails(product) {
             return {
+                productId: product.id,
                 productName: product.product_name,
                 imageUrl: product.images[0],
                 productPrice: product.purchase_price,
                 discount: product.discount_price,
-                description: product.short_description,
+                short_desc: product.short_description,
+                long_desc: product.long_description,
             };
         }
     },

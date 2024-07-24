@@ -17,6 +17,7 @@
                         color: inherit;
                         outline: none;
                         text-decoration: none;
+                        cursor: pointer;
 
                         img {
                             width: 330px;
@@ -77,6 +78,11 @@
                             color: inherit;
                             outline: none;
                             text-decoration: none;
+                            cursor: pointer;
+                        }
+
+                        &:hover {
+                            color: #150ba3;
                         }
                     }
 

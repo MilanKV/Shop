@@ -13,7 +13,7 @@ $(document).ready(function () {
         const $subcategorySelect = $('#subcategory_id');
         const allSubcategories = $subcategorySelect.find('option').clone();
 
-        $subcategorySelect.html('<option value="">--Select subcategory--</option>');
+        $subcategorySelect.html('<option value="">Subcategory</option>');
 
         allSubcategories.each(function () {
             if ($(this).data('parent-id') == selectedCategoryId) {

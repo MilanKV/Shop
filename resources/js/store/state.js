@@ -6,7 +6,6 @@ export default {
     products: [],
     brands: [],
     categories: [],
-
     brandCounts: {},
     colorCounts: {},
     priceCounts: {},
@@ -20,4 +19,7 @@ export default {
         from: 0,
         to: 0,
     },
+
+    product: null,
+    activeImageIndex: 0,
 };
